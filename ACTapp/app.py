@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -33,13 +33,6 @@ def about():
 def listAllQuestions():
     questions = math.query.all()
     return render_template('database.html', questions=questions)
-
-# returns article string
-
-
-@app.route('/article/<string:id>/')
-def article(id):
-    return render_template('article.html', id=id)
 
 
 if __name__ == '__main__':
