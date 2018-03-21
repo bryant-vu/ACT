@@ -3,7 +3,7 @@ Math Webapp
 
 Once a tutor explains an ACT math question, more often than not that question is never reviewed by the student. Since the ACT is a standarized test, students should ideally master the question (and by extension, the concept) before moving on to a new question. This webapp will allow students access to the questions they missed so they can redo the problem and are held accountable for their retention. 
 
-All questions are taken from released ACT tests and are tagged by category. This is the most accurate test prep available for students taking the ACT. Users will have ability to query questions by test date and number, similary types of questions, similary difficulty levels, etc.
+All questions are taken from released ACT tests and are tagged by category. This is the most accurate test prep available for students taking the ACT. Users will have ability to query questions by test date and number, similar question types, similar level of difficulty, etc.
 
 Suggested site usage:
 1) Complete full length timed ACT math section.
@@ -21,4 +21,6 @@ Additional features to be implemented:
 - Presentation (Formatting and Display)
   - Images
   - Site layout
+- Original content creation
+  - New questions test same concepts for additional practice
 - Ongoing...
