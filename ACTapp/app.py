@@ -1,9 +1,22 @@
-from flask import Flask, render_template
-from data import Articles
+from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\Bryant\\Documents\\GitHub\\ACT\\DataPrep\\ACTdb.db'
+db = SQLAlchemy(app)
 
-Articles = Articles()
+
+class math(db.Model):
+    id = db.Column(db.String, primary_key=True)
+    topic = db.Column(db.String)
+    date = db.Column(db.String)
+    qNumber = db.Column(db.Integer)
+    qStatement = db.Column(db.String)
+    a1 = db.Column(db.String)
+    a2 = db.Column(db.String)
+    a3 = db.Column(db.String)
+    a4 = db.Column(db.String)
+    a5 = db.Column(db.String)
 
 
 @app.route('/')
@@ -16,9 +29,12 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/articles')
-def articles():
-    return render_template('articles.html', articles=Articles)
+@app.route('/database')
+def listAllQuestions():
+    questions = math.query.all()
+    return render_template('database.html', questions=questions)
+
+# returns article string
 
 
 @app.route('/article/<string:id>/')
