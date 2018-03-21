@@ -2,7 +2,10 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\Bryant\\Documents\\GitHub\\ACT\\DataPrep\\ACTdb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////home/bryantone23/Github/ACT/ACTapp/ACTdb.db'
+#Linux path: 'sqlite:////home/bryantone23/Github/ACT/ACTapp/ACTdb.db'
+#Windows path: ''sqlite:///C:\\Users\\Bryant\\Documents\\GitHub\\ACT\\DataPrep\\ACTdb.db'
+db = SQLAlchemy(app)
 db = SQLAlchemy(app)
 
 
@@ -36,4 +39,4 @@ def listAllQuestions():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
