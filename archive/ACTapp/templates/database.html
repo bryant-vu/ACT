@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <h1>questions</h1>
+  <ul class="list-group">
+    {% for question in questions %}
+      <li class="list-group-item">
+        {{question.date}}
+        <br>
+        {{question.qStatement}}
+        <br>
+        {{'a) ' + question.a1}} {{'b) ' + question.a2}} {{'c) ' + question.a3}} {{'d) ' + question.a4}} {{'e) ' + question.a5}}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}
