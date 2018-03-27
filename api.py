@@ -1,6 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
+import json
 
 engine = create_engine('sqlite:///data/question.sqlite', convert_unicode=True, echo=False)
 Base = declarative_base()
@@ -8,18 +9,35 @@ Base.metadata.reflect(engine)
 
 
 class Questions(Base):
-    __table__ = Base.metadata.tables['circle']
+  __table__ = Base.metadata.tables['circle']
 
 
 session = scoped_session(sessionmaker(bind=engine))
 
 
-def questions():
+def question_list():
+  questionQuery = session.query(Questions.test_date)
 
-    questionReturn = session.query(Questions.statement, Questions.choice_a, Questions.choice_b, Questions.choice_c, Questions.choice_d)
-    questionList = [each for each in questionReturn]
+  questionList = [each for (each,) in questionQuery]
 
-    return questionList
+  return questionList
 
 
-# Need to take response and return json from each question that can be rendered int he dom.
+def questions(input_data):
+
+  questionReturn = session.query(Questions.statement,
+                                 Questions.test_date,
+                                 Questions.choice_a,
+                                 Questions.choice_b,
+                                 Questions.choice_c,
+                                 Questions.choice_d).filter(Questions.test_date == input_data)
+
+  dataDict = [{'Question': each[0],
+               'Test_Date': each[1],
+               'Answer_1': each[2],
+               'Answer_2': each[3],
+               'Answer_3': each[4],
+               'Answer_5': each[5]
+               } for each in questionReturn]
+
+  return dataDict
