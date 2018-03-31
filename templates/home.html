@@ -12,21 +12,42 @@
     <br>
 
     <div class='container'>
+        <center>
+            <div class='row'>
+                <div class="col-sm-12">
+                    <h2>Question Selection</h2>
+                    <select id="questionDropdown" onchange="getQuestionData(this.value)" -->
+                            <option value=#>Select Question</option></select>
+                </div>
+            </div>
+        </center>
+
+        <br>
+        <br>
+        <br>
+
+
         <div class='row'>
             <center>
-            <div class="col-sm-12">
-                <h2>Question Selection</h2>
-                <select id="questionDropdown" onchange="getQuestionsData(this.value)">
-                        <option value=#>Select Question</option></select>
-            </div>
+                <h2>Solve this problem.</h2>
+                <div class="col-sm-12">
+                    <div class id='question'>
+
+                    </div>
+                </div>
             </center>
         </div>
 
         <div class='row'>
+            <center>
+                <div class="col-sm-12">
+                    <ul id='questionAnswers'>
 
+                    </ul>
+                </div>
+            </center>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
