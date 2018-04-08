@@ -31,7 +31,7 @@ function appendInnerHMTL(response) {
 
     d3.select("#question")
     .append('p')
-    .text(response[0]['qStatement'])
+    .text(response[0]['qstatement'])
 
     d3.select("#questionAnswers")
     .append('li')
@@ -44,4 +44,3 @@ function appendInnerHMTL(response) {
     .text(response[0]['a4'])
     .append('li')
     .text(response[0]['a5'])
-};

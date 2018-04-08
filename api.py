@@ -32,7 +32,7 @@ def questions(input_data):
                                    Questions.a4,
                                    Questions.a5).filter(Questions.id == input_data)
 
-    dataDict = [{'qStatement': each[0],
+    dataDict = [{'statement': each[0],
                  'a1': each[1],
                  'a2': each[2],
                  'a3': each[3],
