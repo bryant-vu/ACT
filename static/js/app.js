@@ -11,10 +11,7 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
 
 });
 
-function getQuestionDate();
-
 function getQuestionData() {
-  console.log("I've been called");
   sampleValue = document.getElementById("questionDropdown").value;
 
   document.getElementById("question").innerHTML = ""
