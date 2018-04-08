@@ -15,9 +15,9 @@ def questions_function():
     return jsonify(dataDict)
 
 
-@app.route('/api/v1/questions/<test_date>')
-def question(test_date):
-    outPutList = questions(test_date)
+@app.route('/api/v1/questions/<id>')
+def question(id):
+    outPutList = questions(id)
     return jsonify(outPutList)
 
 

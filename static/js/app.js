@@ -31,15 +31,17 @@ function appendInnerHMTL(response) {
 
     d3.select("#question")
     .append('p')
-    .text(response[0]['Question'])
+    .text(response[0]['qStatement'])
 
     d3.select("#questionAnswers")
     .append('li')
-    .text(response[0]['Answer_1'])
+    .text(response[0]['a1'])
     .append('li')
-    .text(response[0]['Answer_2'])
+    .text(response[0]['a2'])
     .append('li')
-    .text(response[0]['Answer_3'])
+    .text(response[0]['a3'])
     .append('li')
-    .text(response[0]['Answer_5'])
+    .text(response[0]['a4'])
+    .append('li')
+    .text(response[0]['a5'])
 };
