@@ -28,20 +28,21 @@ function getQuestionData() {
 };
 
 function appendInnerHMTL(response) {
+    for (var i = 0; i < response.length; i++){
 
-    d3.select("#question")
-    .append('p')
-    .text(response[0]['statement'])
-
-    d3.select("#questionAnswers")
-    .append('li')
-    .text(response[0]['a1'])
-    .append('li')
-    .text(response[0]['a2'])
-    .append('li')
-    .text(response[0]['a3'])
-    .append('li')
-    .text(response[0]['a4'])
-    .append('li')
-    .text(response[0]['a5'])
+        d3.select("#question")
+              .append('p')
+              .text(response[i]['statement'])
+                  .append('ul')
+                  .append('li')
+                  .text(response[i]['a1'])
+                  .append('li')
+                  .text(response[i]['a2'])
+                  .append('li')
+                  .text(response[i]['a3'])
+                  .append('li')
+                  .text(response[i]['a4'])
+                  .append('li')
+                  .text(response[i]['a5'])
+    }
 };

@@ -16,7 +16,7 @@ session = scoped_session(sessionmaker(bind=engine))
 
 
 def question_list():
-    questionQuery = session.query(Questions.id)
+    questionQuery = session.query(Questions.topic)
 
     questionList = [each for (each,) in questionQuery]
 
@@ -30,7 +30,7 @@ def questions(input_data):
                                    Questions.a2,
                                    Questions.a3,
                                    Questions.a4,
-                                   Questions.a5).filter(Questions.id == input_data)
+                                   Questions.a5).filter(Questions.topic == input_data)
 
     dataDict = [{'statement': each[0],
                  'a1': each[1],
