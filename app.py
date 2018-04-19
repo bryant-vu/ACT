@@ -11,7 +11,7 @@ def index():
 
 @app.route('/api/v1/question_list')
 def questions_function():
-    dataDict = question_list()
+    dataDict = list(set(question_list()))
     return jsonify(dataDict)
 
 
