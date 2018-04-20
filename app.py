@@ -11,13 +11,13 @@ def index():
 
 @app.route('/api/v1/question_list')
 def questions_function():
-    dataDict = question_list()
+    dataDict = list(set(question_list()))
     return jsonify(dataDict)
 
 
-@app.route('/api/v1/questions/<id>')
-def question(id):
-    outPutList = questions(id)
+@app.route('/api/v1/questions/<topic>')
+def question(topic):
+    outPutList = questions(topic)
     return jsonify(outPutList)
 
 
