@@ -3,13 +3,13 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
 import json
 
-engine = create_engine('sqlite:///data/mathTest.sqlite', convert_unicode=True, echo=False)
+engine = create_engine('sqlite:///data/math.sqlite', convert_unicode=True, echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
 
 class Questions(Base):
-    __table__ = Base.metadata.tables['math']
+    __table__ = Base.metadata.tables['db']
 
 
 session = scoped_session(sessionmaker(bind=engine))
