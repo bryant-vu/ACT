@@ -1,4 +1,4 @@
 Apr.2016.43,Imaginary Numbers,April.2016,43,"43. For i = rad(-1), (1 +2i)2 = ?",-3 + 4i,2 + 2i,2 + 4i,-4,-3
-Dec.2016.43,Imaginary Numbers,December.2016,43,"43. Given that i2 = -1 and that k is a positive integer, what is the value of i(4k + 2)?",#NAME?,-1,0,1,i
+Dec.2016.43,Imaginary Numbers,December.2016,43,"43. Given that i2 = -1 and that k is a positive integer, what is the value of i(4k + 2)?",-i,-1,0,1,i
 Dec.2016.57,Imaginary Numbers,December.2016,57,"57. What is the distance, in coordinate units, between (2 + 6i) and (-4 + 3i) in the complex plane?",7,9,rad13,rad45,rad85
 Apr.2017.58,Imaginary Numbers,April.2017,58,"58. Given a positive integer n such that in = 1, which of the following statements about n must be true? (Note: i2 = -1)","When n is divided by 4, the remainder is 0.","When n is divided by 4, the remainder is 1.","When n is divided by 4, the remainder is 2.","When n is divided by 4, the remainder is 3.",Cannot be determined from the given information
