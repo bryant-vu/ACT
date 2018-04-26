@@ -1,8 +1,4 @@
-"60) For what real value of x, if any, is log (x+3) (x2 + 3) = 2 true?",,F. -2,G. -1,H. 0,J. 1,,,,,,,,,,,,,,
-Jun.2015.K,December 2015,June.2015,K,K. There is no such value of x.,,,54) Which of the following number line graphs represents all values in the domain of the function y = log10(x2 – 4x + 3)?,,,,,,,,,,,,
-Dec.2016.F,December 2015,December.2016,F,F. (picture),,,,,,,,,,,,,,,
-Dec.2016.G,December 2015,December.2016,G,G. (picture),,,,,,,,,,,,,,,
-Dec.2016.H,December 2015,December.2016,H,H. (picture),,,,,,,,,,,,,,,
-Dec.2016.J,December 2015,December.2016,J,J. (picture),,,,,,,,,,,,,,,
-Dec.2016.K,December 2015,December.2016,K,K. (picture),,,35) What is the value of log2 rad(8)?,,A. ,B. ,C. rad(2),D. 1,E. 3,,"53) Which of the following values is the x-coordinate of the point in the standard (x,y) coordinate plane where the graph of the line y = 7 intersects the graph of the function y = 1n(x2) + 3?",,A. 6,B. e 4 + 2,C. 4e + 2
-Jun.2017.D,December 2015,June.2017,D,D. 1n(4) + 2,,,,,,,,,,,,,,,
+Dec.2015.60,Logs,December.2015,60,"60) For what real value of x, if any, is log (x+3) (x2 + 3) = 2 true?",F. -2,G. -1,H. 0,J. 1,K. There is no such value of x.
+Dec.2016.54,Logs,December.2016,54,54) Which of the following number line graphs represents all values in the domain of the function y = log10(x2 – 4x + 3)?,F. image,G. image,H. image ,J. image,K. image
+Jun.2017.35,Logs,June.2017,35,35) What is the value of log2 rad(8)?,A. ,B. ,C. rad(2),D. 1,E. 3
+Jun.2017.53,Logs,June.2017,53,"53) Which of the following values is the x-coordinate of the point in the standard (x,y) coordinate plane where the graph of the line y = 7 intersects the graph of the function y = 1n(x2) + 3?",A. 6,B. e 4 + 2,C. 4e + 2,D. 1n(4) + 2,E. 1n(5) +3

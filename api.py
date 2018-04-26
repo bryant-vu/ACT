@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
 import json
 
-engine = create_engine('sqlite:///data/math.sqlite', convert_unicode=True, echo=False)
+engine = create_engine('sqlite:///data/data.sqlite', convert_unicode=True, echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
