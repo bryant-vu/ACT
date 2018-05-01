@@ -1,5 +1,6 @@
-# ACT
-Math Webapp
+# ACT_math website
+
+http://act-math.herokuapp.com/
 
 Once a tutor explains an ACT math question, more often than not that question is never reviewed by the student. Since the ACT is a standarized test, students should ideally master the question (and by extension, the concept) before moving on to a new question. This webapp will allow students access to the questions they missed so they can redo the problem and are held accountable for their retention. 
 
