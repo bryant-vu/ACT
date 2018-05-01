@@ -25,18 +25,20 @@ def question_list():
 
 def questions(input_data):
 
-    questionReturn = session.query(Questions.qStatement,
+    questionReturn = session.query(Questions.id,
+                                   Questions.qStatement,
                                    Questions.a1,
                                    Questions.a2,
                                    Questions.a3,
                                    Questions.a4,
                                    Questions.a5).filter(Questions.topic == input_data)
 
-    dataDict = [{'statement': each[0],
-                 'a1': each[1],
-                 'a2': each[2],
-                 'a3': each[3],
-                 'a4': each[4],
+    dataDict = [{'id': each[0],
+                 'statement': each[1],
+                 'a1': each[2],
+                 'a2': each[3],
+                 'a3': each[4],
+                 'a4': each[5],
                  'a5': each[5]
                  } for each in questionReturn]
 

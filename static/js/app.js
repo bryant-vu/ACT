@@ -38,6 +38,8 @@ function appendInnerHMTL(response) {
 
         d3.select("#question")
               .append('p')
+              .text(response[i]['id'])
+              .append('p')
               .text(response[i]['statement'])
               .append('li')
               .text(response[i]['a1'])
