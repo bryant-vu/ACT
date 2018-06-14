@@ -51,6 +51,10 @@ function appendInnerHMTL(response) {
               .text(response[i]['a4'])
               .append('li')
               .text(response[i]['a5'])
+              .append('div')
+              .append('img')
+              .attr('src','images/testimage.png')
+
 
     }
 };

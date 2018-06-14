@@ -2,8 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, Query
 import json
+import base64
 
-engine = create_engine('sqlite:///data/db.sqlite', convert_unicode=True, echo=False)
+engine = create_engine('sqlite:///data/db1.sqlite', convert_unicode=True, echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
@@ -31,7 +32,8 @@ def questions(input_data):
                                    Questions.a2,
                                    Questions.a3,
                                    Questions.a4,
-                                   Questions.a5).filter(Questions.topic == input_data)
+                                   Questions.a5,
+                                   Questions.pic).filter(Questions.topic == input_data)
 
     dataDict = [{'id': each[0],
                  'statement': each[1],
@@ -39,7 +41,8 @@ def questions(input_data):
                  'a2': each[3],
                  'a3': each[4],
                  'a4': each[5],
-                 'a5': each[6]
+                 'a5': each[6],
+                 'a6': each[7]
                  } for each in questionReturn]
 
     return dataDict
