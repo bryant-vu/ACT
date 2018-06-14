@@ -4,7 +4,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, Query
 import json
 import base64
 
-engine = create_engine('sqlite:///data/db1.sqlite', convert_unicode=True, echo=False)
+engine = create_engine('sqlite:///data/db.sqlite', convert_unicode=True, echo=False)
 Base = declarative_base()
 Base.metadata.reflect(engine)
 
