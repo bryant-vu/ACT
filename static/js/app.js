@@ -39,21 +39,9 @@ function appendInnerHMTL(response) {
         d3.select("#question")
               .append('p')
               .text(response[i]['id'])
-              .append('p')
-              .text(response[i]['statement'])
-              .append('li')
-              .text(response[i]['a1'])
-              .append('li')
-              .text(response[i]['a2'])
-              .append('li')
-              .text(response[i]['a3'])
-              .append('li')
-              .text(response[i]['a4'])
-              .append('li')
-              .text(response[i]['a5'])
               .append('div')
               .append('img')
-              .attr('src','images/testimage.png')
+              .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/'+ response[i]['id'] + '.JPG')
 
 
     }
