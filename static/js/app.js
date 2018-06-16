@@ -35,13 +35,16 @@ function appendInnerHMTL(response) {
       .text("Solve.")
 
     for (var i = 0; i < response.length; i++){
+        var loadImage = new Image();
+
 
         d3.select("#question")
-              .append('p')
+              .append('strong')
               .text(response[i]['id'])
               .append('div')
               .append('img')
               //retrieve both .JPG and .jpg files
-              .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG', 'onerror=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\"')
+              .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG')
+              .attr('onerror', 'this.oneerror=null;this.src=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\";')
     }
 };
