@@ -41,8 +41,7 @@ function appendInnerHMTL(response) {
               .text(response[i]['id'])
               .append('div')
               .append('img')
-              .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/'+ response[i]['id'] + '.JPG')
-
-
+              //retrieve both .JPG and .jpg files
+              .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG', 'onerror=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\"')
     }
 };
