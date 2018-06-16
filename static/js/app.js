@@ -29,7 +29,7 @@ function getQuestionData() {
 };
 
 function appendInnerHMTL(response) {
-
+  
   d3.select("#solve")
       .append('h2')
       .text("Solve.")
