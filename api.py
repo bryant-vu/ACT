@@ -28,7 +28,7 @@ def questions(input_data):
 
     questionReturn = session.query(Questions.id,
                                    Questions.date,
-                                   Questions.a1).filter(Questions.topic == input_data)
+                                   Questions.ans).filter(Questions.topic == input_data)
 
     dataDict = [{'id': each[0],
                  'date': each[1],
