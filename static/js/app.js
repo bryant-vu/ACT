@@ -48,8 +48,8 @@ function appendInnerHMTL(response) {
 
                 q = d3.select("#question")
                       d =  q.append('div')
-                      d.append('strong')
-                      d.text(response[i]['id'])
+                      .append('strong')
+                      .text(response[i]['id'])
                       d.append('div')
                            button = d.append('input')
                                .attr('class','button')
