@@ -4,10 +4,13 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
     if (error) return console.warn(error);
 
     for (var i = 0; i < response.length; i++){
-        d3.select("#questionDropdown")
-              .append('option')
-              .attr('value', response[i])
+        d3.select("#checkboxes")
+              .append('label')
               .text(response[i])
+              .append('input')
+              .attr('type','checkbox')
+              .attr('name','topic')
+              .attr('value', response[i])
     }
 
 });
@@ -23,7 +26,8 @@ function showAnswer(i) {
 //queries topic list and questions
 function getQuestionData() {
 
-        sampleValue = document.getElementById("questionDropdown").value;
+        sampleValue = $('input[id=submitTopic]:checked').val()
+        //document.getElementById("submitTopic").value;
 
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
