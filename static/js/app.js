@@ -37,12 +37,12 @@ function getQuestionData() {
 
             if (error) return console.warn(error);
 
-            appendInnerHMTL(response)
+            appendInnerHTML(response)
         });
 };
 
 //appends list of questions when topic is chosen from dropdown menu
-function appendInnerHMTL(response) {
+function appendInnerHTML(response) {
 
         d3.select("#solve")
             .append('h2')
