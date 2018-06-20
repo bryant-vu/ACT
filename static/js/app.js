@@ -4,13 +4,16 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
     if (error) return console.warn(error);
 
     for (var i = 0; i < response.length; i++){
-        d3.select("#checkboxes")
-              .append('label')
-              .text(response[i])
-              .append('input')
-              .attr('type','checkbox')
-              .attr('name','topic')
-              .attr('value', response[i])
+        a = d3.select("#checkboxes")
+              b = a.append('div')
+                .attr('class','form-check form-check-inline')
+                b.append('input')
+                  .attr('class','form-check-input')
+                  .attr('type','checkbox')
+                  .attr('value',response[i])
+                b.append('label')
+                  .attr('class','form-check-label')
+                  .text(response[i])
     }
 
 });
