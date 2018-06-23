@@ -9,7 +9,7 @@ def index():
     return render_template('home.html')
 
 
-@app.route('/api/v1/question_list')
+@app.route('/api/v1/question_list/')
 def questions_function():
     s = set(question_list())
     dataDict = list(sorted(s))
@@ -20,6 +20,14 @@ def questions_function():
 def question(topic):
     outPutList = questions(topic)
     return jsonify(outPutList)
+
+@app.route('/api/v1/calcprograms/')
+def calcprograms():
+    return render_template('calcprograms.html')
+
+@app.route('/api/v1/contactme/')
+def contactme():
+    return render_template('contactme.html')
 
 
 if __name__ == '__main__':
