@@ -29,6 +29,9 @@ def calcprograms():
 def contactme():
     return render_template('contactme.html')
 
+@app.route('/api/v1/votechanges/')
+def votechanges():
+    return render_template('votechanges.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
