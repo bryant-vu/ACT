@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template('home.html')
 
+@app.route('/api/v1/about/')
+def about():
+    return render_template('about.html')
+
 
 @app.route('/api/v1/question_list/')
 def questions_function():
@@ -29,9 +33,9 @@ def calcprograms():
 def contactme():
     return render_template('contactme.html')
 
-@app.route('/api/v1/votechanges/')
-def votechanges():
-    return render_template('votechanges.html')
+@app.route('/api/v1/changepoll/')
+def changepoll():
+    return render_template('changepoll.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
