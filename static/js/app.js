@@ -4,16 +4,17 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
     if (error) return console.warn(error);
 
     for (var i = 0; i < response.length; i++){
-        a = d3.select("#checkboxes")
-              b = a.append('div')
-                .attr('class','form-check form-check-inline')
-                b.append('input')
-                  .attr('class','form-check-input')
-                  .attr('type','checkbox')
-                  .attr('value',response[i])
-                b.append('label')
-                  .attr('class','form-check-label')
-                  .text(response[i])
+         a = d3.select("#checkboxes")
+                a.append('input')
+                .attr('type','checkbox')
+                .attr('class','form-check-input')
+                .attr('value',response[i])
+                .attr('id',response[i])
+                .attr('onchange',"getQuestionData(this.value)")
+                a.append('label')
+                .attr('class','form-check-label')
+                .attr('for',response[i])
+                .text(response[i])
     }
 
 });
@@ -27,10 +28,7 @@ function showAnswer(i) {
       }
 
 //queries topic list and questions
-function getQuestionData() {
-
-        sampleValue = $('input[id=submitTopic]:checked').val()
-        //document.getElementById("submitTopic").value;
+function getQuestionData(sampleValue) {
 
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
