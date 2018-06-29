@@ -3,28 +3,18 @@ var questionEndPoint = '/api/v1/question_list'
 Plotly.d3.json(questionEndPoint, function(error, response) {
     if (error) return console.warn(error);
 
+    a = d3.select("#checkboxes")
     for (var i = 0; i < response.length; i++){
-         a = d3.select("#checkboxes")
                 a.append('input')
                 .attr('type','checkbox')
                 .attr('class','form-check-input')
                 .attr('value',response[i])
                 .attr('id',response[i])
                 a.append('label')
-                .attr('class','form-check-label')
                 .attr('for',response[i])
                 .text(response[i])
     }
-
 });
-
-function submit_by_class() {
-        var topic = document.getElementsByClassName('form-check-input').value;
-
-        getQuestionData(topic)
-
-};
-
 
 //display answer when 'Show Answer' button is clicked
 function showAnswer(i) {
@@ -35,12 +25,22 @@ function showAnswer(i) {
       };
 
 //queries topic list and questions
-function getQuestionData(sampleValue) {
+function getQuestionData() {
+
+        //return checkbox values
+        sampleValue = document.getElementsByClassName('form-check-input');
+
+        //search for checked value
+        for (var i = 0; i < sampleValue.length; i++) {
+          if(sampleValue[i].checked) {
+            checkedValue = sampleValue[i].value;
+          }
+        }
 
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
-        var endPointQuestionData = '/api/v1/questions/' + sampleValue
+        var endPointQuestionData = '/api/v1/questions/' + checkedValue
         Plotly.d3.json(endPointQuestionData, function(error, response) {
 
             if (error) return console.warn(error);
