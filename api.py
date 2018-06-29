@@ -25,13 +25,13 @@ def question_list():
 
 def questions(input_data):
 
-        questionReturn = session.query(Questions.id,
-                                       Questions.date,
-                                       Questions.ans).filter(Questions.topic == input_data)
+            questionReturn = session.query(Questions.id,
+                                           Questions.date,
+                                           Questions.ans).filter(Questions.topic == input_data)
 
-        dataDict = [{'id': each[0],
-                    'date': each[1],
-                    'ans': each[2]
-                    } for each in questionReturn]
+            dataDict = [{'id': each[0],
+                        'date': each[1],
+                        'ans': each[2]
+                        } for each in questionReturn]
 
-        return dataDict
+            return dataDict

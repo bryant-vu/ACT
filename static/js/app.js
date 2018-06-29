@@ -30,17 +30,21 @@ function getQuestionData() {
         //return checkbox values
         sampleValue = document.getElementsByClassName('form-check-input');
 
-        //search for checked value
+        //initiate array
+        var checkedValues = new Array();
+
+        //search for checked values and append
         for (var i = 0; i < sampleValue.length; i++) {
           if(sampleValue[i].checked) {
-            checkedValue = sampleValue[i].value;
+            checkedValues = checkedValues.concat(sampleValue[i].value);
           }
         }
+        alert(checkedValues)
 
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
-        var endPointQuestionData = '/api/v1/questions/' + checkedValue
+        var endPointQuestionData = '/api/v1/questions/' + checkedValues
         Plotly.d3.json(endPointQuestionData, function(error, response) {
 
             if (error) return console.warn(error);
