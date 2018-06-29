@@ -10,7 +10,6 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
                 .attr('class','form-check-input')
                 .attr('value',response[i])
                 .attr('id',response[i])
-                .attr('onchange',"getQuestionData(this.value)")
                 a.append('label')
                 .attr('class','form-check-label')
                 .attr('for',response[i])
@@ -19,13 +18,21 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
 
 });
 
+function submit_by_class() {
+        var topic = document.getElementsByClassName('form-check-input').value;
+
+        getQuestionData(topic)
+
+};
+
+
 //display answer when 'Show Answer' button is clicked
 function showAnswer(i) {
 
         document.getElementsByClassName('button')[i].style.display="none";
         document.getElementsByClassName('shownAnswer')[i].style.display='table'
 
-      }
+      };
 
 //queries topic list and questions
 function getQuestionData(sampleValue) {
