@@ -31,16 +31,15 @@ function getQuestionData() {
         sampleValue = document.getElementsByClassName('form-check-input');
 
         //initiate array
-        var checkedValues = new Array();
+        var checkedValues = {};
 
         //search for checked values and append
         for (var i = 0; i < sampleValue.length; i++) {
           if(sampleValue[i].checked) {
-            checkedValues = checkedValues.concat(sampleValue[i].value);
+            checkedValues[i] = sampleValue[i].value;
           }
         }
-        alert(checkedValues)
-
+        
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
