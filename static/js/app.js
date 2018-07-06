@@ -31,7 +31,7 @@ function getQuestionData() {
         sampleValue = document.getElementsByClassName('form-check-input');
 
         //initiate array
-        var checkedValues = {};
+        var checkedValues = [];
 
         //search for checked values and append
         for (var i = 0; i < sampleValue.length; i++) {
@@ -39,7 +39,7 @@ function getQuestionData() {
             checkedValues[i] = sampleValue[i].value;
           }
         }
-        
+
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
