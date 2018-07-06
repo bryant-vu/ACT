@@ -5,13 +5,10 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
 
     a = d3.select("#checkboxes")
     for (var i = 0; i < response.length; i++){
-                a.append('input')
-                .attr('type','checkbox')
-                .attr('class','form-check-input')
+                a.append('option')
                 .attr('value',response[i])
+                .attr('class','form-check-input')
                 .attr('id',response[i])
-                a.append('label')
-                .attr('for',response[i])
                 .text(response[i])
     }
 });
@@ -81,8 +78,6 @@ function appendInnerHTML(response) {
                     .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG')
                     //retrieve .jpg file if .JPG file not found
                     .attr('onerror', 'this.oneerror=null;this.src=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\";')
-
-
 
           }
 };
