@@ -7,12 +7,12 @@ Plotly.d3.json(questionEndPoint, function(error, response) {
     for (var i = 0; i < response.length; i++){
                 a.append('input')
                 .attr('type','checkbox')
-                .attr('class','form-check-input')
+                .attr('class','checkbox')
                 .attr('value',response[i])
                 .attr('id',response[i])
                 a.append('label')
                 .attr('for',response[i])
-                .text(response[i])
+                .text("\u00A0"+response[i]+"\u00A0"+"\u00A0")
     }
 });
 
@@ -28,7 +28,7 @@ function showAnswer(i) {
 function getQuestionData() {
 
         //return checkbox values
-        sampleValue = document.getElementsByClassName('form-check-input');
+        sampleValue = document.getElementsByClassName('checkbox');
 
         //initiate array
         var checkedValues = [];
