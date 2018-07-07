@@ -46,7 +46,7 @@ function showAnswer(i) {
 function getQuestionData() {
 
         //return checkbox values
-        sampleValue = document.getElementsByClassName('topics');
+        sampleValue = document.querySelectorAll('.topics,.dates');
 
         //initiate array
         var checkedValues = [];

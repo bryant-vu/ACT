@@ -29,27 +29,19 @@ def question_list():
     return questionListTopic
 
 
-def questions(input_data):
-    input_data = input_data.split(",")
-    input_data = [x.strip(" ") for x in input_data]
-    if len(input_data) == 1:
-            questionReturn = session.query(Questions.id,
-                                           Questions.date,
-                                           Questions.ans).filter(Questions.topic == input_data[0])
-            dataDict = [{'id': each[0],
-                            'date': each[1],
-                            'ans': each[2]
-                            } for each in questionReturn]
+def questions(inputData):
 
-    else:
-        questionReturn = session.query(Questions.id,
-                                       Questions.date,
-                                       Questions.ans).filter(Questions.topic.in_(input_data))
-        dataDict = [{'id': each[0],
-                        'date': each[1],
-                        'ans': each[2]
-                        } for each in questionReturn]
+    inputData = inputData.split(",")
+    inputData = [x.strip(" ") for x in inputData]
 
-    logging.warning('{}'.format(input_data))
+    questionReturn = session.query(Questions.id,
+                                   Questions.date,
+                                   Questions.ans).filter(Questions.topic.in_(inputData), Questions.date.in_(inputData))
+    dataDict = [{'id': each[0],
+                    'date': each[1],
+                    'ans': each[2]
+                    } for each in questionReturn]
+
+    logging.warning('{}'.format(inputData))
 
     return dataDict
