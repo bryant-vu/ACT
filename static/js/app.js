@@ -1,13 +1,31 @@
-var questionEndPoint = '/api/v1/question_list'
+var questionEndPointDate = '/api/v1/question_date'
 
-Plotly.d3.json(questionEndPoint, function(error, response) {
+Plotly.d3.json(questionEndPointDate, function(error, response) {
     if (error) return console.warn(error);
 
-    a = d3.select("#checkboxes")
+    a = d3.select("#checkboxesDates")
     for (var i = 0; i < response.length; i++){
                 a.append('input')
                 .attr('type','checkbox')
-                .attr('class','checkbox')
+                .attr('class','dates')
+                .attr('value',response[i])
+                .attr('id',response[i])
+                a.append('label')
+                .attr('for',response[i])
+                .text("\u00A0"+response[i]+"\u00A0"+"\u00A0")
+    }
+});
+
+var questionEndPointTopic = '/api/v1/question_list'
+
+Plotly.d3.json(questionEndPointTopic, function(error, response) {
+    if (error) return console.warn(error);
+
+    a = d3.select("#checkboxesTopics")
+    for (var i = 0; i < response.length; i++){
+                a.append('input')
+                .attr('type','checkbox')
+                .attr('class','topics')
                 .attr('value',response[i])
                 .attr('id',response[i])
                 a.append('label')
@@ -28,7 +46,7 @@ function showAnswer(i) {
 function getQuestionData() {
 
         //return checkbox values
-        sampleValue = document.getElementsByClassName('checkbox');
+        sampleValue = document.getElementsByClassName('topics');
 
         //initiate array
         var checkedValues = [];

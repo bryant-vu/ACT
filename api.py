@@ -14,13 +14,19 @@ class Questions(Base):
 
 session = scoped_session(sessionmaker(bind=engine))
 
+def question_date():
+    questionQuery = session.query(Questions.date)
+
+    questionListDate = [each for (each,) in questionQuery]
+
+    return questionListDate
 
 def question_list():
     questionQuery = session.query(Questions.topic)
 
-    questionList = [each for (each,) in questionQuery]
+    questionListTopic = [each for (each,) in questionQuery]
 
-    return questionList
+    return questionListTopic
 
 
 def questions(input_data):
