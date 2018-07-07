@@ -42,7 +42,7 @@ function showAnswer(i) {
 
       };
 
-//queries topic list and questions
+//queries list of questions
 function getQuestionData() {
 
         //return checkbox values
@@ -51,14 +51,14 @@ function getQuestionData() {
         //initiate array
         var checkedValues = [];
 
-        //search for checked values and append
+        //search for checked values and append to new array
         for (var i = 0; i < sampleValue.length; i++) {
           if(sampleValue[i].checked) {
             checkedValues[i] = sampleValue[i].value;
           }
         }
 
-        //if no values are checked, return all values
+        //initiate arrays to return all values if none are checked
         var date = document.querySelectorAll('.dates:checked');
         var topic = document.querySelectorAll('.topics:checked');
 
@@ -77,10 +77,13 @@ function getQuestionData() {
           }
         }
 
+        //error message if nothing is checked
         if(date.length == 0 && topic.length == 0) {
           checkedValues = [];
           alert("Choose something bro")
         }
+
+        //clear #question and #solve tags
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
