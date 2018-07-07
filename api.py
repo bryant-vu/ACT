@@ -42,6 +42,6 @@ def questions(inputData):
                     'ans': each[2]
                     } for each in questionReturn]
 
-    logging.warning('{}'.format(inputData))
+    #logging.warning('{}'.format(inputData))
 
     return dataDict
