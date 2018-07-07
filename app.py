@@ -24,9 +24,9 @@ def questions_function_topics():
     dataDict = list(sorted(s))
     return jsonify(dataDict)
 
-@app.route('/api/v1/questions/<topic>')
-def question(topic):
-    outPutList = questions(topic)
+@app.route('/api/v1/questions/<data>')
+def question(data):
+    outPutList = questions(data)
     return jsonify(outPutList)
 
 @app.route('/api/v1/calcprograms/')
