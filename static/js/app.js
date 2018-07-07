@@ -46,7 +46,7 @@ function showAnswer(i) {
 function getQuestionData() {
 
         //return checkbox values
-        sampleValue = document.querySelectorAll('.topics,.dates');
+        var sampleValue = document.querySelectorAll('.topics,.dates');
 
         //initiate array
         var checkedValues = [];
@@ -58,6 +58,29 @@ function getQuestionData() {
           }
         }
 
+        //if no values are checked, return all values
+        var date = document.querySelectorAll('.dates:checked');
+        var topic = document.querySelectorAll('.topics:checked');
+
+        //append all date values if none checked
+        if(date.length == 0) {
+          var allDates = document.getElementsByClassName('dates');
+          for (var i = 0; i < allDates.length; i++) {
+            checkedValues[i+checkedValues.length] = allDates[i].value;
+          }
+        }
+        //append all topic values if none checked
+        if(topic.length == 0) {
+          var allTopics = document.getElementsByClassName('topics');
+          for (var i = 0; i < allTopics.length; i++) {
+            checkedValues[i+checkedValues.length] = allTopics[i].value;
+          }
+        }
+
+        if(date.length == 0 && topic.length == 0) {
+          checkedValues = [];
+          alert("Choose something bro")
+        }
         document.getElementById("question").innerHTML = ""
         document.getElementById("solve").innerHTML = ""
 
