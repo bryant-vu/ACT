@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from api import question_list, questions
+from api import question_list, questions, question_date
 
 app = Flask(__name__)
 
@@ -12,8 +12,14 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/api/v1/question_date/')
+def questions_function_dates():
+    s = set(question_date())
+    dataDict = list(sorted(s))
+    return jsonify(dataDict)
+
 @app.route('/api/v1/question_list/')
-def questions_function():
+def questions_function_topics():
     s = set(question_list())
     dataDict = list(sorted(s))
     return jsonify(dataDict)
