@@ -9,7 +9,7 @@ Base.metadata.reflect(engine)
 
 
 class Questions(Base):
-    __table__ = Base.metadata.tables['math']
+    __table__ = Base.metadata.tables['mathV2']
 
 
 session = scoped_session(sessionmaker(bind=engine))
