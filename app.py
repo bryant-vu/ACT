@@ -37,13 +37,5 @@ def calcprograms():
 def contactme():
     return render_template('contactme.html')
 
-@app.route('/api/v1/changepoll/')
-def changepoll():
-    return render_template('changepoll.html')
-
-@app.route('/api/v1/donate/')
-def donate():
-    return render_template('donate.html')
-
 if __name__ == '__main__':
     app.run(debug=True)
