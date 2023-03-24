@@ -1,19 +1,6 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <p class='lead'>General Tips:</p>
-      <ul>
-        <li>Figures are drawn to scale (sometimes you can just eyeball the answer).</li>
-        <li>Use Process of Elimination (POE) to cross out nonsensical answers.</li>
-        <li>Sketch out shapes.</li>
-        <li>Questions with figures - DON'T READ - skip to the end.</li>
-        <li>Italicized units means you will need to convert.</li>
-        <li>If you can't figure it out, try working backwards (guess and check, plug in numbers).</li>
-      </ul>
-
-
-    <br>
-
 
     <div class='container'>
         <center>
@@ -23,9 +10,35 @@
                         <h3>Select Topic(s)</h3>
                             <i>Note: Will return all Topics if none selected.</i>
                             <div id='checkboxesTopics'></div>
+					                       <style>
+					                            #checkboxesTopics {
+                                        padding: 10px;
+                                        border: 1px solid #ccc;
+                                        border-radius: 5px;
+                                        background-color: #f9f9f9;
+                                        margin-bottom: 20px;
+                                      }
+                                      #checkboxesTopics label {
+                                        display: inline-block;
+                                        margin-right: 15px;
+                                      }
+                                 </style>
                         <h3>Select Test Date(s)</h3>
                             <i>Note: Will return all Test Dates if none selected.</i>
                             <div id='checkboxesDates'></div>
+					                       <style>
+					                            #checkboxesDates {
+                                        padding: 10px;
+                                        border: 1px solid #ccc;
+                                        border-radius: 5px;
+                                        background-color: #f9f9f9;
+                                        margin-bottom: 20px;
+                                      }
+                                      #checkboxesDates label {
+                                        display: inline-block;
+                                        margin-right: 15px;
+                                      }
+                                 </style>
                         <div>
                         <input type='submit' value='Submit'>
                         </div>
