@@ -80,7 +80,7 @@ function getQuestionData() {
         //error message if nothing is checked
         if(date.length == 0 && topic.length == 0) {
           checkedValues = [];
-          alert("Choose something bro")
+          alert("Choose a topic")
         }
 
         //clear #question and #solve tags
