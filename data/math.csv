@@ -7,7 +7,7 @@ Apr.2019.Z15.01,Plug in Numbers (Calc),April.2019.Z15,1,,,,,,,A,2019,Apr,4
 Apr.2021.D05.01,Sequences,April.2021.D05,1,,,,,,,D,2021,Apr,4
 Apr.2021.Z04.01,Probability-Combinations-Permutations,April.2021.Z04,1,,,,,,,E,2021,Apr,4
 Apr.2022.E25.01,Probability-Combinations-Permutations,April.2022.E25,1,,,,,,,A,2022,Apr,4
-Apr.2022.Z08.01,Equation Set Up (Conversions-Mixture-%Change),April.2022.Z08,1,,,,,,,A,2022,Apr,4
+Apr.2022.Z08.01,Equation Set Up,April.2022.Z08,1,,,,,,,A,2022,Apr,4
 Dec.2015.01,Ratio and Proportions,December.2015,1,"1. A cookie recipe that yields 24 cookies requires 1¾ cups of butter. When the ingredients in this recipe are increased proportionally, how many cups of butter are required for the recipe to yield 72 cookies?",B. 3,C. 3 ½,D. 5 ¼,E. 10 ½,,D,2015,Dec,12
 Dec.2016.01,Probability-Combinations-Permutations,December.2016,1,"1. The 32-member French Club is meeting to choose a student government representative. The members decide that the representative, who will be chosen at random, CANNOT be any of the 5 officers of the club. What is the probability that Luis, who is a member of the club but NOT an officer, will be chosen?",B. 1/32,C. 1/27,D. 6/32,E. 1/5,,C,2016,Dec,12
 Dec.2017.01,Probability-Combinations-Permutations,December.2017,1,,,,,,,B,2017,Dec,12
@@ -25,7 +25,7 @@ Apr.2015.02,Word Problems,April.2015,2,"2. The table below shoes the income earn
 Apr.2016.02,Perimeter-Area-Volume,April.2016,2,"2. The length of a rectangle is 12 feet. The width of the rectangle is ½ the length. What is the perimeter of the rectangle, in feet?",24,30,26,72,,J,2016,Apr,4
 Apr.2017.02,Probability-Combinations-Permutations,April.2017,2,"2. The 35-member History Club is meeting to choose a student government representative. The members decide that the representative, who will be chosen at random, CANNOT be any of the 3 officers of the club. What is the probability that Hiroko, who is a member of the club but NOT an officer, will be chosen?",G. 4/35,H. 1/35,J. ⅓,K. 1/32,,K,2017,Apr,4
 Apr.2018.02,Imaginary Numbers,April.2018,2,,,,,,,J,2018,Apr,4
-Apr.2019.Z15.02,Equation Set Up (Conversions-Mixture-%Change),April.2019.Z15,2,,,,,,,J,2019,Apr,4
+Apr.2019.Z15.02,Equation Set Up,April.2019.Z15,2,,,,,,,J,2019,Apr,4
 Apr.2021.D05.02,Transformations,April.2021.D05,2,,,,,,,F,2021,Apr,4
 Apr.2021.Z04.02,Equivalent Expressions,April.2021.Z04,2,,,,,,,J,2021,Apr,4
 Apr.2022.E25.02,Solving Algebra,April.2022.E25,2,,,,,,,G,2022,Apr,4
@@ -37,7 +37,7 @@ Dec.2018.02,Plug in Numbers (Calc),December.2018,2,,,,,,,G,2018,Dec,12
 Dec.2021.02,Geometry Rules,December.2021,2,,,,,,,G,2021,Dec,12
 Dec.2022.02,Lines,December.2022,2,,,,,,,F,2022,Dec,12
 Jun.2015.02,Inequalities,June.2015,2,"2. Which of the following inequalities orders the numbers 0.2, 0.03, and ¼ from least to greatest?",0.2 < 0.03 < ¼,0.03 < 0.2 < ¼,0.03 < ¼ < 0.2,¼ < 0.03 < 0.2,¼ < 0.2 < 0.03,G,2015,Jun,6
-Jun.2016.02,Equation Set Up (Conversions-Mixture-%Change),June.2016,2,"2. A motel manager’s costs are 24% higher this year than they had been when the room rate was $60.00. If the room rate had increased by the same percent as the manager’s costs, what would the room rate be this year?",F. $68.40,G. $70.00,H. $72.00,J. $74.40,K. $78.95,J,2016,Jun,6
+Jun.2016.02,Percents-Fractions (% Change),June.2016,2,"2. A motel manager’s costs are 24% higher this year than they had been when the room rate was $60.00. If the room rate had increased by the same percent as the manager’s costs, what would the room rate be this year?",F. $68.40,G. $70.00,H. $72.00,J. $74.40,K. $78.95,J,2016,Jun,6
 Jun.2017.02,Probability-Combinations-Permutations,June.2017,2,"2. A wallet containing 2 five-dollar bills, 9 ten-dollar bills, and 5 twenty-dollar bills is found and returned to its owner. The wallet’s owner will reward the finder with 1 bill drawn randomly from the wallet. What is the probability that the bill drawn will be a twenty-dollar bill?",F. 1/16,G. 1/10,H. ⅕,J. 5/16,K. 5/11,J,2017,Jun,6
 Jun.2018.02,Transformations,June.2018,2,,,,,,,H,2018,Jun,6
 Jun.2021.02,Solving Algebra,June.2021,2,,,,,,,G,2021,Jun,6
@@ -85,10 +85,10 @@ Jun.2016.04,Exponents-Radicals,June.2016,4,4. 3x9 * 5x9 is equivalent to:,8x18,8
 Jun.2017.04,Word Problems,June.2017,4,"4. Esteban and his family are making care package to send to children at summer camp. Each complete care package contains 5 pens, 2 notebooks, 3 envelopes, 12 cookies, and 5 candy bars. Esteban and his family have already made 7 complete care packages and the following materials remain: 3 boxes of pens (10 pens per box), 4 boxes of notebook (5 notebooks per box), 2 boxes of envelopes (12 envelopes per box), 84 cookies, 4½ boxes of candy bars (10 candy bars per box). How many additional complete care packages can Esteban and his family make the remaining materials?",F. 6,G. 7,H. 8,J. 10,K. 15,F,2017,Jun,6
 Jun.2018.04,Word Problems,June.2018,4,,,,,,,J,2018,Jun,6
 Jun.2021.04,Absolute Values,June.2021,4,,,,,,,G,2021,Jun,6
-June.2022.04,Equation Set Up (Conversions-Mixture-%Change),June.2022,4,,,,,,,J,2022,Jun,6
+June.2022.04,Equation Set Up,June.2022,4,,,,,,,J,2022,Jun,6
 Apr.2019.B04.04,Exponents-Radicals,April.2019.B04,4,,,,,,,F,,,
-Apr.2015.05,Equation Set Up (Conversions-Mixture-%Change),April.2015,5,"5. Hai has $100 available to buy USB drives to backup data for his business computers. Each USB drive has a price of $8, and Hai will pay a sales tax of 7% of the total price of the USB drives. What is the maximum number of USB drives Hai can buy?",12,13,14,15,,A,2015,Apr,4
-Apr.2016.05,Equation Set Up (Conversions-Mixture-%Change),April.2016,5,"5. At a grocery store, Jo Ellen received $1.60 when she returned her cans, glass bottles, and plastic bottles. Jo Ellen received $0.05 for each can, $0.10 for each glass bottle, and $0.05 for each plastic bottle. She knew she had returned 6 cans and 8 glass bottles. How many plastic bottles did Jo Ellen return to the store?",9,10,12,19,,C,2016,Apr,4
+Apr.2015.05,Equation Set Up,April.2015,5,"5. Hai has $100 available to buy USB drives to backup data for his business computers. Each USB drive has a price of $8, and Hai will pay a sales tax of 7% of the total price of the USB drives. What is the maximum number of USB drives Hai can buy?",12,13,14,15,,A,2015,Apr,4
+Apr.2016.05,Equation Set Up,April.2016,5,"5. At a grocery store, Jo Ellen received $1.60 when she returned her cans, glass bottles, and plastic bottles. Jo Ellen received $0.05 for each can, $0.10 for each glass bottle, and $0.05 for each plastic bottle. She knew she had returned 6 cans and 8 glass bottles. How many plastic bottles did Jo Ellen return to the store?",9,10,12,19,,C,2016,Apr,4
 Apr.2017.05,Probability-Combinations-Permutations,April.2017,5,"5. A wallet containing 5 five-dollar bills, 7 ten-dollar bills, and 8 twenty-dollar bills is found and returned to its owner. The wallet’s owner will reward the finder with 1 bill drawn randomly from the wallet. What is the probability that the bill drawn will be a twenty-dollar bill?",Apr-51,⅛,⅖,⅔,,D,2017,Apr,4
 Apr.2018.05,Probability-Combinations-Permutations,April.2018,5,,,,,,,C,2018,Apr,4
 Apr.2019.Z15.05,Probability-Combinations-Permutations,April.2019.Z15,5,,,,,,,C,2019,Apr,4
@@ -111,20 +111,20 @@ June.2022.05,Geometry Rules,June.2022,5,,,,,,,D,2022,Jun,6
 Apr.2019.B04.05,Sequences,April.2019.B04,5,,,,,,,D,,,
 Apr.2015.06,SOHCAHTOA-PYTHAG,April.2015,6,"6. The lengths of the legs of a right triangle are 4 miles and 5 miles, respectively. Which of the following lengths, in miles, is closest to that of the hypotenuse of the right triangle?",4.5,6.4,8,8.7,,H,2015,Apr,4
 Apr.2016.06,Word Problems,April.2016,6,"6. Pablo recorded the noon temperature, in degrees Celsius, on 4 consecutive days as part of a science project. On the 1st day, the noon temperature was -4°C. On the 4th day, the noon temperature was 12°C. What was the change in the noon temperature from the 1st day to the 4th day?",G. -4°C,H. 4°C,J. 8°C,K. 16°C,,K,2016,Apr,4
-Apr.2017.06,Equation Set Up (Conversions-Mixture-%Change),April.2017,6,"6. The ABC Book Club charges a $40 monthly fee, plus $2 per book read in that month. The Easy Book Club charges a $35 monthly fee, plus $3 per book read in that month. For each club, how many books must be read in 1 month for the total charges from each club to be equal?",4,5,6,75,,H,2017,Apr,4
+Apr.2017.06,Equation Set Up,April.2017,6,"6. The ABC Book Club charges a $40 monthly fee, plus $2 per book read in that month. The Easy Book Club charges a $35 monthly fee, plus $3 per book read in that month. For each club, how many books must be read in 1 month for the total charges from each club to be equal?",4,5,6,75,,H,2017,Apr,4
 Apr.2018.06,Lines,April.2018,6,,,,,,,H,2018,Apr,4
 Apr.2019.Z15.06,Absolute Values,April.2019.Z15,6,,,,,,,G,2019,Apr,4
 Apr.2021.D05.06,Equivalent Expressions,April.2021.D05,6,,,,,,,K,2021,Apr,4
 Apr.2021.Z04.06,Ratio and Proportions,April.2021.Z04,6,,,,,,,F,2021,Apr,4
 Apr.2022.E25.06,Plug in Numbers (Calc),April.2022.E25,6,,,,,,,K,2022,Apr,4
 Apr.2022.Z08.06,Absolute Values,April.2022.Z08,6,,,,,,,G,2022,Apr,4
-Dec.2015.06,Equation Set Up (Conversions-Mixture-%Change),December.2015,6,"6. Damon and 4 of his coworkers are having lunch. Each of the 5 people will pay for his or her own lunch, but they agree to divide the tip equally among themselves. The total for the 5 lunches is $80.00, and the group will add a tip of 15% of the total. Each person’s portion of the tip will be how much?",G. $2.40,H. $3.00,J. $5.00,K. $5.33,,G,2015,Dec,12
+Dec.2015.06,Equation Set Up,December.2015,6,"6. Damon and 4 of his coworkers are having lunch. Each of the 5 people will pay for his or her own lunch, but they agree to divide the tip equally among themselves. The total for the 5 lunches is $80.00, and the group will add a tip of 15% of the total. Each person’s portion of the tip will be how much?",G. $2.40,H. $3.00,J. $5.00,K. $5.33,,G,2015,Dec,12
 Dec.2016.06,Lines,December.2016,6,"6. Portions of the graphs represented by the functions -2x + y = 2 and x + y = 5 are shown in the standard (x,y) coordinate plane below. Although only a portion of each graph is shown, the domain of each function is all real numbers. If it can be determined at what point do the graphs intersect?","G. (1,4)","H. (2,5)","J. (4,1)",K. Cannot be determined from the given information,,G,2016,Dec,12
 Dec.2017.06,Word Problems,December.2017,6,,,,,,,G,2017,Dec,12
 Dec.2018.06,Exponents-Radicals,December.2018,6,,,,,,,G,2018,Dec,12
 Dec.2021.06,Sequences,December.2021,6,,,,,,,K,2021,Dec,12
-Dec.2022.06,Equation Set Up (Conversions-Mixture-%Change),December.2022,6,,,,,,,H,2022,Dec,12
-Jun.2015.06,Equation Set Up (Conversions-Mixture-%Change),June.2015,6,6. The square root of a certain number is approximately 9.2371. The certain number between what 2 integers?,3 and 4,4 and 5,9 and 10,18 and 19,81 and 99,K,2015,Jun,6
+Dec.2022.06,Equation Set Up,December.2022,6,,,,,,,H,2022,Dec,12
+Jun.2015.06,Word Problems,June.2015,6,6. The square root of a certain number is approximately 9.2371. The certain number between what 2 integers?,3 and 4,4 and 5,9 and 10,18 and 19,81 and 99,K,2015,Jun,6
 Jun.2016.06,Geometry Rules,June.2016,6,"6. In the figure below, C lies on both (line) and (line)BD, (line) AB and (line)DE are parallel and congruent, and 2 angle measures are given. What is the measure of (angle)ACB?",55°,57.5°,65°,67.5°,70°,K,2016,Jun,6
 Jun.2017.06,Geometry Rules,June.2017,6,"6. in triangle(ACD) below, B is on line(AC), E is on line(AD), the measure of angle(CAD) is 28°, and line(AD) is perpendicular to both line(BE) and line(CD). What is the measure of angle(CBE)?",104°,118°,124°,146°,152°,G,2017,Jun,6
 Jun.2018.06,Plug in Numbers (Calc),June.2018,6,,,,,,,H,2018,Jun,6
@@ -132,7 +132,7 @@ Jun.2021.06,Word Problems,June.2021,6,,,,,,,H,2021,Jun,6
 June.2022.06,Perimeter-Area-Volume,June.2022,6,,,,,,,F,2022,Jun,6
 Apr.2019.B04.06,Conversions-Mixtures,April.2019.B04,6,,,,,,,K,,,
 Apr.2015.07,LCMGCF,April.2015,7,"7. What is the least common multiple of 50, 70, and 90?",210,315,"3,150","315,000",,D,2015,Apr,4
-Apr.2016.07,Equation Set Up (Conversions-Mixture-%Change),April.2016,7,"7. Sienna will be paid $75, plus 25% of her total weekly sales, for the hours she is scheduled to work next week. Let w represent Sienna’s total weekly sales, in dollars, for next week. Which of the following expressions gives Sienna’s pay, in dollars, for the hours she is scheduled to work next week?",0.25w + 0.75,0.75w + 0.25,25w + 75,75w + 0.25,,A,2016,Apr,4
+Apr.2016.07,Equation Set Up,April.2016,7,"7. Sienna will be paid $75, plus 25% of her total weekly sales, for the hours she is scheduled to work next week. Let w represent Sienna’s total weekly sales, in dollars, for next week. Which of the following expressions gives Sienna’s pay, in dollars, for the hours she is scheduled to work next week?",0.25w + 0.75,0.75w + 0.25,25w + 75,75w + 0.25,,A,2016,Apr,4
 Apr.2017.07,Geometry Rules,April.2017,7,"7. In parallelogram ABCD below AC(line) is a diagonal, the measure of (angle)ABC is 40°, and the measure of (angle)ACD is 57°. What is the measure of (angle)CAD?",57°,77°,83°,97°,,D,2017,Apr,4
 Apr.2018.07,Ratio and Proportions,April.2018,7,,,,,,,A,2018,Apr,4
 Apr.2019.Z15.07,Word Problems,April.2019.Z15,7,,,,,,,A,2019,Apr,4
@@ -144,7 +144,7 @@ Dec.2015.07,Vocab,December.2015,7,7) The number 0.000 000 000 087 3 is equivalen
 Dec.2016.07,Ratio and Proportions,December.2016,7,"7. On a map, ½ inch represents 10 actual miles. Two towns that are 4 ½ inches apart on this map are how many actual miles apart?",B. 20,C. 22,D. 45,E. 90,,E,2016,Dec,12
 Dec.2017.07,Perimeter-Area-Volume,December.2017,7,,,,,,,E,2017,Dec,12
 Dec.2018.07,Word Problems,December.2018,7,,,,,,,C,2018,Dec,12
-Dec.2021.07,Equation Set Up (Conversions-Mixture-%Change),December.2021,7,,,,,,,B,2021,Dec,12
+Dec.2021.07,Equation Set Up,December.2021,7,,,,,,,B,2021,Dec,12
 Dec.2022.07,Probability-Combinations-Permutations,December.2022,7,,,,,,,C,2022,Dec,12
 Jun.2015.07,Probability-Combinations-Permutations,June.2015,7,"8. When points A and B(-3,4) and graphed in the standard (x,y) coordinate plane below, the midpoint of (line)AB will be (1,2). What will be the coordinate of points A?","(-7,6)","(-2,1)","(-1,3)","(-1,8)","(5,0)",E,2015,Jun,6
 Jun.2016.07,LCMGCF,June.2016,7,"7. What is the least common denominator of the fractions 4/35, 1/28, and 3/8?",40,280,980,"1,120","7,840",B,2016,Jun,6
@@ -163,11 +163,11 @@ Apr.2021.Z04.08,Word Problems,April.2021.Z04,8,,,,,,,H,2021,Apr,4
 Apr.2022.E25.08,Coordinate Geometry,April.2022.E25,8,,,,,,,H,2022,Apr,4
 Apr.2022.Z08.08,LCMGCF,April.2022.Z08,8,,,,,,,J,2022,Apr,4
 Dec.2015.08,Circles-Ellipses,December.2015,8,"8. The circular spinner dial for a new board game is divided into 6 congruent sectors. What is the arc measure, in degrees, of each sector?",36°,45°,60°,72°,,J,2015,Dec,12
-Dec.2016.08,Equation Set Up (Conversions-Mixture-%Change),December.2016,8,8. The cost of a long-distance call to a certain city is $1.05 for the first minute and $0.15 for each additional minute or part thereof. What is the cost of a 15-minute call to this city?,$2.25 ,$3.15 ,$3.30 ,$3.45 ,,H,2016,Dec,12
+Dec.2016.08,Equation Set Up,December.2016,8,8. The cost of a long-distance call to a certain city is $1.05 for the first minute and $0.15 for each additional minute or part thereof. What is the cost of a 15-minute call to this city?,$2.25 ,$3.15 ,$3.30 ,$3.45 ,,H,2016,Dec,12
 Dec.2017.08,Perimeter-Area-Volume,December.2017,8,,,,,,,J,2017,Dec,12
 Dec.2018.08,Matrices,December.2018,8,,,,,,,F,2018,Dec,12
 Dec.2021.08,Matrices,December.2021,8,,,,,,,H,2021,Dec,12
-Dec.2022.08,Equation Set Up (Conversions-Mixture-%Change),December.2022,8,,,,,,,G,2022,Dec,12
+Dec.2022.08,Equation Set Up,December.2022,8,,,,,,,G,2022,Dec,12
 Jun.2015.08,Coordinate Geometry,June.2015,8,"9. Andrea manages a company that currently has 116 customers, which is 8 more than twice the number of customers the company had 1 year ago. How many customers did the company have 1 year ago?",50,54,62,66,100,K,2015,Jun,6
 Jun.2016.08,Quadratics (and above),June.2016,8,8. Which of the following polynomial equations has solutions -2 and 5?,(x - 5)(x + 2)2 = 0,(x - 3)(x + 3)2 = 0,(x + 3)(x - 3)2 = 0,(x + 5)(x - 2)2 = 0,(x + 5)(x + 2)2 = 0,F,2016,Jun,6
 Jun.2017.08,Plug in Numbers (Calc),June.2017,8,"8. Students studying motion observed a cart rolling at a constant rate along a straight line. The table below gives the distance, d feet, the cart was from a reference point at 1-second intervals from t = 0 seconds to t = 5 seconds. Which of the following equations represents this relationship between d and t?",F. d = t + 15,G. d = 3t + 12,H. d = 3t + 15,J. d = 15t + 3,K. d = 33t,H,2017,Jun,6
@@ -190,7 +190,7 @@ Dec.2017.09,Vocab,December.2017,9,,,,,,,C,2017,Dec,12
 Dec.2018.09,Probability-Combinations-Permutations,December.2018,9,,,,,,,E,2018,Dec,12
 Dec.2021.09,Percents-Fractions (% Change),December.2021,9,,,,,,,B,2021,Dec,12
 Dec.2022.09,Solving Algebra,December.2022,9,,,,,,,A,2022,Dec,12
-Jun.2015.09,Equation Set Up (Conversions-Mixture-%Change),June.2015,9,"10) Joseph will have 200-foot-long fence installed around his yard. The A+ Fence Company charges a $500.00 fee, plus a set amount per foot of fence. The A+ Fence Company has given Joseph an estimate of $2,200.00 to install the fence around his yard. What is the set amount per foot of fence?",F. $4.00,G. $4.80,H. $8.50,J. $11.00,K. $13.50,B,2015,Jun,6
+Jun.2015.09,Equation Set Up,June.2015,9,"10) Joseph will have 200-foot-long fence installed around his yard. The A+ Fence Company charges a $500.00 fee, plus a set amount per foot of fence. The A+ Fence Company has given Joseph an estimate of $2,200.00 to install the fence around his yard. What is the set amount per foot of fence?",F. $4.00,G. $4.80,H. $8.50,J. $11.00,K. $13.50,B,2015,Jun,6
 Jun.2016.09,Ratio and Proportions,June.2016,9,"9. The combined length of 3 pieces of a board is 60 inches. The lengths of the pieces are in the ratio 3:5:7. What is the length, in inches, of the longest piece?",A. 4,B. 12,C. 15,D. 20,E. 28,E,2016,Jun,6
 Jun.2017.09,Percents-Fractions (% Change),June.2017,9,9. Dmitry bought a pair of pants at the discounted price of $30. The original price of the pants was $40. What was the percent of the discount?,4%,10%,25%,33 ⅓%,75%,C,2017,Jun,6
 Jun.2018.09,Geometry Rules,June.2018,9,,,,,,,B,2018,Jun,6
@@ -228,9 +228,9 @@ Apr.2021.D05.11,Exponents-Radicals,April.2021.D05,11,,,,,,,B,2021,Apr,4
 Apr.2021.Z04.11,Probability-Combinations-Permutations,April.2021.Z04,11,,,,,,,B,2021,Apr,4
 Apr.2022.E25.11,Exponents-Radicals,April.2022.E25,11,,,,,,,B,2022,Apr,4
 Apr.2022.Z08.11,Word Problems,April.2022.Z08,11,,,,,,,B,2022,Apr,4
-Dec.2015.11,Equation Set Up (Conversions-Mixture-%Change),December.2015,11,"11. The speed of one motorcycle exceeds 4 times the speed of another motorcycle by 24 mph. The speed of the slower motorcycle is g mph. Which of the following expressions represents the speed of the faster motorcycle, in miles per hour?",g + 24,g - 24,4g + 24,4g - 24,,D,2015,Dec,12
-Dec.2016.11,Equation Set Up (Conversions-Mixture-%Change),December.2016,11,"11. Ben is saving money to buy a TV that costs $495, including tax. Ben opens a savings account with a deposit of $75 and deposits $65 at the end of each month. What is the minimum number of months Ben will need to make deposits until he has enough money in his account to buy the TV?",6,7,8,9,,C,2016,Dec,12
-Dec.2017.11,Equation Set Up (Conversions-Mixture-%Change),December.2017,11,,,,,,,E,2017,Dec,12
+Dec.2015.11,Equation Set Up,December.2015,11,"11. The speed of one motorcycle exceeds 4 times the speed of another motorcycle by 24 mph. The speed of the slower motorcycle is g mph. Which of the following expressions represents the speed of the faster motorcycle, in miles per hour?",g + 24,g - 24,4g + 24,4g - 24,,D,2015,Dec,12
+Dec.2016.11,Equation Set Up,December.2016,11,"11. Ben is saving money to buy a TV that costs $495, including tax. Ben opens a savings account with a deposit of $75 and deposits $65 at the end of each month. What is the minimum number of months Ben will need to make deposits until he has enough money in his account to buy the TV?",6,7,8,9,,C,2016,Dec,12
+Dec.2017.11,Equation Set Up,December.2017,11,,,,,,,E,2017,Dec,12
 Dec.2018.11,LCMGCF,December.2018,11,,,,,,,B,2018,Dec,12
 Dec.2021.11,Ratio and Proportions,December.2021,11,,,,,,,E,2021,Dec,12
 Dec.2022.11,Equivalent Expressions,December.2022,11,,,,,,,E,2022,Dec,12
@@ -243,7 +243,7 @@ June.2022.11,Percents-Fractions (% Change),June.2022,11,,,,,,,A,2022,Jun,6
 Apr.2019.B04.11,Plug in Numbers (Calc),April.2019.B04,11,,,,,,,C,,,
 Apr.2015.12,Lines,April.2015,12,12. The table below gives the total charge to rent a moving truck from each of 2 movers for various numbers of miles. For what number of miles would the total charge for renting a moving truck from Ronnie’s? (Note: There is a linear relationship between the number of miles and the total charge for both Ben’s and Ronnie’s),G. 60,H. 70,J. 80,K. 90,,J,2015,Apr,4
 Apr.2016.12,Perimeter-Area-Volume,April.2016,12,"12. The dimensions of the rectangle shown below are given in inches. Which of the following expressions gives the area, in square inches, of the rectangle?",X2 + 3x - 2,2x2 -2,2x2 + 3x - 2,2x2 + 5x + 2,,J,2016,Apr,4
-Apr.2017.12,Equation Set Up (Conversions-Mixture-%Change),April.2017,12,"12. In Cherokee County, the fine for speeding is $17 for each mile per hour the driver is traveling over the posted speed limit. In Cherokee County, Kirk was fined $221 for speeding on a road with a posted speed limit of 30mph. Kirk was fined for traveling at what speed, in miles per hour?",17,43,47,60,,H,2017,Apr,4
+Apr.2017.12,Equation Set Up,April.2017,12,"12. In Cherokee County, the fine for speeding is $17 for each mile per hour the driver is traveling over the posted speed limit. In Cherokee County, Kirk was fined $221 for speeding on a road with a posted speed limit of 30mph. Kirk was fined for traveling at what speed, in miles per hour?",17,43,47,60,,H,2017,Apr,4
 Apr.2018.12,Sequences,April.2018,12,,,,,,,G,2018,Apr,4
 Apr.2019.Z15.12,Word Problems,April.2019.Z15,12,,,,,,,F,2019,Apr,4
 Apr.2021.D05.12,Perimeter-Area-Volume,April.2021.D05,12,,,,,,,J,2021,Apr,4
@@ -346,7 +346,7 @@ Dec.2021.16,Word Problems,December.2021,16,,,,,,,H,2021,Dec,12
 Dec.2022.16,Ratio and Proportions,December.2022,16,,,,,,,K,2022,Dec,12
 Jun.2015.16,Geometry Rules,June.2015,16,"16. In the figure below, vertices D and F of (triangle)DEF lie on (line)CG, the measure of (angle)CDE is 148°, and the measure of (angle)EFG is 140°. What is the measure of (angle)DEF?",98°,100°,108°,116°,,J,2015,Jun,6
 Jun.2016.16,Lines,June.2016,16,"16. In the standard (x,y) coordinate plane, what is the slope of the line 11x + 6y = 3?",F. -11,G. -11/6,H. 11/3,J. 3,K. 11,G,2016,Jun,6
-Jun.2017.16,Equation Set Up (Conversions-Mixture-%Change),June.2017,16,"16. For the next school year, a college will use 1/9 of the money in its operating budget for library books and ⅙ of the money in its operating budget for scholarships. What fraction of the operating budget remains for the other uses?",18-Jan,18-May,13/18,20/27,9-Aug,H,2017,Jun,6
+Jun.2017.16,Percents-Fractions (% Change),June.2017,16,"16. For the next school year, a college will use 1/9 of the money in its operating budget for library books and ⅙ of the money in its operating budget for scholarships. What fraction of the operating budget remains for the other uses?",18-Jan,18-May,13/18,20/27,9-Aug,H,2017,Jun,6
 Jun.2018.16,Word Problems,June.2018,16,,,,,,,K,2018,Jun,6
 Jun.2021.16,Perimeter-Area-Volume,June.2021,16,,,,,,,G,2021,Jun,6
 June.2022.16,Perimeter-Area-Volume,June.2022,16,,,,,,,H,2022,Jun,6
@@ -365,12 +365,12 @@ Dec.2016.17,Sequences,December.2016,17,"17. The first 5 terms of a sequence are 
 Dec.2017.17,Ratio and Proportions,December.2017,17,,,,,,,D,2017,Dec,12
 Dec.2018.17,Mean-Median-Mode,December.2018,17,,,,,,,C,2018,Dec,12
 Dec.2021.17,Data Interpretation,December.2021,17,,,,,,,A,2021,Dec,12
-Dec.2022.17,Equation Set Up (Conversions-Mixture-%Change),December.2022,17,,,,,,,A,2022,Dec,12
+Dec.2022.17,Equation Set Up,December.2022,17,,,,,,,A,2022,Dec,12
 Jun.2015.17,Perimeter-Area-Volume,June.2015,17,"17. A company ships notepads in rectangular boxes that each have inside dimensions measuring 9 inches long, 9 inches wide, and 12 inches tall. Each notepad is in the shape of a cube with an edge length of 3 inches. What is the maximum number of notepads that will fit in 1 closed box?",B. 11,C. 12,D. 22,E. 36,,E,2015,Jun,6
 Jun.2016.17,Plug in Numbers (Calc),June.2016,17,"17) A function g is defined as g(x,y,z) = 4xy - 3xz2. What is g(2,4,-3)?",A. -22,B. -4,C. 8,D. 68,E. 86,A,2016,Jun,6
 Jun.2017.17,Ratio and Proportions,June.2017,17,17. What value of x makes the proportion below true? (10/10+x) = (35/42),A. 2,B. 7,C. 12,D. 17,E. 32,A,2017,Jun,6
 Jun.2018.17,Coordinate Geometry,June.2018,17,,,,,,,A,2018,Jun,6
-Jun.2021.17,Equation Set Up (Conversions-Mixture-%Change),June.2021,17,,,,,,,D,2021,Jun,6
+Jun.2021.17,Equation Set Up,June.2021,17,,,,,,,D,2021,Jun,6
 June.2022.17,LCMGCF,June.2022,17,,,,,,,D,2022,Jun,6
 Apr.2019.B04.17,Perimeter-Area-Volume,April.2019.B04,17,,,,,,,E,,,
 Apr.2015.18,Geometry Rules,April.2015,18,"18. In the figure below, (line)AE and (line)BD intersect at C, and (line)AB || (line)DE. Which of the following angles must have the same measure as (angle)BAC?",(angle)ACD,(angle)BCE,(angle)CDE,(angle)CED,,K,2015,Apr,4
@@ -565,7 +565,7 @@ Dec.2018.26,Word Problems,December.2018,26,,,,,,,H,2018,Dec,12
 Dec.2021.26,Sequences,December.2021,26,,,,,,,J,2021,Dec,12
 Dec.2022.26,Perimeter-Area-Volume,December.2022,26,,,,,,,G,2022,Dec,12
 Jun.2015.26,Plug in Numbers (Calc),June.2015,26,"26. For  all nonzero values of a and b, the value of which of the following expressions is always negative?",G. -a – b,H. |a| + |b|,J. |a| - |b|,K. -|a| - |b|,,K,2015,Jun,6
-Jun.2016.26,Equation Set Up (Conversions-Mixture-%Change),June.2016,26,"26. For his job delivering pizzas, Albert uses his own car and buys his own gas. He joined the local gas station’s Frequent Factor program that earns him points toward free gas each time he buys gas. Points are earned according to the following chart. Frequent Fueler Program: Sign up for the program, earn 50 points. Buy 1 gallon regular, earn 3 points. Buy 1 gallon premium, earn               4 points. At the end of his first month in the program, he received a statement showing that he had 545 points (including 50 points he received for signing up) and had purchased a total of 135 gallons of gas. To find how many gallons of premium he had purchased, he solved a system of equations with r representing the number of gallons of regular, and p representing the number of gallons of premium. One equation in his system was r + p = 135. Which of the following could have been his other equation?",3r + 4p = 495,3r + 4p = 595,4r + 3p = 495,4r + 3p = 545,4r + 3p = 595,F,2016,Jun,6
+Jun.2016.26,Equation Set Up,June.2016,26,"26. For his job delivering pizzas, Albert uses his own car and buys his own gas. He joined the local gas station’s Frequent Factor program that earns him points toward free gas each time he buys gas. Points are earned according to the following chart. Frequent Fueler Program: Sign up for the program, earn 50 points. Buy 1 gallon regular, earn 3 points. Buy 1 gallon premium, earn               4 points. At the end of his first month in the program, he received a statement showing that he had 545 points (including 50 points he received for signing up) and had purchased a total of 135 gallons of gas. To find how many gallons of premium he had purchased, he solved a system of equations with r representing the number of gallons of regular, and p representing the number of gallons of premium. One equation in his system was r + p = 135. Which of the following could have been his other equation?",3r + 4p = 495,3r + 4p = 595,4r + 3p = 495,4r + 3p = 545,4r + 3p = 595,F,2016,Jun,6
 Jun.2017.26,Probability-Combinations-Permutations,June.2017,26,"26. A bag contains 16 red marbles, 7 yellow marbles, and 19 green marbles. How many additional red marbles must be added to the 42 marbles already in the bag so that the probability of randomly drawing a red marble is ⅗?",F. 18,G. 23,H. 37,J. 42,K. 52,G,2017,Jun,6
 Jun.2018.26,Perimeter-Area-Volume,June.2018,26,,,,,,,H,2018,Jun,6
 Jun.2021.26,Logs,June.2021,26,,,,,,,H,2021,Jun,6
@@ -697,7 +697,7 @@ Dec.2018.32,Conversions-Mixtures,December.2018,32,,,,,,,F,2018,Dec,12
 Dec.2021.32,Systems of Equations,December.2021,32,,,,,,,J,2021,Dec,12
 Dec.2022.32,Mean-Median-Mode,December.2022,32,,,,,,,J,2022,Dec,12
 Jun.2015.32,Perimeter-Area-Volume,June.2015,32,"32. For (triangle)ABC shown below, base (line)AC has a length of 16 inches and altitude (line)BD has a length of 8 inches. The area of a certain square is equal to the area of (triangle)ABC. What is the length, in inches, of a side of the square?",8,12,16,32,,G,2015,Jun,6
-Jun.2016.32,Equation Set Up (Conversions-Mixture-%Change),June.2016,32,"32. When a store sets the price of birdseed at $3.50 per pound, the store sells 2,500 pounds of birdseed per week. With each $0.25 increase in the $3.50 price per pound, the store sells 100 pounds less birdseed per week. Let n be the number of $0.25 increases in the price per pound. Which of the following expressions best represent the dollar amount of the store’s weekly sales of birdseed?","(3.75)(2,500 + 100n)","(3.75)(2,500 - 100n)","(2,500 + 0.25n) (100 + 3.50n)","(3.50 + 0.25n)(2,500 + 100n)","(3.50 + 0.25n)(2,500 - 100n)",K,2016,Jun,6
+Jun.2016.32,Equation Set Up,June.2016,32,"32. When a store sets the price of birdseed at $3.50 per pound, the store sells 2,500 pounds of birdseed per week. With each $0.25 increase in the $3.50 price per pound, the store sells 100 pounds less birdseed per week. Let n be the number of $0.25 increases in the price per pound. Which of the following expressions best represent the dollar amount of the store’s weekly sales of birdseed?","(3.75)(2,500 + 100n)","(3.75)(2,500 - 100n)","(2,500 + 0.25n) (100 + 3.50n)","(3.50 + 0.25n)(2,500 + 100n)","(3.50 + 0.25n)(2,500 - 100n)",K,2016,Jun,6
 Jun.2017.32,Transformations,June.2017,32,"32. Parallelogram ABCD is graphed in the standard (x,y) coordinate plane below. Sides (line)AB and (line)CD are each (rad)10 coordinate units long. Sides (line)AD and (line)BC are each 5 coordinate units long. The distance between (line)AD and (line)BC is 3 coordinate units. Parallelogram ABCD will be reflected over the y-axis. What will be the coordinate of the image of A?","F. (-4,1)","G. (-1,-1)","H. (1,-1)","J. (1,1)","K. (4,-1)",J,2017,Jun,6
 Jun.2018.32,Sequences,June.2018,32,,,,,,,H,2018,Jun,6
 Jun.2021.32,Word Problems,June.2021,32,,,,,,,G,2021,Jun,6
@@ -771,13 +771,13 @@ June.2022.35,Lines,June.2022,35,,,,,,,D,2022,Jun,6
 Apr.2019.B04.35,Quadratics (and above),April.2019.B04,35,,,,,,,D,,,
 Apr.2015.36,Exponents-Radicals,April.2015,36,"36. Whenever x and y are nonzero, (8x5y4)(6x13y3) / 16x6y14 = ?",3x3y2,3x3/y2,3x6/16y21,3x12/y7,3x59/y2,J,2015,Apr,4
 Apr.2016.36,Systems of Equations,April.2016,36,36. What is the value of b in the solution of the system of equations below? 6a + 3b = 12 and -2a + b = -8,G. 1,H. 3,J. 4,K. 10,,F,2016,Apr,4
-Apr.2017.36,Equation Set Up (Conversions-Mixture-%Change),April.2017,36,"36. The Smith family is planning to build a 3-room cabin which consists of 2 bedrooms (BR) and 1 living room (LR). Shown below are the rectangular floor plan (left figure) and a side view of the cabin (right figure). In the side view, the roof forms an isosceles triangle (triangleABC), the walls are perpendicular to the level floor (line)ED, (line)AC parallel (line)ED, F is the midpoint of (line)AC and (line)BF perpendicular (line)AC. During the week the Smiths plan to roof the cabin, there is a 20% chance of rain each day. Mrs. Smith will install a ceiling fan in each room of the cabin and will place curtains over the 4 windows. Each of the ceiling fans has a price of $52.00. The price of curtains for each small window (S) is $39.50, and the price of curtains for the large window (L) is twice that for the small window. Based on this information, which of the following values is closest to the total price Mrs. Smith will pay for curtains and ceiling fans?",$302 ,$341 ,$354 ,$393 ,,J,2017,Apr,4
+Apr.2017.36,Equation Set Up,April.2017,36,"36. The Smith family is planning to build a 3-room cabin which consists of 2 bedrooms (BR) and 1 living room (LR). Shown below are the rectangular floor plan (left figure) and a side view of the cabin (right figure). In the side view, the roof forms an isosceles triangle (triangleABC), the walls are perpendicular to the level floor (line)ED, (line)AC parallel (line)ED, F is the midpoint of (line)AC and (line)BF perpendicular (line)AC. During the week the Smiths plan to roof the cabin, there is a 20% chance of rain each day. Mrs. Smith will install a ceiling fan in each room of the cabin and will place curtains over the 4 windows. Each of the ceiling fans has a price of $52.00. The price of curtains for each small window (S) is $39.50, and the price of curtains for the large window (L) is twice that for the small window. Based on this information, which of the following values is closest to the total price Mrs. Smith will pay for curtains and ceiling fans?",$302 ,$341 ,$354 ,$393 ,,J,2017,Apr,4
 Apr.2018.36,Percents-Fractions (% Change),April.2018,36,,,,,,,G,2018,Apr,4
 Apr.2019.Z15.36,Plug in Numbers (Calc),April.2019.Z15,36,,,,,,,F,2019,Apr,4
 Apr.2021.D05.36,Plug in Numbers (Calc),April.2021.D05,36,,,,,,,F,2021,Apr,4
 Apr.2021.Z04.36,Percents-Fractions (% Change),April.2021.Z04,36,,,,,,,J,2021,Apr,4
 Apr.2022.E25.36,Plug in Numbers (Calc),April.2022.E25,36,,,,,,,H,2022,Apr,4
-Apr.2022.Z08.36,Equation Set Up (Conversions-Mixture-%Change),April.2022.Z08,36,,,,,,,K,2022,Apr,4
+Apr.2022.Z08.36,Equation Set Up,April.2022.Z08,36,,,,,,,K,2022,Apr,4
 Dec.2015.36,Geometry Rules,December.2015,36,"36. The measures of 4 interior angles of a pentagon are 70°, 100°, 110°, and 135°, respectively. What is the measure of the 5th interior angle?",55°,83°,108°,125°,,K,2015,Dec,12
 Dec.2016.36,Perimeter-Area-Volume,December.2016,36,"36. Erika is landscaping her front yard. The yard, which is level, has the shape of a rectangle that is 60 feet wide by 80 feet long. To cover the yard with a layer of topsoil having a uniform depth of 4 inches (⅓ foot). Erika needs to use how many cubic feet of topsoil?","1,920","4,800","14,400","19,200",,F,2016,Dec,12
 Dec.2017.36,Perimeter-Area-Volume,December.2017,36,,,,,,,G,2017,Dec,12
@@ -801,7 +801,7 @@ Apr.2021.Z04.37,Data Interpretation,April.2021.Z04,37,,,,,,,C,2021,Apr,4
 Apr.2022.E25.37,Quadratics (and above),April.2022.E25,37,,,,,,,B,2022,Apr,4
 Apr.2022.Z08.37,Exponents-Radicals,April.2022.Z08,37,,,,,,,B,2022,Apr,4
 Dec.2015.37,SOHCAHTOA-PYTHAG,December.2015,37,"37. The midpoint of the sides of rectangle WXYZ are the vertices of rhombus ABCD.. The dimensions of the rectangle WXYZ are 6cm by 8cm. What is the perimeter, in centimeters, of rhombus ABCD?",25,28,40,48,,A,2015,Dec,12
-Dec.2016.37,Equation Set Up (Conversions-Mixture-%Change),December.2016,37,"37. Suzanne and Chad are going to bake and deliver cookies to college students during final exam week. They estimate it will cost $4 for the ingredients to make each batch of cookies and $50 to buy the mixer, bowls, and other utensils they will need. They decide to sell the cookies for $5 per batch. Assume they have no other expenses. Which of the following equations represent the profit, P dollars, they will make on b batches of cookies?",P = 54b - 5,P = 55b - 4,P = -b + 50,P = b -50,,E,2016,Dec,12
+Dec.2016.37,Equation Set Up,December.2016,37,"37. Suzanne and Chad are going to bake and deliver cookies to college students during final exam week. They estimate it will cost $4 for the ingredients to make each batch of cookies and $50 to buy the mixer, bowls, and other utensils they will need. They decide to sell the cookies for $5 per batch. Assume they have no other expenses. Which of the following equations represent the profit, P dollars, they will make on b batches of cookies?",P = 54b - 5,P = 55b - 4,P = -b + 50,P = b -50,,E,2016,Dec,12
 Dec.2017.37,Solving Algebra,December.2017,37,,,,,,,E,2017,Dec,12
 Dec.2018.37,Data Interpretation,December.2018,37,,,,,,,D,2018,Dec,12
 Dec.2021.37,SOHCAHTOA-PYTHAG,December.2021,37,,,,,,,B,2021,Dec,12
@@ -835,7 +835,7 @@ Jun.2018.38,Conversions-Mixtures,June.2018,38,,,,,,,F,2018,Jun,6
 Jun.2021.38,Perimeter-Area-Volume,June.2021,38,,,,,,,K,2021,Jun,6
 June.2022.38,Word Problems,June.2022,38,,,,,,,J,2022,Jun,6
 Apr.2019.B04.38,Plug in Numbers (Calc),April.2019.B04,38,,,,,,,H,,,
-Apr.2015.39,Equation Set Up (Conversions-Mixture-%Change),April.2015,39,"39. On Monday, Jan and Diego opened separate bank accounts with initial deposits of $28.00 and $161.00, respectively. Every Monday after opening the accounts, Jan will add $18.25 to her account and Diego will withdraw $15.00 from his account. Which of the following equations, when solved, gives the number of weeks (w) after opening the accounts that Jan and Diego will have the same amount of money in their respective accounts? (Note: They make no other deposits or withdrawals, and no interest is applied to the money in the accounts.)",-18.25w + 28 = -15w + 161,18.25w + 28 = 15w + 161,18.25w + 28 = 15w - 161,18.25w + 28 = -15w + 161,28w + 18.25 = 161w - 15,D,2015,Apr,4
+Apr.2015.39,Equation Set Up,April.2015,39,"39. On Monday, Jan and Diego opened separate bank accounts with initial deposits of $28.00 and $161.00, respectively. Every Monday after opening the accounts, Jan will add $18.25 to her account and Diego will withdraw $15.00 from his account. Which of the following equations, when solved, gives the number of weeks (w) after opening the accounts that Jan and Diego will have the same amount of money in their respective accounts? (Note: They make no other deposits or withdrawals, and no interest is applied to the money in the accounts.)",-18.25w + 28 = -15w + 161,18.25w + 28 = 15w + 161,18.25w + 28 = 15w - 161,18.25w + 28 = -15w + 161,28w + 18.25 = 161w - 15,D,2015,Apr,4
 Apr.2016.39,Coordinate Geometry,April.2016,39,"39. Points A lies at (2,6) and point B lies at (-5, 10) in the standard (x,y) coordinate plane below. What is the length, in coordinate units, of (line)AB?",(rad)65,(rad)125,13,17,,B,2016,Apr,4
 Apr.2017.39,SOHCAHTOA-PYTHAG,April.2017,39,"39) A line through the origin and (10,4) is shown in the standard (x,y) coordinate plane below.",(rad29)/2,2/(rad29),5/(rad29),⅖,,D,2017,Apr,4
 Apr.2018.39,Mean-Median-Mode,April.2018,39,,,,,,,D,2018,Apr,4
@@ -921,7 +921,7 @@ Jun.2016.42,Data Interpretation,June.2016,42,"42. Ms. SImons made a bar graph of
 Jun.2017.42,Trig,June.2017,42,"42. For all x such that 0 ≤ x ≤ 90, which of the following expressions is NOT equal to sinx°?",#NAME?,sin(-x°),cos(90 - x)°,cos(x - 90)°,Rad (1 - (cosx°)2),G,2017,Jun,6
 Jun.2018.42,Solving Algebra,June.2018,42,,,,,,,F,2018,Jun,6
 Jun.2021.42,Data Interpretation,June.2021,42,,,,,,,J,2021,Jun,6
-June.2022.42,Equation Set Up (Conversions-Mixture-%Change),June.2022,42,,,,,,,F,2022,Jun,6
+June.2022.42,Equation Set Up,June.2022,42,,,,,,,F,2022,Jun,6
 Apr.2019.B04.42,Logs,April.2019.B04,42,,,,,,,F,,,
 Apr.2015.43,SOHCAHTOA-PYTHAG,April.2015,43,"43. The circle below has a diameter of 8 centimeters. Which of the following is closest to the area, in square centimeters, of the square inscribed in the circle?",25,32,50,64,201,B,2015,Apr,4
 Apr.2016.43,Imaginary Numbers,April.2016,43,"43. For i = rad(-1), (1 +2i)2 = ?",2 + 2i,2 + 4i,-4,-3,,A,2016,Apr,4
@@ -938,7 +938,7 @@ Dec.2017.43,Equivalent Expressions,December.2017,43,,,,,,,D,2017,Dec,12
 Dec.2018.43,Word Problems,December.2018,43,,,,,,,D,2018,Dec,12
 Dec.2021.43,Data Interpretation,December.2021,43,,,,,,,D,2021,Dec,12
 Dec.2022.43,Perimeter-Area-Volume,December.2022,43,,,,,,,E,2022,Dec,12
-Jun.2015.43,Equation Set Up (Conversions-Mixture-%Change),June.2015,43,"43. After visiting Florida State University during spring break, Francisco rents a car for 2 days to travel around Florida. He has $255 to spend on car rental for the 2 days. Sea Horse Car Rental charges $50 per day and $0.25 per mile. Ocean Blue Car Rental charges $60 per day and $0.20 per mile. Which company, if either, allows him to travel more miles for the 2 days, and how many miles more? (Note: Taxes are already included in the rental charges.)","Ocean Blue, 55","Ocean Blue, 100","Sea Horse, 135",Francisco would get the same maximum number of miles from each company.,,B,2015,Jun,6
+Jun.2015.43,Equation Set Up,June.2015,43,"43. After visiting Florida State University during spring break, Francisco rents a car for 2 days to travel around Florida. He has $255 to spend on car rental for the 2 days. Sea Horse Car Rental charges $50 per day and $0.25 per mile. Ocean Blue Car Rental charges $60 per day and $0.20 per mile. Which company, if either, allows him to travel more miles for the 2 days, and how many miles more? (Note: Taxes are already included in the rental charges.)","Ocean Blue, 55","Ocean Blue, 100","Sea Horse, 135",Francisco would get the same maximum number of miles from each company.,,B,2015,Jun,6
 Jun.2016.43,Solving Algebra,June.2016,43,"43) To plan orders for a party, a caterer uses the formula P = 64G/S, where P is the number of people, G is the number of gallons of punch, and S is the size of the cups in ounces. Which of the following gives the number of gallons of punch to order for a party of 200 people when 5-ounce cups will be used?",(5)(64)/200,(5)(200)/64,(64)(200)/5,64/(5)(200),200/(5)(64),B,2016,Jun,6
 Jun.2017.43,Perimeter-Area-Volume,June.2017,43,"43. A 3-inch-tall rectangular box with a square base is constructed to hold a circular pie that has a diameter of 8 inches. Both are shown below. What is the volume, in cubic inches, of the smallest such box that can hold this pie?",24,64,72,192,512,D,2017,Jun,6
 Jun.2018.43,Plug in Numbers (Calc),June.2018,43,,,,,,,A,2018,Jun,6
@@ -981,7 +981,7 @@ Dec.2016.45,Absolute Values,December.2016,45,"45. For all real numbers a, b, and
 Dec.2017.45,Transformations,December.2017,45,,,,,,,A,2017,Dec,12
 Dec.2018.45,Percents-Fractions (% Change),December.2018,45,,,,,,,B,2018,Dec,12
 Dec.2021.45,Equivalent Expressions,December.2021,45,,,,,,,B,2021,Dec,12
-Dec.2022.45,Equation Set Up (Conversions-Mixture-%Change),December.2022,45,,,,,,,B,2022,Dec,12
+Dec.2022.45,Equation Set Up,December.2022,45,,,,,,,B,2022,Dec,12
 Jun.2015.45,Lines,June.2015,45,"45. During a snowstorm, the relationship between the depth of accumulated snow, y inches, and the elapsed time, x hours, was modeled by the equation 2x – 5y = -5. One of the following graphs in the standard (x,y) coordinate plane models the equation for positive values of x and y. Which one?",B. Image,C. Image,D. Image,E. Image,,A,2015,Jun,6
 Jun.2016.45,Transformations,June.2016,45,"45. Consider the transformation of the standard (x,y) coordinate plane that maps each point (x,y) to the point (kx, ky) for a certain positive constant, k. In particular, this transformation maps (3,0) to (1,3). This transformation maps (9,24) to which of the following points?","A. (3, 8)","B. (6, 21)","C. (7, 18)","D. (11, 30)","E. (27, 72)",A,2016,Jun,6
 Jun.2017.45,LCMGCF,June.2017,45,"45) Given today is Tuesday, what day of the week was it 200 days ago?",A. Monday,B. Tuesday,C. Wednesday,D. Friday,E. Saturday,D,2017,Jun,6
