@@ -428,7 +428,7 @@ Apr.2022.E25.20,Equivalent Expressions,April.2022.E25,20,,,,,,,K,2022,Apr,4
 Apr.2022.Z08.20,Lines,April.2022.Z08,20,,,,,,,G,2022,Apr,4
 Dec.2015.20,Geometry Rules,December.2015,20,"20. In the figure below, parallel lines (arrows <->)AB and (arrows<->)CD are cut by transversals (arrows<->AC) and (arrows<->)BD that intersects at E. Two angle measures are given. What is the measure of (angle)ABD?",112°,138°,144°,146°,,K,2015,Dec,12
 Dec.2016.20,Ratios-Proportions,December.2016,20,"20. A survey about 3 issues affecting Bluff City Park was given to 60 residents. The results of the survey are shown below. Assume that the results in the table accurately predict the response ratios for the town’s 1,200 residents. How many of the 1,200 residents would respond No on the curfew issue?",G. 300,H. 600,J. 680,K. 960,,F,2016,Dec,12
-Dec.2017.20,Lines,December.2017,20,,,,,,,F,2017,Dec,12
+Dec.2017.20,Plug in Numbers (Calc),December.2017,20,,,,,,,F,2017,Dec,12
 Dec.2018.20,Word Problems,December.2018,20,,,,,,,H,2018,Dec,12
 Dec.2021.20,Conversions-Mixtures,December.2021,20,,,,,,,H,2021,Dec,12
 Dec.2022.20,Quadratics (and above),December.2022,20,,,,,,,K,2022,Dec,12
@@ -680,7 +680,7 @@ Jun.2017.31,Coordinate Geometry,June.2017,31,"31. Parallelogram ABCD is graphed 
 Jun.2018.31,Conversions-Mixtures,June.2018,31,,,,,,,C,2018,Jun,6
 Jun.2021.31,LCMGCF,June.2021,31,,,,,,,C,2021,Jun,6
 June.2022.31,Perimeter-Area-Volume,June.2022,31,,,,,,,B,2022,Jun,6
-Apr.2019.B04.31,Matrices,April.2019.B04,31,,,,,,,A,,,
+Apr.2019.B04.31,Conversions-Mixtures,April.2019.B04,31,,,,,,,A,,,
 Apr.2015.32,Transformations-Translations,April.2015,32,"32. The circle in the standard (x,y) coordinate plane below has center (-8.5, 7.5) and has radius 5 coordinate units. The circle will be reflected across the y-axis. What will be the coordinates of the image of the center of the circle?","F. (-8.5, -7.5)","G. (-3.5, 2.5)","H. (3.5, -2.5)","J. (8.5, -7.5)","K. (8.5, 7.5)",K,2015,Apr,4
 Apr.2016.32,SOHCAHTOA-PYTHAG,April.2016,32,"32) In the figure shown below, trapezoid ABCD is formed by (triangle)ABC and (triangle)ACD. The lengths are given in inches.Which of the following ratios is equal to cos(angle)B? (Note: FG denotes the length of (line)FG.)",AC/BC,AE/AB,AE/BE,BE/AB,,K,2016,Apr,4
 Apr.2017.32,Perimeter-Area-Volume,April.2017,32,"32. Mikea, an intern with the Parks and Recreation Department, is developing a proposal for the new trapezoidal Springdale Park. The figure below shows her scale drawing of the proposed park with 3 side lengths and the radius of the merry-go-round given in inches. In Mikea’s sale drawing, 1 inch represents 1.5 feet. What is the area, in square inches, of the scale drawing of the park?",544,640,672,"1,088",,G,2017,Apr,4
@@ -879,7 +879,7 @@ Jun.2018.40,SOHCAHTOA-PYTHAG,June.2018,40,,,,,,,K,2018,Jun,6
 Jun.2021.40,Perimeter-Area-Volume,June.2021,40,,,,,,,J,2021,Jun,6
 June.2022.40,Word Problems,June.2022,40,,,,,,,F,2022,Jun,6
 Apr.2019.B04.40,Rational Functions,April.2019.B04,40,,,,,,,F,,,
-Apr.2015.41,Lines,April.2015,41,"41. The table below gives the weights, rounded to the nearest pound, at birth an at 1 year for 5 boys. A researcher models these weights as a linear function where the weight at 1 year is dependent on the weight at birth. Among the following models, which is the best?",A. y = 3x,B. y = 4x,C. y = x + 11,D. y = x + 16,E. y = 2x + 10,A,2015,Apr,4
+Apr.2015.41,Plug in Numbers (Calc),April.2015,41,"41. The table below gives the weights, rounded to the nearest pound, at birth an at 1 year for 5 boys. A researcher models these weights as a linear function where the weight at 1 year is dependent on the weight at birth. Among the following models, which is the best?",A. y = 3x,B. y = 4x,C. y = x + 11,D. y = x + 16,E. y = 2x + 10,A,2015,Apr,4
 Apr.2016.41,Quadratics (and above),April.2016,41,"41. For all x=/= -2, which of the following expressions is equal to (x2 + 5x + 6) / (x + 2) + x + 5 ?",2x + 8,x2 + 8x + 15,(2x + 8) / (x + 2),(x2 + 6x + 11) / (x + 2),,B,2016,Apr,4
 Apr.2017.41,Data Interpretation,April.2017,41,41. The frequency chart below shows the cumulative number of Ms. Hernandez’s science students whose test scores fell within certain score ranges. All test scores are whole numbers. How many students have a test score in the interval 71-80?,6,8,12,13,,A,2017,Apr,4
 Apr.2018.41,Perimeter-Area-Volume,April.2018,41,,,,,,,B,2018,Apr,4
@@ -1109,7 +1109,7 @@ Apr.2021.Z04.51,Ratios-Proportions,April.2021.Z04,51,,,,,,,D,2021,Apr,4
 Apr.2022.E25.51,Perimeter-Area-Volume,April.2022.E25,51,,,,,,,E,2022,Apr,4
 Apr.2022.Z08.51,Plug in Numbers (Calc),April.2022.Z08,51,,,,,,,D,2022,Apr,4
 Dec.2015.51,SOHCAHTOA-PYTHAG,December.2015,51,"51) Melanie is standing 80 feet from the launch site of a hot-air balloon when the balloon lifts off from the ground and rises vertically. Melanie’s horizontal line of sight is 5 feet above the ground. When the bottom of the balloon is 50 feet above the ground, as shown below, which of the following expressions gives the angle that Melanie’s horizontal line of sight makes with her line of sight to the bottom of the balloon?",Tan -1 (50/75),Tan -1 (75/50),Tan -1 (80/45),Tan -1 (80/50),,A,2015,Dec,12
-Dec.2016.51,Lines,December.2016,51,"51. The 3 lines with equations y = 4, x = -3, and y = x, respectively, bound a unique triangular region in the standard (x,y) coordinate plane. Which of the following descriptions is the best classification of this triangle?",B. Acute Isosceles,C. Right Isosceles,D. Acute Scalene,E. Right Scalene,,C,2016,Dec,12
+Dec.2016.51,Vocab,December.2016,51,"51. The 3 lines with equations y = 4, x = -3, and y = x, respectively, bound a unique triangular region in the standard (x,y) coordinate plane. Which of the following descriptions is the best classification of this triangle?",B. Acute Isosceles,C. Right Isosceles,D. Acute Scalene,E. Right Scalene,,C,2016,Dec,12
 Dec.2017.51,Geometry Rules,December.2017,51,,,,,,,D,2017,Dec,12
 Dec.2018.51,Vocab,December.2018,51,,,,,,,B,2018,Dec,12
 Dec.2021.51,Ratios-Proportions,December.2021,51,,,,,,,D,2021,Dec,12
@@ -1258,7 +1258,7 @@ Apr.2016.58,Exponents-Radicals,April.2016,58,"58. If x and a are positive ration
 Apr.2017.58,Imaginary Numbers,April.2017,58,"58. Given a positive integer n such that in = 1, which of the following statements about n must be true? (Note: i2 = -1)","When n is divided by 4, the remainder is 1.","When n is divided by 4, the remainder is 2.","When n is divided by 4, the remainder is 3.",Cannot be determined from the given information,,F,2017,Apr,4
 Apr.2018.58,Plug in Numbers (Calc),April.2018,58,,,,,,,F,2018,Apr,4
 Apr.2019.Z15.58,Matrices,April.2019.Z15,58,,,,,,,G,2019,Apr,4
-Apr.2021.D05.58,Mean-Median-Mode,April.2021.D05,58,,,,,,,H,2021,Apr,4
+Apr.2021.D05.58,Vocab,April.2021.D05,58,,,,,,,H,2021,Apr,4
 Apr.2021.Z04.58,Trig,April.2021.Z04,58,,,,,,,K,2021,Apr,4
 Apr.2022.E25.58,Equivalent Expressions,April.2022.E25,58,,,,,,,G,2022,Apr,4
 Apr.2022.Z08.58,Vocab,April.2022.Z08,58,,,,,,,K,2022,Apr,4
