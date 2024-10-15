@@ -126,7 +126,7 @@ Apr.2018.06,Lines,April.2018,6,,,,,,,H,2018,Apr,4,,Apr.2022.Z08.49,Perimeter-Are
 Apr.2019.B04.06,Conversions-Mixtures,April.2019.B04,6,,,,,,,K,,,,,Apr.2022.Z08.50,SOHCAHTOA-PYTHAG,April.2022.Z08,50,,,,,,,J,2022,Apr,4
 Apr.2019.Z15.06,Absolute Values,April.2019.Z15,6,,,,,,,G,2019,Apr,4,,Apr.2022.Z08.51,Plug in Numbers (Calc),April.2022.Z08,51,,,,,,,D,2022,Apr,4
 Apr.2021.D05.06,Equivalent Expressions,April.2021.D05,6,,,,,,,K,2021,Apr,4,,Apr.2022.Z08.52,Sequences,April.2022.Z08,52,,,,,,,K,2022,Apr,4
-Apr.2021.Z04.06,Ratios-Proportions,April.2021.Z04,6,,,,,,,F,2021,Apr,4,,Apr.2022.Z08.53,Perimeter-Area-Volume,April.2022.Z08,53,,,,,,,A,2022,Apr,4
+Apr.2021.Z04.06,Percents-Fractions (% Change),April.2021.Z04,6,,,,,,,F,2021,Apr,4,,Apr.2022.Z08.53,Perimeter-Area-Volume,April.2022.Z08,53,,,,,,,A,2022,Apr,4
 Dec.2015.06,Equation Set Up,December.2015,6,"6. Damon and 4 of his coworkers are having lunch. Each of the 5 people will pay for his or her own lunch, but they agree to divide the tip equally among themselves. The total for the 5 lunches is $80.00, and the group will add a tip of 15% of the total. Each person’s portion of the tip will be how much?",G. $2.40,H. $3.00,J. $5.00,K. $5.33,,G,2015,Dec,12,,Apr.2022.Z08.54,Matrices,April.2022.Z08,54,,,,,,,F,2022,Apr,4
 Dec.2016.06,Lines,December.2016,6,"6. Portions of the graphs represented by the functions -2x + y = 2 and x + y = 5 are shown in the standard (x,y) coordinate plane below. Although only a portion of each graph is shown, the domain of each function is all real numbers. If it can be determined at what point do the graphs intersect?","G. (1,4)","H. (2,5)","J. (4,1)",K. Cannot be determined from the given information,,G,2016,Dec,12,,Apr.2022.Z08.55,Word Problems,April.2022.Z08,55,,,,,,,E,2022,Apr,4
 Dec.2017.06,Word Problems,December.2017,6,,,,,,,G,2017,Dec,12,,Apr.2022.Z08.56,Probability-Combinations-Permutations,April.2022.Z08,56,,,,,,,J,2022,Apr,4
@@ -298,7 +298,7 @@ Apr.2021.Z04.13,Word Problems,April.2021.Z04,13,,,,,,,D,2021,Apr,4,,,,,,,,,,,,,,
 Dec.2015.13,Plug in Numbers (Calc),December.2015,13,,,,,,,C,2015,Dec,12,,,,,,,,,,,,,,,
 Dec.2016.13,Quadratics (and above),December.2016,13,13. The polynomial  is equivalent to the product of (5x + 4) and which of the following binomials?,9x  4,9x 2,9x + 4,40x  12,40x 2,B,2016,Dec,12,,,,,,,,,,,,,,,
 Dec.2017.13,System of Equations,December.2017,13,,,,,,,A,2017,Dec,12,,,,,,,,,,,,,,,
-Dec.2018.13,Ratios-Proportions,December.2018,13,,,,,,,A,2018,Dec,12,,,,,,,,,,,,,,,
+Dec.2018.13,Percents-Fractions (% Change),December.2018,13,,,,,,,A,2018,Dec,12,,,,,,,,,,,,,,,
 Dec.2019.13,Equivalent Expressions,December.2019,13,,,,,,,B,2019,Dec,12,,,,,,,,,,,,,,,
 Dec.2021.13,SOHCAHTOA-PYTHAG,December.2021,13,,,,,,,E,2021,Dec,12,,,,,,,,,,,,,,,
 Dec.2022.13,Ratios-Proportions,December.2022,13,,,,,,,C,2022,Dec,12,,,,,,,,,,,,,,,
@@ -681,7 +681,7 @@ Apr.2021.D05.29,Solving Algebra,April.2021.D05,29,,,,,,,B,2021,Apr,4,,,,,,,,,,,,
 Apr.2021.Z04.29,Perimeter-Area-Volume,April.2021.Z04,29,,,,,,,C,2021,Apr,4,,,,,,,,,,,,,,,
 Dec.2015.29,Quadratics (and above),December.2015,29,29. Which of the following expressions is a factor of the polynomial ?,x  9,x 8,x + 2,x + 9,x + 36,A,2015,Dec,12,,,,,,,,,,,,,,,
 Dec.2016.29,Solving Algebra,December.2016,29,"29. In Westville on Tuesday, the high temperature was 30°C and the low temperature was 20°C. What was the difference between the high and low temperatures, in degrees Fahrenheit?",5 5/9°F,10°F,12 2/9°F,18°F,,D,2016,Dec,12,,,,,,,,,,,,,,,
-Dec.2017.29,Ratios-Proportions,December.2017,29,,,,,,,A,2017,Dec,12,,,,,,,,,,,,,,,
+Dec.2017.29,Percents-Fractions (% Change),December.2017,29,,,,,,,A,2017,Dec,12,,,,,,,,,,,,,,,
 Dec.2018.29,Imaginary Numbers,December.2018,29,,,,,,,C,2018,Dec,12,,,,,,,,,,,,,,,
 Dec.2019.29,Plug in Numbers (Calc),December.2019,29,,,,,,,D,2019,Dec,12,,,,,,,,,,,,,,,
 Dec.2021.29,Mean-Median-Mode,December.2021,29,,,,,,,D,2021,Dec,12,,,,,,,,,,,,,,,
@@ -788,7 +788,7 @@ Jun.2016.33,Circles-Ellipses,June.2016,33,"33. The circumference of a circle is 
 Jun.2017.33,Exponents-Radicals,June.2017,33,33. Which of the following is equivalent to 82 * 40.5?,27,44.5,82.5,162,32,A,2017,Jun,6,,,,,,,,,,,,,,,
 Jun.2018.33,Transformations-Translations,June.2018,33,,,,,,,B,2018,Jun,6,,,,,,,,,,,,,,,
 Jun.2019.33,Perimeter-Area-Volume,June.2019,33,,,,,,,D,2019,,,,,,,,,,,,,,,,,
-Jun.2021.33,Probability-Combinations-Permutations,June.2021,33,,,,,,,B,2021,Jun,6,,,,,,,,,,,,,,,
+Jun.2021.33,Percents-Fractions (% Change),June.2021,33,,,,,,,B,2021,Jun,6,,,,,,,,,,,,,,,
 June.2020.33,Plug in Numbers (Calc),June.2020,33,,,,,,,D,2020,,,,,,,,,,,,,,,,,
 June.2022.33,Quadratics (and above),June.2022,33,,,,,,,B,2022,Jun,6,,,,,,,,,,,,,,,
 Apr.2015.34,SOHCAHTOA-PYTHAG,April.2015,34,34) For an angle with measure α in a right triangle sin α = 180/181 and tan α = 180/19. What is the value cos α?,19/181,19/180,"19/(rad 65,161)","19/(rad 32,039)",181/19,F,2015,Apr,4,,,,,,,,,,,,,,,
@@ -932,7 +932,7 @@ Jun.2016.39,Solving Algebra,June.2016,39,39) For what value of x is the equation
 Jun.2017.39,Probability-Combinations-Permutations,June.2017,39,"39. The Harrisburg Recreation Center recently changed its hours to open 1 hour later and close 3 hours later than it had previously. Residents of Harrisburg age 16 or older were given a survey, and 560 residents replied. The survey asked each resident his or her student status (high school, college, or nonstudent) and what he or she thought about the change in hours (approve, disapprove, or no opinion). The results are summarized in the table below. Suppose a person will be chosen at random from these 560 residents. Which of the following values is closest to the probability that the person chosen will NOT be a high school student and will NOT have replied with no opinion?",0.06,0.09,0.44,0.83,0.98,D,2017,Jun,6,,,,,,,,,,,,,,,
 Jun.2018.39,Vocab,June.2018,39,,,,,,,A,2018,Jun,6,,,,,,,,,,,,,,,
 Jun.2019.39,Equation Set Up,June.2019,39,,,,,,,E,2019,,,,,,,,,,,,,,,,,
-Jun.2021.39,Mean-Median-Mode,June.2021,39,,,,,,,C,2021,Jun,6,,,,,,,,,,,,,,,
+Jun.2021.39,Percents-Fractions (% Change),June.2021,39,,,,,,,C,2021,Jun,6,,,,,,,,,,,,,,,
 June.2020.39,Mean-Median-Mode,June.2020,39,,,,,,,A,2020,,,,,,,,,,,,,,,,,
 June.2022.39,Data Interpretation,June.2022,39,,,,,,,C,2022,Jun,6,,,,,,,,,,,,,,,
 Apr.2015.40,System of Equations,April.2015,40,"40. Let p and q be real numbers such that p + q = 4, -pq = 12, and p > q. What is p?",F. 2,G. 3,H. 4,J. 6,K. 8,J,2015,Apr,4,,,,,,,,,,,,,,,
