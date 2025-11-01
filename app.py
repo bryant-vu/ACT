@@ -37,5 +37,9 @@ def calcprograms():
 def contactme():
     return render_template('contactme.html')
 
+@app.route('/api/v1/homework/')
+def about():
+    return render_template('homework.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
