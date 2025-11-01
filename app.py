@@ -38,7 +38,7 @@ def contactme():
     return render_template('contactme.html')
 
 @app.route('/api/v1/homework/')
-def about():
+def homework():
     return render_template('homework.html')
 
 if __name__ == '__main__':
