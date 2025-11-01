@@ -1,83 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-100557322-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+{% extends 'layout.html' %}
 
-      gtag('config', 'UA-100557322-2');
-    </script>
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-K82RX7L');</script>
-    <!-- End Google Tag Manager -->
-
-    <!-- LinkedIn thumbnail image -->
-    <meta name="image" property="og:image" content="https://s3-us-west-1.amazonaws.com/actmath/thumbnail.jpg">
-
-    <meta charset="utf-8">
-    <title>Homework</title>
-
-    <link rel="icon" href="data:,">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/stylesheet.css') }}">
-
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+{% block body %}
+<div>
+<h2>Homework</h2>
+  <p class='font-weight-light'><font size='4'> add content about homework here
+</div>
 
 
-  </head>
-  <body>
-}
-    <div class='container'>
-        <div class="jumbotron text-center" style='padding-bottom: 15px; padding-top: 30px;'>
-          <h1>ACT MATH</h1>
-          <p class="lead">Practice with officially released ACT math questions.</p>
-          <p class="lead">Built by a an ACT tutor with over a decade of experience.</p>
-
-          <nav class="navbar navbar-expand-lg navbar-light bg-light" style='padding: 1px;'>
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="/">Home</a>
-                <a class="nav-item nav-link active" href="/api/v1/about/">About</a>
-                <a class="nav-item nav-link active" href="/api/v1/calcprograms/">Calculator Programs</a>
-                <a class="nav-item nav-link active" href="/api/v1/contactme/">Contact</a>
-                <a class="nav-item nav-link active" href="homework.html">Homework</a>
-
-              </div>
-            </div>
-          </nav>
-        </div>
-      <div>
-      <!-- Google Tag Manager (noscript) -->
-      <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K82RX7L"
-      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-      <!-- End Google Tag Manager (noscript) -->
-        <h1>Homework Resources</h1>
-        <p>Here are some resources to help you with your ACT math homework!</p>
-        <p> add stuff here!!!!!</p>
-
-      <script type="text/javascript" src="{{ url_for('static', filename='js/app.js') }}"></script>
-
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-  </body>
-</html>
+{% endblock %}
