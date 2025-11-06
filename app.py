@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify
 from api import question_list, questions, question_date
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -39,7 +40,9 @@ def contactme():
 
 @app.route('/api/v1/homework/')
 def homework():
-    return render_template('homework.html')
+    df = pd.read_csv('data/copy_mathv2.csv')
+    questions = df.to_dict(orient='records')
+    return render_template('homework.html', questions=questions)
 
 if __name__ == '__main__':
     app.run(debug=True)
