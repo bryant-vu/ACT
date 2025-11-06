@@ -23,22 +23,6 @@
                                         margin-right: 15px;
                                       }
                                  </style>
-                        <h3>Select Test Date(s)</h3>
-                            <i>Note: Will return all Test Dates if none selected.</i>
-                            <div id='checkboxesDates'></div>
-					                       <style>
-					                            #checkboxesDates {
-                                        padding: 10px;
-                                        border: 1px solid #ccc;
-                                        border-radius: 5px;
-                                        background-color: #f9f9f9;
-                                        margin-bottom: 20px;
-                                      }
-                                      #checkboxesDates label {
-                                        display: inline-block;
-                                        margin-right: 15px;
-                                      }
-                                 </style>
                         <div>
                         <input type='submit' value='Submit'>
                         </div>
@@ -65,5 +49,12 @@
 
         <br>
         <br>
-
+<script>
+  // Homework should hit the CSV endpoints
+  window.API_PREFIX = '/api/v1/homework';
+</script>
+<!-- Load Plotly first (it includes d3) -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- Then your page script that calls Plotly.d3.json -->
+<script src="{{ url_for('static', filename='js/homework.js') }}"></script>
 {% endblock %}

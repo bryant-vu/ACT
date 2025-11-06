@@ -1,5 +1,8 @@
-var questionEndPointDate = '/api/v1/question_date'
+const API_PREFIX = '/api/v1/homework';  // CSV endpoints
+const ep = (path) => `${API_PREFIX}/${path.replace(/^\/+/, '')}`;
 
+
+var questionEndPointDate  = ep('question_date/');
 Plotly.d3.json(questionEndPointDate, function(error, response) {
     if (error) return console.warn(error);
 
@@ -16,7 +19,7 @@ Plotly.d3.json(questionEndPointDate, function(error, response) {
     }
 });
 
-var questionEndPointTopic = '/api/v1/question_list'
+var questionEndPointTopic = ep('question_list/');
 
 Plotly.d3.json(questionEndPointTopic, function(error, response) {
     if (error) return console.warn(error);
@@ -44,57 +47,41 @@ function showAnswer(i) {
 
 //queries list of questions
 function getQuestionData() {
+  // Get all checkboxes
+  const sampleValue = document.querySelectorAll('.topics,.dates');
 
-        //return checkbox values
-        var sampleValue = document.querySelectorAll('.topics,.dates');
+  // Collect checked values only
+  let checkedValues = [];
+  for (let i = 0; i < sampleValue.length; i++) {
+    if (sampleValue[i].checked) {
+      checkedValues.push(sampleValue[i].value);
+    }
+  }
 
-        //initiate array
-        var checkedValues = [];
+  // If nothing selected, alert user (don’t select everything)
+  if (checkedValues.length === 0) {
+    alert("Choose at least one topic or date.");
+    return;
+  }
 
-        //search for checked values and append to new array
-        for (var i = 0; i < sampleValue.length; i++) {
-          if(sampleValue[i].checked) {
-            checkedValues[i] = sampleValue[i].value;
-          }
-        }
+  // Clear current question list
+  document.getElementById("question").innerHTML = "";
+  document.getElementById("solve").innerHTML = "";
 
-        //initiate arrays to return all values if none are checked
-        var date = document.querySelectorAll('.dates:checked');
-        var topic = document.querySelectorAll('.topics:checked');
+  // Remove duplicates and empty slots
+  const selectedValues = [...new Set(checkedValues.filter(v => v))];
+  console.log("Sending filters:", selectedValues);
 
-        //append all date values if none checked
-        if(date.length == 0) {
-          var allDates = document.getElementsByClassName('dates');
-          for (var i = 0; i < allDates.length; i++) {
-            checkedValues[i+checkedValues.length] = allDates[i].value;
-          }
-        }
-        //append all topic values if none checked
-        if(topic.length == 0) {
-          var allTopics = document.getElementsByClassName('topics');
-          for (var i = 0; i < allTopics.length; i++) {
-            checkedValues[i+checkedValues.length] = allTopics[i].value;
-          }
-        }
+  // Build endpoint with cleaned list
+  const endPointQuestionData = ep(
+    'questions/' + encodeURIComponent(selectedValues.join(','))
+  );
 
-        //error message if nothing is checked
-        if(date.length == 0 && topic.length == 0) {
-          checkedValues = [];
-          alert("Choose a topic")
-        }
-
-        //clear #question and #solve tags
-        document.getElementById("question").innerHTML = ""
-        document.getElementById("solve").innerHTML = ""
-
-        var endPointQuestionData = '/api/v1/questions/' + checkedValues
-        Plotly.d3.json(endPointQuestionData, function(error, response) {
-
-            if (error) return console.warn(error);
-
-            appendInnerHTML(response)
-        });
-};
+  Plotly.d3.json(endPointQuestionData, function (error, response) {
+    if (error) return console.warn(error);
+    appendInnerHTML(response);
+  });
+}
 
 //appends list of questions when topic is chosen from dropdown menu
 function appendInnerHTML(response) {
