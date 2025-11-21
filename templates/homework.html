@@ -1,14 +1,15 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<h2>Homework Questions</h2>
+<h2>Homework Assignments</h2>
 <div class='container'>
         <center>
             <div class='row'>
                 <div class="col-sm-12">
                     <form method='post' action="javascript: getQuestionData()">
-                        <h3>Select Topic(s)</h3>
-                            <i>Note: Will return all Topics if none selected.</i>
+                        <h3>Select Homework Assignment(s)</h3>
+                            <i>Note: Will show questions for all classes if none selected.</i>
+                            <br><i> For additional practice, go to "Home" tab and select the relevant topics.</i>
                             <div id='checkboxesTopics'></div>
 					                       <style>
 					                            #checkboxesTopics {
