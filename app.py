@@ -6,9 +6,10 @@ from functools import lru_cache
 app = Flask(__name__)
 @lru_cache(maxsize=1)
 def load_csv():
-    df = pd.read_csv('data/copy_mathv2.csv')
+    # encoding_errors='replace' keeps a single bad byte from 500-ing the whole tab
+    df = pd.read_csv('data/copy_mathv2.csv', encoding='utf-8', encoding_errors='replace')
     # Normalize all string columns (remove leading/trailing spaces)
-    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    df = df.map(lambda x: x.strip() if isinstance(x, str) else x)
     return df
 
 def question_date_csv():
