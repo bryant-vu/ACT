@@ -58,6 +58,7 @@
 </script>
 <!-- Load Plotly first (it includes d3) -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-<!-- Then your page script that calls Plotly.d3.json -->
+<!-- Shared question rendering, then the page script that calls it -->
+<script src="{{ url_for('static', filename='js/questions.js') }}"></script>
 <script src="{{ url_for('static', filename='js/homework.js') }}"></script>
 {% endblock %}

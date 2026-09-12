@@ -4,6 +4,12 @@ import pandas as pd
 from functools import lru_cache
 
 app = Flask(__name__)
+
+# Lives in the same CSV as the homework assignments, but is served by its own
+# page (Practice with Calculator Programs) instead of a Homework checkbox.
+CALC_PRACTICE_TOPIC = 'PRACTICE USING CALCULATOR HW'
+
+
 @lru_cache(maxsize=1)
 def load_csv():
     # encoding_errors='replace' keeps a single bad byte from 500-ing the whole tab
@@ -18,8 +24,13 @@ def question_date_csv():
 
 def question_list_csv():
     df = load_csv()
-    print(df['topic'].unique().tolist())   # debug line
-    return sorted(df['topic'].dropna().unique().tolist())
+    topics = df['topic'].dropna().unique().tolist()
+    return sorted(t for t in topics if t != CALC_PRACTICE_TOPIC)
+
+def calc_practice_questions():
+    df = load_csv()
+    rows = df[df['topic'] == CALC_PRACTICE_TOPIC]
+    return rows[['id', 'date', 'ans']].to_dict(orient='records')
 
 def questions_csv(filters):
     df = load_csv()
@@ -70,6 +81,14 @@ def calcprograms():
 @app.route('/api/v1/contactme/')
 def contactme():
     return render_template('contactme.html')
+
+@app.route('/api/v1/calcpractice/')
+def calcpractice():
+    return render_template('calcpractice.html')
+
+@app.route('/api/v1/calcpractice/questions/')
+def calcpractice_questions():
+    return jsonify(calc_practice_questions())
 
 @app.route('/api/v1/homework/')
 def homework():

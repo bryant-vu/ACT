@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h2>Practice with Calculator Programs</h2>
+<div class='container'>
+        <center>
+            <i>Notes:</i>
+            <br><i> *Each question below can be solved with one of the calculator programs.</i>
+            <br><i> *The answer shows which program to use.</i>
+            <br><i> *Go to the "Calculator Programs" tab if you have not installed them yet.</i>
+        </center>
+</div>
+
+
+        <br>
+        <br>
+
+
+        <div class='row'>
+            <h2 id="solve"></h2>
+                <div class="col-sm-12">
+                    <div id="question">
+
+                    </div>
+                </div>
+        </div>
+
+        <br>
+        <br>
+<!-- Load Plotly first (it includes d3) -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<!-- Shared question rendering, then the page script that calls it -->
+<script src="{{ url_for('static', filename='js/questions.js') }}"></script>
+<script src="{{ url_for('static', filename='js/calcpractice.js') }}"></script>
+{% endblock %}
