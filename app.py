@@ -2,12 +2,18 @@ from flask import Flask, render_template, jsonify
 from api import question_list, questions, question_date
 import pandas as pd
 from functools import lru_cache
+from datetime import date, timedelta
+import re
 
 app = Flask(__name__)
 
 # Lives in the same CSV as the homework assignments, but is served by its own
 # page (Practice with Calculator Programs) instead of a Homework checkbox.
 CALC_PRACTICE_TOPIC = 'PRACTICE USING CALCULATOR HW'
+
+# "Group Class MM.DD" homeworks drop off the Homework tab after this long.
+# Their rows stay in the CSV.
+GROUP_CLASS_MAX_AGE = timedelta(days=183)
 
 
 @lru_cache(maxsize=1)
@@ -22,10 +28,26 @@ def question_date_csv():
     df = load_csv()
     return sorted(df['date'].dropna().unique().tolist())
 
+def is_stale_group_class(topic, today=None):
+    # Topic names carry no year, so take the most recent MM.DD on or before today
+    m = re.fullmatch(r'Group Class (\d{2})\.(\d{2})', topic)
+    if not m:
+        return False
+    today = today or date.today()
+    month, day = int(m.group(1)), int(m.group(2))
+    try:
+        held = date(today.year, month, day)
+        if held > today:
+            held = date(today.year - 1, month, day)
+    except ValueError:
+        return False
+    return today - held > GROUP_CLASS_MAX_AGE
+
 def question_list_csv():
     df = load_csv()
     topics = df['topic'].dropna().unique().tolist()
-    return sorted(t for t in topics if t != CALC_PRACTICE_TOPIC)
+    return sorted(t for t in topics
+                  if t != CALC_PRACTICE_TOPIC and not is_stale_group_class(t))
 
 def calc_practice_questions():
     df = load_csv()
