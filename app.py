@@ -74,7 +74,7 @@ def questions_csv(filters):
 
 @lru_cache(maxsize=1)
 def load_drill():
-    # Student version of the question matcher (no answers, no recent tests),
+    # Student version of the question matcher (no recent tests),
     # exported by question_bank/tools/build_site.py
     with open('data/drill.json', encoding='utf-8') as f:
         d = json.load(f)
@@ -165,6 +165,14 @@ def drill_question(qid):
     return jsonify({'target': drill_card(qid),
                     'groups': {k: [drill_card(i) for i in ids]
                                for k, ids in d['matches'][qid].items()}})
+
+@app.route('/api/v1/drill/answer/<qid>')
+def drill_answer(qid):
+    # answers are sent one at a time, only when a student clicks "Show Answer"
+    d = load_drill()
+    if qid not in d['answers']:
+        return jsonify({'error': 'Question not found'}), 404
+    return jsonify({'answer': d['answers'][qid]})
 
 @app.route('/api/v1/drill/search/<query>')
 def drill_search(query):

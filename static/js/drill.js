@@ -40,16 +40,43 @@ function drillImage(src, alt) {
   return img;
 }
 
+// "Show Answer" asks the server for this one answer, then toggles it
+function drillAnswer(id) {
+  const answer = drillEl('span', { class: 'drill-answer' });
+  const button = drillEl('button', { class: 'btn btn-outline-success btn-sm', type: 'button', text: 'Show Answer' });
+  button.addEventListener('click', async () => {
+    if (answer.textContent) {
+      answer.hidden = !answer.hidden;
+      button.textContent = answer.hidden ? 'Show Answer' : 'Hide Answer';
+      return;
+    }
+    button.disabled = true;
+    try {
+      const data = await drillGet(`answer/${encodeURIComponent(id)}`);
+      answer.textContent = `Answer: ${data.answer}`;
+      button.textContent = 'Hide Answer';
+    } catch (e) {
+      answer.textContent = "Couldn't load the answer.";
+    }
+    button.disabled = false;
+  });
+  return [button, answer];
+}
+
 function drillCard(c, isTarget) {
-  const skill = c.skill + (c.multi ? ' · multi-step' : '');
+  const skill = c.skill + (c.multi ? ' \u00b7 multi-step' : '');
+  const actions = drillEl('div', { class: 'drill-actions' }, ...drillAnswer(c.id));
+  if (!isTarget) {
+    actions.appendChild(drillEl('button', {
+      class: 'btn btn-outline-primary btn-sm ml-auto', type: 'button', text: 'More like this',
+      onclick: () => { location.hash = c.id; },
+    }));
+  }
   return drillEl('div', { class: 'drill-card' + (isTarget ? ' target' : '') },
     drillEl('strong', { text: c.label }),
     drillEl('div', { class: 'drill-skill', text: skill }),
     drillImage(c.img, c.label),
-    isTarget ? null : drillEl('button', {
-      class: 'btn btn-outline-primary btn-sm drill-more', type: 'button', text: 'More like this',
-      onclick: () => { location.hash = c.id; },
-    }));
+    actions);
 }
 
 function drillGrid(cards) {
@@ -66,8 +93,11 @@ function drillSection(title, desc, cards) {
   section.appendChild(grid);
   let shown = DRILL_PAGE;
   if (cards.length > shown) {
-    const more = drillEl('button', { class: 'btn btn-light', type: 'button' });
-    const label = () => { more.textContent = `Show more (${cards.length - shown} left)`; };
+    const more = drillEl('button', { class: 'btn btn-primary btn-lg btn-block drill-show-more', type: 'button' });
+    const label = () => {
+      const left = cards.length - shown;
+      more.textContent = `\u25BC Show ${Math.min(DRILL_PAGE, left)} more ${title} questions (${left} left)`;
+    };
     label();
     more.addEventListener('click', () => {
       cards.slice(shown, shown + DRILL_PAGE).forEach(c =>
