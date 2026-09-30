@@ -1,4 +1,4 @@
-// "Similar Questions" tab: pick a question, get practice questions like it in 4 groups.
+// "Similar Questions Finder" tab: pick a question, get practice questions like it in 4 groups.
 // Data comes from /api/v1/drill/ (exported by question_bank/tools/build_site.py).
 // The URL hash remembers the view: #Dec.2019.35 or #search=slope
 
