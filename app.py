@@ -4,6 +4,7 @@ import pandas as pd
 from functools import lru_cache
 from datetime import date, timedelta
 import re
+import json
 
 app = Flask(__name__)
 
@@ -71,6 +72,22 @@ def questions_csv(filters):
     return result[['id', 'date', 'ans']].to_dict(orient='records')
 
 
+@lru_cache(maxsize=1)
+def load_drill():
+    # Student version of the question matcher (no answers, no recent tests),
+    # exported by question_bank/tools/build_site.py
+    with open('data/drill.json', encoding='utf-8') as f:
+        d = json.load(f)
+    d['labels'] = {t['name']: t['label'] for t in d['tests']}
+    return d
+
+def drill_card(qid):
+    d = load_drill()
+    m = d['meta'][qid]
+    return {'id': qid, 'label': f"{d['labels'][m['t']]} \u00b7 #{m['n']}",
+            'skill': m['s'], 'multi': m['m'], 'img': m['img']}
+
+
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -128,6 +145,34 @@ def homework_question_topics():
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
     return jsonify(questions_csv(filters))
+
+@app.route('/api/v1/drill/')
+def drill():
+    return render_template('drill.html')
+
+@app.route('/api/v1/drill/tests/')
+def drill_tests():
+    d = load_drill()
+    return jsonify([{'name': t['name'], 'label': t['label'],
+                     'questions': [[i, d['meta'][i]['n']] for i in t['ids']]}
+                    for t in d['tests']])
+
+@app.route('/api/v1/drill/question/<qid>')
+def drill_question(qid):
+    d = load_drill()
+    if qid not in d['meta']:
+        return jsonify({'error': 'Question not found'}), 404
+    return jsonify({'target': drill_card(qid),
+                    'groups': {k: [drill_card(i) for i in ids]
+                               for k, ids in d['matches'][qid].items()}})
+
+@app.route('/api/v1/drill/search/<query>')
+def drill_search(query):
+    d = load_drill()
+    words = query.lower().split()
+    hits = [i for i, text in d['search'].items() if words and all(w in text for w in words)]
+    hits.sort(key=lambda i: (d['meta'][i]['n'], i))  # lower numbers are usually easier
+    return jsonify({'total': len(hits), 'results': [drill_card(i) for i in hits[:60]]})
 
 if __name__ == '__main__':
     app.run(debug=True)

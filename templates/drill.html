@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<style>
+  .drill-nums { margin: 12px 0 4px; }
+  .drill-nums button {
+    width: 44px; margin: 3px; padding: 4px 0; border: 1px solid #ccc; border-radius: 4px;
+    background: #fff; color: #333; font-size: 14px;
+  }
+  .drill-nums button:hover { background: #eaf4fc; }
+  .drill-nums button.current { background: #2980b9; border-color: #2980b9; color: #fff; }
+  .drill-section { margin-top: 28px; }
+  .drill-section h3 { font-size: 22px; margin-bottom: 2px; }
+  .drill-section .drill-desc { color: #666; margin-bottom: 12px; }
+  .drill-card {
+    border: 1px solid #ddd; border-radius: 6px; padding: 10px 12px; margin-bottom: 16px;
+    background: #fff; max-width: 820px; display: flex; flex-direction: column;
+  }
+  .drill-card.target { border: 2px solid #2980b9; }
+  .drill-card .drill-skill { color: #666; font-size: 14px; }
+  .drill-card img { max-width: 100%; height: auto; display: block; margin: 10px 0; }
+  .drill-card .drill-more { margin-top: auto; align-self: flex-start; }
+  .drill-note { color: #666; }
+</style>
+
+<h2>Similar Questions</h2>
+<div class='container'>
+  <center>
+    <i>Pick a question you want more practice on to get questions like it from other ACT tests.</i>
+    <br><i>Within each group, lower question numbers are usually easier.</i>
+  </center>
+</div>
+<br>
+
+<div class="form-row">
+  <div class="col-md-5 mb-2">
+    <label for="drill-test"><strong>Choose a test and question</strong></label>
+    <select id="drill-test" class="form-control"></select>
+  </div>
+  <div class="col-md-7 mb-2">
+    <label for="drill-search"><strong>…or search by keyword</strong></label>
+    <form id="drill-search-form" class="input-group">
+      <input id="drill-search" class="form-control" type="search"
+             placeholder="e.g. slope, probability, Dec.2019.35">
+      <div class="input-group-append">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div id="drill-nums" class="drill-nums"></div>
+
+<div id="drill-result"></div>
+<br>
+
+<script src="{{ url_for('static', filename='js/drill.js') }}"></script>
+{% endblock %}
