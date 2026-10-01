@@ -34,16 +34,13 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
     }
 });
 
-//show or hide the answer when the 'Show Answer' button is clicked.
-//The button stays put (so the green "Find Similar Questions" button doesn't move)
-//and the answer appears to the right of the buttons.
-function showAnswer(i) {
+//'Show Answer' turns into the answer right where the button is; click again to hide it.
+//The button keeps its width, so the green "Find Similar Questions" button doesn't move.
+function showAnswer(button) {
 
-        var button = document.getElementsByClassName('button')[i];
-        var answer = document.getElementsByClassName('shownAnswer')[i];
-        var showing = answer.style.display === 'none';
-        answer.style.display = showing ? 'inline-block' : 'none';
-        button.value = showing ? 'Hide Answer' : 'Show Answer';
+        var showing = !button.classList.contains('answerShown');
+        button.textContent = showing ? 'Answer: ' + button.getAttribute('data-answer') : 'Show Answer';
+        button.classList.toggle('answerShown', showing);
 
       };
 
@@ -115,13 +112,13 @@ function appendInnerHTML(response) {
                       .append('strong')
                       .text(response[i]['id'])
                       d.append('div')
-                           button = d.append('input')
+                           button = d.append('button')
                                .attr('class','button')
                                .attr('type','button')
-                               .attr('value','Show Answer')
-                               .attr('onclick','showAnswer('+ i + ')')
+                               .attr('data-answer', response[i]['ans'] || '?')
+                               .attr('onclick','showAnswer(this)')
+                               .text('Show Answer')
                            // opens the Similar Questions Finder on this question
-                           // (its own class: showAnswer() counts elements with class 'button')
                            if (response[i]['similar']) {
                                d.append('a')
                                    .attr('class','similarButton')
@@ -129,10 +126,6 @@ function appendInnerHTML(response) {
                                    .attr('target','_blank')
                                    .text('Find Similar Questions')
                            }
-                           shownAnswer = d.append('div')
-                               .attr('class','shownAnswer')
-                               .text(response[i]['ans'])
-                               document.getElementsByClassName('shownAnswer')[i].style.display='none';
 
                 //appends image from Amazon AWS to each id
                 q.append('img')

@@ -28,6 +28,8 @@
 /* "Find Similar Questions" link next to Show Answer (Home, Homework, Calculator tabs) */
 .similarButton {
   display: inline-block;
+  vertical-align: top;
+  border: 2px solid transparent;  /* same height as the Show Answer button */
   margin-left: 8px;
   background: #27ae60;
   background-image: linear-gradient(to bottom, #2ecc71, #27ae60);
@@ -45,15 +47,21 @@
   text-decoration: none;
 }
 
-/* Show Answer keeps a fixed width so "Show Answer" / "Hide Answer" doesn't shift the
-   green button; the answer shows to the right of the buttons */
-input.button {
+/* Show Answer turns into the answer in place. A fixed width (long calculator answers
+   wrap onto more lines) keeps the green button from moving. */
+button.button {
   width: 130px;
+  border: 2px solid transparent;
   cursor: pointer;
+  white-space: normal;
+  vertical-align: top;
 }
 
-.shownAnswer {
-  margin-left: 12px;
-  font-size: 16px;
-  vertical-align: middle;
+button.button.answerShown {
+  background: #eaf4fc;
+  background-image: none;
+  border-color: #2980b9;
+  color: #1c5f8d;
+  font-weight: bold;
+  border-radius: 18px;
 }

@@ -73,7 +73,7 @@ def questions_csv(filters):
     for r in rows:
         # the "Find Similar Questions" button replaces the topic hint in the answer
         if isinstance(r['ans'], str):
-            r['ans'] = re.sub(r'\s*\(Topic:[^)]*\)', '', r['ans']).strip()
+            r['ans'] = re.sub(r'\s*\(Topic:.*$', '', r['ans']).strip()
     return rows
 
 

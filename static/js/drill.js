@@ -45,28 +45,29 @@ function drillImage(src, alt) {
   return img;
 }
 
-// "Show Answer" asks the server for this one answer, then toggles it
+// "Show Answer" asks the server for this one answer and shows it in the button itself;
+// clicking again switches back
 function drillAnswer(id) {
-  const answer = drillEl('span', { class: 'drill-answer' });
-  const button = drillEl('button', { class: 'btn btn-outline-success btn-sm', type: 'button', text: 'Show Answer' });
+  const button = drillEl('button', { class: 'btn btn-outline-success btn-sm drill-answer-btn', type: 'button', text: 'Show Answer' });
+  let answer = null;
+  const show = on => {
+    button.textContent = on ? `Answer: ${answer}` : 'Show Answer';
+    button.classList.toggle('btn-success', on);
+    button.classList.toggle('btn-outline-success', !on);
+  };
   button.addEventListener('click', async () => {
-    if (answer.textContent) {
-      answer.hidden = !answer.hidden;
-      button.textContent = answer.hidden ? 'Show Answer' : 'Hide Answer';
-      return;
-    }
+    if (answer) { show(!button.classList.contains('btn-success')); return; }
     button.disabled = true;
     drillTrack('show_answer', { question_id: id });
     try {
-      const data = await drillGet(`answer/${encodeURIComponent(id)}`);
-      answer.textContent = `Answer: ${data.answer}`;
-      button.textContent = 'Hide Answer';
+      answer = (await drillGet(`answer/${encodeURIComponent(id)}`)).answer;
+      show(true);
     } catch (e) {
-      answer.textContent = "Couldn't load the answer.";
+      button.textContent = "Couldn't load the answer";
     }
     button.disabled = false;
   });
-  return [button, answer];
+  return [button];
 }
 
 function drillCard(c, isTarget) {
