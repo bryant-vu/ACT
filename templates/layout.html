@@ -8,6 +8,15 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
+      // Open any page with ?internal=1 to mark this browser as Bryant's own, so the
+      // GA4 "Internal Traffic" data filter drops its visits. ?internal=0 clears it.
+      try {
+        var internalParam = new URLSearchParams(location.search).get('internal');
+        if (internalParam === '1') localStorage.setItem('ga_internal', '1');
+        if (internalParam === '0') localStorage.removeItem('ga_internal');
+        if (localStorage.getItem('ga_internal') === '1') gtag('set', {traffic_type: 'internal'});
+      } catch (e) {}
+
       gtag('config', 'G-VQ5P9VHRDC');
     </script>
 
