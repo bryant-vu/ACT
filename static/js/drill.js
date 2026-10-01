@@ -13,6 +13,11 @@ const DRILL_PAGE = 6;  // cards shown per group before "Show more"
 
 let drillTests = [];
 
+// Google Analytics events (see layout.html); the page never reloads, so each action is sent here
+function drillTrack(name, params) {
+  if (window.gtag) gtag('event', name, params);
+}
+
 function drillEl(tag, attrs, ...children) {
   const node = document.createElement(tag);
   Object.entries(attrs || {}).forEach(([k, v]) => {
@@ -51,6 +56,7 @@ function drillAnswer(id) {
       return;
     }
     button.disabled = true;
+    drillTrack('show_answer', { question_id: id });
     try {
       const data = await drillGet(`answer/${encodeURIComponent(id)}`);
       answer.textContent = `Answer: ${data.answer}`;
@@ -69,7 +75,7 @@ function drillCard(c, isTarget) {
   if (!isTarget) {
     actions.appendChild(drillEl('button', {
       class: 'btn btn-outline-primary btn-sm ml-auto', type: 'button', text: 'More like this',
-      onclick: () => { location.hash = c.id; },
+      onclick: () => { drillTrack('more_like_this', { question_id: c.id }); location.hash = c.id; },
     }));
   }
   return drillEl('div', { class: 'drill-card' + (isTarget ? ' target' : '') },
@@ -100,6 +106,7 @@ function drillSection(title, desc, cards) {
     };
     label();
     more.addEventListener('click', () => {
+      drillTrack('show_more', { group: title });
       cards.slice(shown, shown + DRILL_PAGE).forEach(c =>
         grid.appendChild(drillEl('div', { class: 'col-12' }, drillCard(c))));
       shown += DRILL_PAGE;
@@ -138,6 +145,7 @@ async function drillShowQuestion(id) {
     document.getElementById('drill-test').value = test.name;
     drillShowNumbers(test.name, id);
   }
+  drillTrack('open_question', { question_id: id, test: data.target.label.split(' \u00b7 ')[0] });
   const top = drillEl('div', { class: 'drill-section' }, drillEl('h3', { text: 'Your question' }));
   top.appendChild(drillEl('div', { class: 'row' },
     drillEl('div', { class: 'col-12' }, drillCard(data.target, true))));
@@ -158,6 +166,7 @@ async function drillShowSearch(query) {
   document.getElementById('drill-search').value = query;
   document.querySelectorAll('#drill-nums .current').forEach(b => b.classList.remove('current'));
   const data = await drillGet(`search/${encodeURIComponent(query)}`);
+  drillTrack('search', { search_term: query, results: data.total });  // GA4's standard search event
   const shown = data.results.length < data.total ? ` (showing the first ${data.results.length})` : '';
   const section = drillEl('div', { class: 'drill-section' },
     drillEl('h3', { text: `${data.total} question${data.total === 1 ? '' : 's'} match “${query}”${shown}` }),
