@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, redirect
 from api import question_list, questions, question_date
 import pandas as pd
 from functools import lru_cache
@@ -106,7 +106,8 @@ def index():
 
 @app.route('/api/v1/about/')
 def about():
-    return render_template('about.html')
+    # the About tab now points to the About page on bvuedu.com; keep old links working
+    return redirect('https://www.bvuedu.com/st_about')
 
 @app.route('/api/v1/question_date/')
 def questions_function_dates():
