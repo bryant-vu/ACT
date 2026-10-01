@@ -91,9 +91,9 @@ function drillGrid(cards) {
   return row;
 }
 
-function drillSection(title, desc, cards) {
+function drillSection(key, title, desc, cards) {
   const section = drillEl('div', { class: 'drill-section' },
-    drillEl('h3', { text: `${title} (${cards.length})` }),
+    drillEl('h3', { class: `drill-h-${key}`, text: `${title} (${cards.length})` }),
     drillEl('div', { class: 'drill-desc', text: desc }));
   const grid = drillGrid(cards.slice(0, DRILL_PAGE));
   section.appendChild(grid);
@@ -146,14 +146,14 @@ async function drillShowQuestion(id) {
     drillShowNumbers(test.name, id);
   }
   drillTrack('open_question', { question_id: id, test: data.target.label.split(' \u00b7 ')[0] });
-  const top = drillEl('div', { class: 'drill-section' }, drillEl('h3', { text: 'Your question' }));
+  const top = drillEl('div', { class: 'drill-section' }, drillEl('h3', { class: 'drill-h-target', text: 'Your question' }));
   top.appendChild(drillEl('div', { class: 'row' },
     drillEl('div', { class: 'col-12' }, drillCard(data.target, true))));
   result.appendChild(top);
   let any = false;
   DRILL_GROUPS.forEach(([key, title, desc]) => {
     const cards = data.groups[key] || [];
-    if (cards.length) { any = true; result.appendChild(drillSection(title, desc, cards)); }
+    if (cards.length) { any = true; result.appendChild(drillSection(key, title, desc, cards)); }
   });
   if (!any) result.appendChild(drillEl('p', { class: 'drill-note', text: 'No similar questions yet.' }));
   // "More like this" is clicked far down the page: bring the new question into view
@@ -169,7 +169,7 @@ async function drillShowSearch(query) {
   drillTrack('search', { search_term: query, results: data.total });  // GA4's standard search event
   const shown = data.results.length < data.total ? ` (showing the first ${data.results.length})` : '';
   const section = drillEl('div', { class: 'drill-section' },
-    drillEl('h3', { text: `${data.total} question${data.total === 1 ? '' : 's'} match “${query}”${shown}` }),
+    drillEl('h3', { class: 'drill-h-search', text: `${data.total} question${data.total === 1 ? '' : 's'} match “${query}”${shown}` }),
     drillEl('div', { class: 'drill-desc', text: 'Ordered by question number. Pick one to see questions like it.' }));
   section.appendChild(drillGrid(data.results));
   result.appendChild(section);

@@ -9,9 +9,17 @@
   }
   .drill-nums button:hover { background: #eaf4fc; }
   .drill-nums button.current { background: #2980b9; border-color: #2980b9; color: #fff; }
-  .drill-section { margin-top: 28px; }
-  .drill-section h3 { font-size: 22px; margin-bottom: 2px; }
-  .drill-section .drill-desc { color: #666; margin-bottom: 12px; }
+  .drill-section { margin-top: 36px; }
+  /* each group gets a colored title bar so it stands out while scrolling */
+  .drill-section h3 {
+    max-width: 820px; margin-bottom: 6px; padding: 10px 16px; border-radius: 6px;
+    font-size: 24px; font-weight: 700; color: #fff; background: #34495e;
+  }
+  .drill-section h3.drill-h-closest { background: #2980b9; }
+  .drill-section h3.drill-h-simpler { background: #27ae60; }
+  .drill-section h3.drill-h-harder { background: #d35400; }
+  .drill-section h3.drill-h-borderline { background: #8e44ad; }
+  .drill-section .drill-desc { max-width: 820px; color: #555; font-size: 16px; margin-bottom: 12px; }
   .drill-card {
     border: 1px solid #ddd; border-radius: 6px; padding: 10px 12px; margin-bottom: 16px;
     background: #fff; max-width: 820px; display: flex; flex-direction: column;
