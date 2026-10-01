@@ -44,3 +44,16 @@
   color: #ffffff;
   text-decoration: none;
 }
+
+/* Show Answer keeps a fixed width so "Show Answer" / "Hide Answer" doesn't shift the
+   green button; the answer shows to the right of the buttons */
+input.button {
+  width: 130px;
+  cursor: pointer;
+}
+
+.shownAnswer {
+  margin-left: 12px;
+  font-size: 16px;
+  vertical-align: middle;
+}

@@ -34,11 +34,16 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
     }
 });
 
-//display answer when 'Show Answer' button is clicked
+//show or hide the answer when the 'Show Answer' button is clicked.
+//The button stays put (so the green "Find Similar Questions" button doesn't move)
+//and the answer appears to the right of the buttons.
 function showAnswer(i) {
 
-        document.getElementsByClassName('button')[i].style.display="none";
-        document.getElementsByClassName('shownAnswer')[i].style.display='table'
+        var button = document.getElementsByClassName('button')[i];
+        var answer = document.getElementsByClassName('shownAnswer')[i];
+        var showing = answer.style.display === 'none';
+        answer.style.display = showing ? 'inline-block' : 'none';
+        button.value = showing ? 'Hide Answer' : 'Show Answer';
 
       };
 
