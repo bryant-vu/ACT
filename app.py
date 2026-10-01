@@ -69,7 +69,12 @@ def questions_csv(filters):
     # If nothing selected, just return all
     if result.empty:
         result = df
-    return result[['id', 'date', 'ans']].to_dict(orient='records')
+    rows = result[['id', 'date', 'ans']].to_dict(orient='records')
+    for r in rows:
+        # the "Find Similar Questions" button replaces the topic hint in the answer
+        if isinstance(r['ans'], str):
+            r['ans'] = re.sub(r'\s*\(Topic:[^)]*\)', '', r['ans']).strip()
+    return rows
 
 
 @lru_cache(maxsize=1)
@@ -80,6 +85,13 @@ def load_drill():
         d = json.load(f)
     d['labels'] = {t['name']: t['label'] for t in d['tests']}
     return d
+
+def with_finder_links(rows):
+    # questions the Similar Questions Finder knows get a "Find Similar Questions" button
+    meta = load_drill()['meta']
+    for r in rows:
+        r['similar'] = r['id'] in meta
+    return rows
 
 def drill_card(qid):
     d = load_drill()
@@ -111,7 +123,7 @@ def questions_function_topics():
 @app.route('/api/v1/questions/<data>')
 def question(data):
     outPutList = questions(data)
-    return jsonify(outPutList)
+    return jsonify(with_finder_links(outPutList))
 
 @app.route('/api/v1/calcprograms/')
 def calcprograms():
@@ -127,7 +139,7 @@ def calcpractice():
 
 @app.route('/api/v1/calcpractice/questions/')
 def calcpractice_questions():
-    return jsonify(calc_practice_questions())
+    return jsonify(with_finder_links(calc_practice_questions()))
 
 @app.route('/api/v1/homework/')
 def homework():
@@ -144,7 +156,7 @@ def homework_question_topics():
 @app.route('/api/v1/homework/questions/<filters>')
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
-    return jsonify(questions_csv(filters))
+    return jsonify(with_finder_links(questions_csv(filters)))
 
 @app.route('/api/v1/drill/')
 def drill():

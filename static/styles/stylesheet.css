@@ -24,3 +24,23 @@
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
+/* "Find Similar Questions" link next to Show Answer (Home, Homework, Calculator tabs) */
+.similarButton {
+  display: inline-block;
+  margin-left: 8px;
+  background: #27ae60;
+  background-image: linear-gradient(to bottom, #2ecc71, #27ae60);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.similarButton:hover {
+  background-image: linear-gradient(to bottom, #40d47e, #2ecc71);
+  color: #ffffff;
+  text-decoration: none;
+}

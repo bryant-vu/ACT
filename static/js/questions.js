@@ -28,6 +28,15 @@ function appendInnerHTML(response) {
                                .attr('type','button')
                                .attr('value','Show Answer')
                                .attr('onclick','showAnswer('+ i + ')')
+                           // opens the Similar Questions Finder on this question
+                           // (its own class: showAnswer() counts elements with class 'button')
+                           if (response[i]['similar']) {
+                               d.append('a')
+                                   .attr('class','similarButton')
+                                   .attr('href','/api/v1/drill/#' + encodeURIComponent(response[i]['id']))
+                                   .attr('target','_blank')
+                                   .text('Find Similar Questions')
+                           }
                            shownAnswer = d.append('div')
                                .attr('class','shownAnswer')
                                .text(response[i]['ans'])
