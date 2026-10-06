@@ -155,3 +155,6 @@ $RECYCLE.BIN/
 
 # Local-only question bank: holds recent-test questions, never publish
 question_bank/
+
+# Claude Code local config and worktrees (machine-specific)
+.claude/
