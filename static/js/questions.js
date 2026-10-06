@@ -40,6 +40,12 @@ function appendInnerHTML(response) {
                                    .text('Find Similar Questions')
                            }
 
+                //questions from tests not on S3 come with their own image path
+                if (response[i]['img']) {
+                    q.append('img').attr('src', response[i]['img'])
+                    continue
+                }
+
                 //appends image from Amazon AWS to each id
                 q.append('img')
                     .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG')

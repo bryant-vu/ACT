@@ -87,10 +87,13 @@ def load_drill():
     return d
 
 def with_finder_links(rows):
-    # questions the Similar Questions Finder knows get a "Find Similar Questions" button
+    # questions the Similar Questions Finder knows get a "Find Similar Questions" button.
+    # Tests that aren't on S3 send their image path too (served from static/drill/)
     meta = load_drill()['meta']
     for r in rows:
         r['similar'] = r['id'] in meta
+        if r['similar'] and meta[r['id']]['img'].startswith('/static/'):
+            r['img'] = meta[r['id']]['img']
     return rows
 
 def drill_card(qid):
