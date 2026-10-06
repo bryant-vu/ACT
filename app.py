@@ -12,7 +12,7 @@ app = Flask(__name__)
 # page (Practice with Calculator Programs) instead of a Homework checkbox.
 CALC_PRACTICE_TOPIC = 'PRACTICE USING CALCULATOR HW'
 
-# "Group Class MM.DD" homeworks drop off the Homework tab after this long.
+# "MM.DD Group Class" homeworks drop off the Homework tab after this long.
 # Their rows stay in the CSV.
 GROUP_CLASS_MAX_AGE = timedelta(days=183)
 
@@ -31,7 +31,7 @@ def question_date_csv():
 
 def is_stale_group_class(topic, today=None):
     # Topic names carry no year, so take the most recent MM.DD on or before today
-    m = re.fullmatch(r'Group Class (\d{2})\.(\d{2})', topic)
+    m = re.fullmatch(r'(\d{2})\.(\d{2}) Group Class', topic)
     if not m:
         return False
     today = today or date.today()
