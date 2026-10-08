@@ -4,9 +4,9 @@
 
 const DRILL_API = '/api/v1/drill';
 const DRILL_GROUPS = [
-  ['closest', 'Closest', 'Same skill, same kind of problem.'],
-  ['simpler', 'Simpler', 'Easier building blocks for this skill.'],
-  ['harder', 'Harder', 'Multi-step problems that use this skill.'],
+  ['closest', 'Closest', 'Same skill, same kind of problem, similar difficulty.'],
+  ['simpler', 'Simpler', 'Easier questions on this skill and its building blocks.'],
+  ['harder', 'Harder', 'Tougher questions on this skill and multi-step problems that use it.'],
   ['borderline', 'Borderline', 'A related skill or a different angle on the same idea.'],
 ];
 const DRILL_PAGE = 6;  // cards shown per group before "Show more"
