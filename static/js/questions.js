@@ -39,6 +39,14 @@ function appendInnerHTML(response) {
                                    .attr('target','_blank')
                                    .text('Find Similar Questions')
                            }
+                           // Homework: opens the question this one practices from class
+                           if (response[i]['classLink']) {
+                               d.append('a')
+                                   .attr('class','classButton')
+                                   .attr('href', response[i]['classLink'])
+                                   .attr('target','_blank')
+                                   .text('Similar Question from Class')
+                           }
 
                 //questions from tests not on S3 come with their own image path
                 if (response[i]['img']) {

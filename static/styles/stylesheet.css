@@ -47,6 +47,28 @@
   text-decoration: none;
 }
 
+/* "Similar Question from Class" link on homework questions */
+.classButton {
+  display: inline-block;
+  vertical-align: top;
+  border: 2px solid transparent;
+  margin-left: 8px;
+  background: #8e44ad;
+  background-image: linear-gradient(to bottom, #9b59b6, #8e44ad);
+  border-radius: 60px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 13px;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+.classButton:hover {
+  background-image: linear-gradient(to bottom, #a66bbe, #9b59b6);
+  color: #ffffff;
+  text-decoration: none;
+}
+
 /* Show Answer turns into the answer in place. A fixed width (long calculator answers
    wrap onto more lines) keeps the green button from moving. */
 button.button {

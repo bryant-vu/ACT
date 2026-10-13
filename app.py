@@ -157,10 +157,29 @@ def homework_question_dates():
 def homework_question_topics():
     return jsonify(question_list_csv())
 
+@lru_cache(maxsize=1)
+def load_class_questions():
+    # homework question -> the question worked on in class,
+    # exported by question_bank/lesson_plan/build.py
+    with open('data/class_questions.json', encoding='utf-8') as f:
+        return json.load(f)
+
+def with_class_links(rows):
+    # homework questions practicing a class question get a "Similar Question from Class" button:
+    # the Finder page for that question, or a custom lesson image in static/lesson/
+    pairs, meta = load_class_questions(), load_drill()['meta']
+    for r in rows:
+        cls = pairs.get(r['id'])
+        if cls and cls.startswith('img:'):
+            r['classLink'] = '/static/lesson/' + cls[4:]
+        elif cls and cls != r['id'] and cls in meta:
+            r['classLink'] = '/api/v1/drill/#' + cls
+    return rows
+
 @app.route('/api/v1/homework/questions/<filters>')
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
-    return jsonify(with_finder_links(questions_csv(filters)))
+    return jsonify(with_class_links(with_finder_links(questions_csv(filters))))
 
 @app.route('/api/v1/drill/')
 def drill():
