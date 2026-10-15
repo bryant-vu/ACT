@@ -12,20 +12,26 @@
                             <br><i> *HW questions are a mix of what we worked on in class, shown in order of easy -> hard difficulty.</i>
                             <br><i> *Refer to your notes if you have trouble answering the questions.</i>
                             <br><i> *For additional practice, go to "Home" tab and select the relevant topics.</i>
+                            <div id='hwSearch'>
+                                <input type='search' id='nameSearch' placeholder='Type your name...' autocomplete='off'>
+                            </div>
                             <div id='checkboxesTopics'></div>
-					                       <style>
-					                            #checkboxesTopics {
-                                        padding: 10px;
-                                        border: 1px solid #ccc;
-                                        border-radius: 5px;
-                                        background-color: #f9f9f9;
-                                        margin-bottom: 20px;
-                                      }
-                                      #checkboxesTopics label {
-                                        display: inline-block;
-                                        margin-right: 15px;
-                                      }
-                                 </style>
+                            <style>
+                              #hwSearch { margin: 15px 0 10px; }
+                              #nameSearch { width: 100%; max-width: 360px; padding: 8px 14px; font-size: 16px;
+                                            border: 1px solid #ccc; border-radius: 20px; }
+                              #checkboxesTopics { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                                                  gap: 12px; margin-bottom: 20px; text-align: left; }
+                              .hwGroup { padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9; }
+                              .hwGroup.groupClass { border-color: #2980b9; background: #eef6fc; }
+                              .hwGroup h4 { font-size: 18px; margin: 0 0 6px; display: flex; justify-content: space-between;
+                                            align-items: center; gap: 8px; }
+                              .hwGroup h4 button { font-size: 12px; padding: 3px 10px; border: 0; border-radius: 12px;
+                                                   background: #2980b9; color: #fff; cursor: pointer; white-space: nowrap; }
+                              .hwGroup label { display: block; margin: 2px 0; cursor: pointer; }
+                              .hwGroup label input { margin-right: 6px; }
+                              .hwNone { grid-column: 1 / -1; text-align: center; color: #777; font-style: italic; }
+                            </style>
                         <div>
                         <input type='submit' value='Submit'>
                         </div>
