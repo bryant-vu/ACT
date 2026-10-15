@@ -164,6 +164,20 @@ def load_class_questions():
     with open('data/class_questions.json', encoding='utf-8') as f:
         return json.load(f)
 
+@lru_cache(maxsize=1)
+def load_custom_questions():
+    # homework questions from tests not on the site (custom lesson images in static/lesson/),
+    # exported by question_bank/lesson_plan/build.py
+    with open('data/custom_questions.json', encoding='utf-8') as f:
+        return json.load(f)
+
+def with_custom_images(rows):
+    custom = load_custom_questions()
+    for r in rows:
+        if r['id'] in custom:
+            r['img'] = custom[r['id']]
+    return rows
+
 def with_class_links(rows):
     # homework questions practicing a class question get a "Similar Question from Class" button:
     # the Finder page for that question, or a custom lesson image in static/lesson/
@@ -179,7 +193,7 @@ def with_class_links(rows):
 @app.route('/api/v1/homework/questions/<filters>')
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
-    return jsonify(with_class_links(with_finder_links(questions_csv(filters))))
+    return jsonify(with_class_links(with_custom_images(with_finder_links(questions_csv(filters)))))
 
 @app.route('/api/v1/drill/')
 def drill():
