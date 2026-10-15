@@ -249,6 +249,23 @@
     ]
    },
    {
+    "topic": "Probability-Combinations-Permutations",
+    "detail": "Double count",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2018.56",
+      "extra": false,
+      "qid": "Dec.2018.56"
+     },
+     {
+      "id": "Jun.2024.G20.58",
+      "extra": false,
+      "qid": "Jun.2024.G20.58"
+     }
+    ]
+   },
+   {
     "topic": "Vocab",
     "detail": "Intersection (and), union (or)",
     "note": "",
@@ -267,23 +284,6 @@
       "id": "25MC5.31",
       "extra": false,
       "qid": "25MC5.31"
-     }
-    ]
-   },
-   {
-    "topic": "Probability-Combinations-Permutations",
-    "detail": "Double count",
-    "note": "",
-    "questions": [
-     {
-      "id": "Dec.2018.56",
-      "extra": false,
-      "qid": "Dec.2018.56"
-     },
-     {
-      "id": "Jun.2024.G20.58",
-      "extra": false,
-      "qid": "Jun.2024.G20.58"
      }
     ]
    },
