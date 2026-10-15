@@ -195,6 +195,29 @@ def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
     return jsonify(with_class_links(with_custom_images(with_finder_links(questions_csv(filters)))))
 
+@lru_cache(maxsize=1)
+def load_lessons():
+    # lesson questions in teaching order, exported by question_bank/lesson_plan/build.py
+    with open('data/lessons.json', encoding='utf-8') as f:
+        return json.load(f)
+
+@app.route('/api/v1/lessons/')
+def lessons():
+    return render_template('lessons.html')
+
+@app.route('/api/v1/lessons/data/')
+def lessons_data():
+    meta = load_drill()['meta']
+    out = json.loads(json.dumps(load_lessons()))
+    for les in out:
+        for t in les['topics']:
+            for q in t['questions']:
+                qid = q.get('qid')
+                q['similar'] = qid in meta
+                if qid in meta and 'img' not in q:
+                    q['img'] = meta[qid]['img']
+    return jsonify(out)
+
 @app.route('/api/v1/drill/')
 def drill():
     return render_template('drill.html')
