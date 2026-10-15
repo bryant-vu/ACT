@@ -62,7 +62,7 @@
    },
    {
     "topic": "Sequences",
-    "detail": "ARITH / GEO, Common Difference / Ratio",
+    "detail": "Arithmetic and Geometric (ARITH/GEO, find common D/R)",
     "note": "",
     "questions": [
      {
@@ -169,7 +169,7 @@
   "topics": [
    {
     "topic": "Probability-Combinations-Permutations",
-    "detail": "Method (Steps 1-3, or)",
+    "detail": "3 step method",
     "note": "",
     "questions": [
      {
@@ -196,7 +196,7 @@
    },
    {
     "topic": "Probability-Combinations-Permutations",
-    "detail": "Changing Probability (denom, word problem)",
+    "detail": "Conditional Probability (denom, event happened)",
     "note": "",
     "questions": [
      {
@@ -306,7 +306,7 @@
     ]
    },
    {
-    "topic": "Data Interpretation",
+    "topic": "Statistics",
     "detail": "Median (large datasets)",
     "note": "",
     "questions": [
@@ -324,7 +324,7 @@
    },
    {
     "topic": "Statistics",
-    "detail": "Expected Value / Weighted Avg (with integers, with percents)",
+    "detail": "Expected Value",
     "note": "",
     "questions": [
      {
@@ -393,7 +393,7 @@
   "topics": [
    {
     "topic": "Coordinate Geometry",
-    "detail": "Area of a triangle (b-h perpendicular)",
+    "detail": "Area of a triangle (horizontal/vertical lines)",
     "note": "",
     "questions": [
      {
@@ -420,7 +420,7 @@
    },
    {
     "topic": "Coordinate Geometry",
-    "detail": "Distance segments (x & y separately)",
+    "detail": "Distance segments (horizontal/vertical lines)",
     "note": "",
     "questions": [
      {
@@ -437,7 +437,7 @@
    },
    {
     "topic": "Transformations-Translations",
-    "detail": "Shifts, negatives, absolute values, dilation",
+    "detail": "Dilation",
     "note": "",
     "questions": [
      {
@@ -493,7 +493,7 @@
    },
    {
     "topic": "Sequences",
-    "detail": "Repeating Pattern (find remainder)",
+    "detail": "Repeating Pattern (REMAINDR)",
     "note": "",
     "questions": [
      {
