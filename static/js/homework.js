@@ -21,7 +21,8 @@ Plotly.d3.json(questionEndPointDate, function(error, response) {
 
 var questionEndPointTopic = ep('question_list/');
 
-// Assignments are named "MM.DD Name": one card per student (Group Class first, then A-Z),
+// Assignments are named "MM.DD Name": one card per student or class (group classes first,
+// newest class first, then students A-Z),
 // with that student's assignments newest first.
 function assignmentDate(mmdd) {
     var p = mmdd.split('.'), today = new Date();
@@ -29,6 +30,8 @@ function assignmentDate(mmdd) {
     if (d > today) d.setFullYear(d.getFullYear() - 1);  // labels carry no year
     return d;
 }
+
+function isGroupClass(name) { return name.indexOf('Group Class') === 0; }
 
 function groupAssignments(topics) {
     var groups = {};
@@ -38,12 +41,15 @@ function groupAssignments(topics) {
         (groups[name] = groups[name] || []).push({ value: t, label: label, date: m ? assignmentDate(m[1]) : 0 });
     });
     var names = Object.keys(groups).sort(function (a, b) {
-        if ((a === 'Group Class') !== (b === 'Group Class')) return a === 'Group Class' ? -1 : 1;
+        var ga = isGroupClass(a), gb = isGroupClass(b);
+        if (ga !== gb) return ga ? -1 : 1;
+        if (ga) return latest(groups[b]) - latest(groups[a]);
         return a.localeCompare(b);
     });
     return names.map(function (n) {
         return { name: n, items: groups[n].sort(function (a, b) { return b.date - a.date; }) };
     });
+    function latest(items) { return Math.max.apply(null, items.map(function (i) { return +i.date; })); }
 }
 
 function filterGroups() {
@@ -62,7 +68,7 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
     var box = document.getElementById('checkboxesTopics');
     groupAssignments(response).forEach(function (g) {
         var card = document.createElement('div');
-        card.className = 'hwGroup' + (g.name === 'Group Class' ? ' groupClass' : '');
+        card.className = 'hwGroup' + (isGroupClass(g.name) ? ' groupClass' : '');
         card.setAttribute('data-name', g.name);
         var h = document.createElement('h4');
         h.textContent = g.name;
