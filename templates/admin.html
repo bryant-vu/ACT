@@ -9,6 +9,89 @@
     <button class="btn btn-primary" type="submit">Open</button>
   </form>
   {% else %}
+  {% if dash and not who %}
+  <style>
+    .kpi { border: 1px solid #dee2e6; border-radius: 6px; padding: 12px 14px; height: 100%; }
+    .kpi .n { font-size: 1.9rem; font-weight: 600; line-height: 1.1; }
+    .kpi .l { color: #6c757d; font-size: .85rem; }
+    .bar { background: #e9ecef; border-radius: 3px; height: 14px; }
+    .bar > span { display: block; height: 100%; background: #2f6fed; border-radius: 3px; }
+    .days { display: flex; align-items: flex-end; gap: 4px; height: 110px; }
+    .days .d { flex: 1; text-align: center; font-size: .7rem; color: #6c757d; }
+    .days .d i { display: block; background: #2f6fed; border-radius: 3px 3px 0 0; min-height: 2px; margin-bottom: 3px; }
+    .dash h5 { margin: 26px 0 8px; }
+  </style>
+  <div class="dash">
+    <p class="text-muted mb-2">Students only (tutors are left out). Last 7 days unless noted.
+      {% if dash.since %}Counting from {{ dash.since.strftime('%m/%d %I:%M %p') }} UTC.{% endif %}
+      {% if not dash.total_events %}<strong>No student activity recorded yet.</strong>{% endif %}</p>
+    <div class="row">
+      {% for n, l in [(dash.active7, 'students active'), (dash.logins7, 'logins'), (dash.homework7, 'homework cards opened'), (dash.finder7, 'Finder questions opened'), (dash.answers7, 'answers shown'), (dash.searches7, 'Finder searches')] %}
+      <div class="col-6 col-md-2 mb-3"><div class="kpi"><div class="n">{{ n }}</div><div class="l">{{ l }}</div></div></div>
+      {% endfor %}
+    </div>
+
+    <h5>Adoption: students with homework assigned</h5>
+    <p class="mb-2">{{ dash.funnel[0][1] }} students on the roster; {{ dash.cohort }} have homework assigned right now.</p>
+    {% for label, n in dash.funnel[2:] %}
+    <div class="row align-items-center mb-1">
+      <div class="col-5 col-md-3">{{ label }}</div>
+      <div class="col-5 col-md-7"><div class="bar"><span style="width: {{ (100 * n / [dash.cohort, 1]|max)|round(1) }}%"></span></div></div>
+      <div class="col-2"><strong>{{ n }}</strong> <span class="text-muted">of {{ dash.cohort }}</span></div>
+    </div>
+    {% endfor %}
+
+    <h5>Students active per day (last 14 days)</h5>
+    <div class="days">
+      {% for d in dash.days %}
+      <div class="d" title="{{ d.n }} students"><span>{{ d.n or '' }}</span><i style="height: {{ (90 * d.n / dash.max_day)|round|int }}px"></i>{{ d.label[3:] }}</div>
+      {% endfor %}
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Follow up: homework assigned, not seen in 7 days ({{ dash.attention|length }})</h5>
+        <div class="table-responsive" style="max-height: 320px; overflow-y: auto;">
+          <table class="table table-sm">
+            <thead><tr><th>Student</th><th>Homework</th><th>Last seen</th></tr></thead>
+            <tbody>
+            {% for a in dash.attention %}
+              <tr><td><a href="/admin?user={{ a.name|urlencode }}">{{ a.name }}</a></td><td>{{ a.cards }}</td><td>{{ a.seen }}</td></tr>
+            {% else %}
+              <tr><td colspan="3" class="text-muted">Everyone with homework was active this week.</td></tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h5>Homework cards: opened by</h5>
+        {% for c in dash.cards %}
+        <div class="row align-items-center mb-1">
+          <div class="col-6 col-lg-5" style="font-size: .9rem;">{{ c.card }}</div>
+          <div class="col-3 col-lg-4"><div class="bar"><span style="width: {{ (100 * c.opened / c.assigned)|round(1) }}%"></span></div></div>
+          <div class="col-3"><strong>{{ c.opened }}</strong> of {{ c.assigned }}</div>
+        </div>
+        {% endfor %}
+        <h5>Most active this week</h5>
+        <table class="table table-sm">
+          <thead><tr><th>Student</th><th>Actions</th><th>All events</th></tr></thead>
+          <tbody>
+          {% for n, events_n, actions in dash.top %}
+            <tr><td><a href="/admin?user={{ n|urlencode }}">{{ n }}</a></td><td>{{ actions }}</td><td>{{ events_n }}</td></tr>
+          {% else %}
+            <tr><td colspan="3" class="text-muted">Nobody yet.</td></tr>
+          {% endfor %}
+          </tbody>
+        </table>
+        <h5>Tabs visited this week</h5>
+        {% for tab, n in dash.tabs %}<div>{{ tab }} <strong>{{ n }}</strong></div>{% else %}<div class="text-muted">None yet.</div>{% endfor %}
+      </div>
+    </div>
+    <hr class="mt-4">
+  </div>
+  <h4>Everyone</h4>
+  {% endif %}
   <p>Times are Pacific. Click a name to see only their activity.{% if who %} <a href="/admin">Show everyone</a>{% endif %}</p>
   <div class="table-responsive">
     <table class="table table-sm">
