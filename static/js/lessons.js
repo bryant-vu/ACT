@@ -7,6 +7,24 @@ function el(tag, attrs, text) {
   return e;
 }
 
+// Website questions are on S3 (saved as either .JPG or .jpg): show our sharp 2x copy (at half
+// its pixel size) first, and fall back to the S3 original if it's missing. Images in
+// static/q, static/drill and the retypeset B04 #55 are 2x; other lesson images are 1x.
+function lessonImage(q) {
+  const website = q.img.match(/\/actmath\/[^/]+\/(.+)\.jpg$/i);
+  const src = website ? `/static/q/${website[1]}.png` : q.img;
+  const img = el('img', { src, alt: q.id, loading: 'lazy' });
+  if (website || /^\/static\/(q|drill)\/|B04\.55/.test(src)) img.srcset = `${src} 2x`;
+  const tries = website ? [q.img, q.img.endsWith('.JPG') ? q.img.slice(0, -4) + '.jpg' : q.img.slice(0, -4) + '.JPG'] : [];
+  img.addEventListener('error', () => {
+    const next = tries.shift();
+    if (!next) return;
+    img.removeAttribute('srcset');
+    img.src = next;
+  });
+  return img;
+}
+
 // "Show Answer" fetches this one answer from the Finder, then toggles it in place
 function answerButton(qid) {
   const button = el('button', { class: 'button', type: 'button' }, 'Show Answer');
@@ -44,7 +62,7 @@ function showLesson(les, picker, button) {
           href: '/api/v1/drill/#' + encodeURIComponent(q.qid) }, 'Find Similar Questions'));
       }
       d.appendChild(buttons);
-      if (q.img) d.appendChild(el('img', { src: q.img, alt: q.id, loading: 'lazy' }));
+      if (q.img) d.appendChild(lessonImage(q));
       root.appendChild(d);
     });
   });

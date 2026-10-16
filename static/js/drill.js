@@ -36,11 +36,18 @@ async function drillGet(path) {
 }
 
 function drillImage(src, alt) {
-  const img = drillEl('img', { src, alt, loading: 'lazy' });
-  // website images on S3 are saved as either .JPG or .jpg
-  img.addEventListener('error', function retry() {
-    img.removeEventListener('error', retry);
-    img.src = src.endsWith('.JPG') ? src.slice(0, -4) + '.jpg' : src.slice(0, -4) + '.JPG';
+  // website questions are on S3 (saved as either .JPG or .jpg); show our sharp 2x copy
+  // (at half its pixel size) first, and fall back to the S3 original if it's missing
+  const website = src.match(/\/actmath\/[^/]+\/(.+)\.jpg$/i);
+  const sharp = website ? `/static/q/${website[1]}.png` : src;
+  const img = drillEl('img', { src: sharp, alt, loading: 'lazy' });
+  img.srcset = `${sharp} 2x`;
+  const tries = website ? [src, src.endsWith('.JPG') ? src.slice(0, -4) + '.jpg' : src.slice(0, -4) + '.JPG'] : [];
+  img.addEventListener('error', () => {
+    const next = tries.shift();
+    if (!next) return;
+    img.removeAttribute('srcset');
+    img.src = next;
   });
   return img;
 }

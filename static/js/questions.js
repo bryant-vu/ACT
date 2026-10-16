@@ -1,6 +1,23 @@
 // Shared question rendering, used by the Homework tab and the
 // "Practice with Calculator Programs" tab.
 
+// Question images: the sharp 2x copy from this site (shown at half its pixel size);
+// if it's missing, the original on S3 (saved as either .JPG or .jpg)
+function addQuestionImage(q, date, id) {
+    var s3 = 'https://s3-us-west-1.amazonaws.com/actmath/' + date + '/' + id
+    var sharp = '/static/q/' + id + '.png'
+    var tries = [s3 + '.JPG', s3 + '.jpg']
+    q.append('img')
+        .attr('src', sharp)
+        .attr('srcset', sharp + ' 2x')
+        .on('error', function () {
+            var next = tries.shift()
+            if (!next) return
+            this.removeAttribute('srcset')
+            this.src = next
+        })
+}
+
 //'Show Answer' turns into the answer right where the button is; click again to hide it.
 //The button keeps its width, so the green "Find Similar Questions" button doesn't move.
 function showAnswer(button) {
@@ -84,15 +101,14 @@ function appendInnerHTML(response) {
 
                 //questions from tests not on S3 come with their own image path
                 if (response[i]['img']) {
-                    q.append('img').attr('src', response[i]['img'])
+                    var img = q.append('img').attr('src', response[i]['img'])
+                    // images in static/q, static/drill and the retypeset B04 #55 are saved at 2x density
+                    if (/^\/static\/(q|drill)\/|B04\.55/.test(response[i]['img'])) img.attr('srcset', response[i]['img'] + ' 2x')
                     continue
                 }
 
                 //appends image from Amazon AWS to each id
-                q.append('img')
-                    .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG')
-                    //retrieve .jpg file if .JPG file not found
-                    .attr('onerror', 'this.oneerror=null;this.src=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\";')
+                addQuestionImage(q, response[i]['date'], response[i]['id'])
 
 
 

@@ -98,6 +98,23 @@ function getQuestionData() {
         });
 };
 
+// Question images: the sharp 2x copy from this site (shown at half its pixel size);
+// if it's missing, the original on S3 (saved as either .JPG or .jpg)
+function addQuestionImage(q, date, id) {
+    var s3 = 'https://s3-us-west-1.amazonaws.com/actmath/' + date + '/' + id
+    var sharp = '/static/q/' + id + '.png'
+    var tries = [s3 + '.JPG', s3 + '.jpg']
+    q.append('img')
+        .attr('src', sharp)
+        .attr('srcset', sharp + ' 2x')
+        .on('error', function () {
+            var next = tries.shift()
+            if (!next) return
+            this.removeAttribute('srcset')
+            this.src = next
+        })
+}
+
 //appends list of questions when topic is chosen from dropdown menu
 function appendInnerHTML(response) {
 
@@ -128,10 +145,7 @@ function appendInnerHTML(response) {
                            }
 
                 //appends image from Amazon AWS to each id
-                q.append('img')
-                    .attr('src', 'https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.JPG')
-                    //retrieve .jpg file if .JPG file not found
-                    .attr('onerror', 'this.oneerror=null;this.src=\"https://s3-us-west-1.amazonaws.com/actmath/' + response[i]['date'] + '/' + response[i]['id'] + '.jpg\";')
+                addQuestionImage(q, response[i]['date'], response[i]['id'])
 
 
 
