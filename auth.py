@@ -313,6 +313,13 @@ def record(event, detail='', user=None, ip=None):
         print('activity log failed:', e)
 
 
+def attempts_so_far(user, qid):
+    """How many answer clicks this person has already made on this question."""
+    q = text("SELECT COUNT(*) FROM events WHERE user_key = :k AND event = 'attempt' AND detail LIKE :d")
+    with engine().connect() as conn:
+        return conn.execute(q, {'k': user['key'], 'd': qid + '|%'}).scalar() or 0
+
+
 def summary():
     q = text("""
         SELECT name, role, MAX(ts) AS last_seen,
@@ -379,9 +386,38 @@ def user_detail(name):
                 time_by_page[page] = time_by_page.get(page, 0) + secs
             else:
                 clicks[r.detail] = clicks.get(r.detail, 0) + 1
-    return {'time': [(p, fmt_secs(s)) for p, s in sorted(time_by_page.items(), key=lambda kv: -kv[1])],
+    with engine().connect() as conn:
+        att = [dict(r._mapping) for r in conn.execute(
+            select(events).where(events.c.name == name, events.c.event == 'attempt').order_by(events.c.id))]
+    ft = _first_tries(att)
+    tried = sorted(((q, v) for (_n, q), v in ft.items()), key=lambda kv: kv[0])
+    right = len([1 for _q, v in tried if v['first']])
+    return {'questions': [(q, v['first'], v['tries'], v['solved']) for q, v in tried],
+            'first_try': '%d of %d (%s)' % (right, len(tried), _pct(right, len(tried))) if tried else '',
+            'time': [(p, fmt_secs(s)) for p, s in sorted(time_by_page.items(), key=lambda kv: -kv[1])],
             'clicks': sorted(clicks.items(), key=lambda kv: -kv[1])[:25],
             'total': fmt_secs(sum(time_by_page.values()))}
+
+
+def _first_tries(rows):
+    """rows: events with event == 'attempt'. -> {(name, qid): {'first': bool, 'tries': int, 'solved': bool}}"""
+    out = {}
+    for e in rows:
+        try:
+            qid, _choice, ok, n = e['detail'].split('|')
+            ok, n = ok == '1', int(n)
+        except ValueError:
+            continue
+        r = out.setdefault((e['name'], qid), {'first': None, 'tries': 0, 'solved': False})
+        if n == 1:
+            r['first'] = ok
+        r['tries'] += 1
+        r['solved'] = r['solved'] or ok
+    return {k: v for k, v in out.items() if v['first'] is not None}
+
+
+def _pct(a, b):
+    return '%d%%' % round(100 * a / b) if b else '-'
 
 
 def dashboard(now=None):
@@ -480,6 +516,26 @@ def dashboard(now=None):
     active = sorted(active.values(), key=lambda a: a['last'], reverse=True)
     total_secs = sum(secs_by.values())
 
+    ft = _first_tries([e for e in evs if e['event'] == 'attempt'])
+    per_student, per_q = {}, {}
+    for (n, q), v in ft.items():
+        ps = per_student.setdefault(n, [0, 0])
+        ps[0] += 1
+        ps[1] += v['first']
+        pq = per_q.setdefault(q, {'students': 0, 'first': 0, 'tries': 0})
+        pq['students'] += 1
+        pq['first'] += v['first']
+        pq['tries'] += v['tries']
+    for a in active:
+        t, r_ = per_student.get(a['name'], [0, 0])
+        a['first_try'] = '%d/%d (%s)' % (r_, t, _pct(r_, t)) if t else '-'
+    all_t = sum(v[0] for v in per_student.values())
+    all_r = sum(v[1] for v in per_student.values())
+    hardest = sorted(({'qid': q, 'students': v['students'], 'pct': round(100 * v['first'] / v['students']),
+                       'avg_tries': round(v['tries'] / v['students'], 1)}
+                      for q, v in per_q.items() if v['students'] >= 2),
+                     key=lambda h: (h['pct'], -h['students']))[:10]
+
     r = lambda ev: len([e for e in recent if e['event'] == ev])
     return {
         'since': since, 'roster': roster, 'cohort': len(cohort), 'funnel': funnel,
@@ -493,6 +549,7 @@ def dashboard(now=None):
         'total_time': fmt_secs(total_secs),
         'avg_time': fmt_secs(total_secs // len(secs_by)) if secs_by else '-',
         'clicks7': len([e for e in recent if e['event'] == 'click']),
+        'first_try_pct': _pct(all_r, all_t), 'first_try_n': all_t, 'hardest': hardest,
         'time_by_tab': [(t, fmt_secs(v)) for t, v in sorted(time_by_tab.items(), key=lambda kv: -kv[1])],
         'top_clicks': [(c, n, len(click_people[c])) for c, n in sorted(click_counts.items(), key=lambda kv: -kv[1])[:15]],
         'total_events': len(evs),

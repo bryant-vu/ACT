@@ -29,7 +29,7 @@
   document.addEventListener('click', function (e) {
     if (clicks >= MAX_CLICKS || !e.target.closest) return;
     var el = e.target.closest('a, button, input, label, select, [role=button], .btn');
-    if (!el) return;
+    if (!el || el.closest('[data-notrack]')) return;
     var label = (el.getAttribute('aria-label') || el.innerText || el.value || el.id || el.name || el.tagName || '')
       .replace(/\s+/g, ' ').trim().slice(0, 80);
     if (el.type === 'password' || el.type === 'text' || el.type === 'email' || el.type === 'search') label = 'typing in ' + (el.name || el.id || el.type);

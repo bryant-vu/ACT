@@ -72,15 +72,6 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
         card.setAttribute('data-name', g.name);
         var h = document.createElement('h4');
         h.textContent = g.name;
-        // "Show all" checks every assignment in this card and loads them
-        var all = document.createElement('button');
-        all.type = 'button';
-        all.textContent = g.items.length > 1 ? 'Show all ' + g.items.length : 'Show';
-        all.onclick = function () {
-            document.querySelectorAll('.topics').forEach(function (c) { c.checked = card.contains(c); });
-            getQuestionData();
-        };
-        h.appendChild(all);
         card.appendChild(h);
         g.items.forEach(function (it) {
             var label = document.createElement('label'), cb = document.createElement('input');

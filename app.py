@@ -458,7 +458,7 @@ def with_custom_images(rows):
     return rows
 
 def with_class_links(rows):
-    # homework questions practicing a class question get a "Similar Question from Class" button:
+    # homework questions practicing a class question get a "Class Example" button:
     # the Finder page for that question, or a custom lesson image in static/lesson/
     pairs, meta = load_class_questions(), load_drill()['meta']
     for r in rows:
@@ -469,11 +469,66 @@ def with_class_links(rows):
             r['classLink'] = '/api/v1/drill/#' + cls
     return rows
 
+@lru_cache(maxsize=1)
+def load_choice_counts():
+    # ids of questions with 4 answer choices (newer tests); everything else has 5.
+    # exported by question_bank/tools/choice_counts.py
+    with open('data/choice_counts.json', encoding='utf-8') as f:
+        return json.load(f)
+
+def answer_letter(ans):
+    m = re.match(r'^([A-K])\b', ans.strip()) if isinstance(ans, str) else None
+    return m.group(1) if m else None
+
+def choice_letters(qid, count=None):
+    # odd questions are A-E, even ones F-K (J, no I); 4-choice tests drop the last one
+    try:
+        n = int(qid.rsplit('.', 1)[-1])
+    except ValueError:
+        return None
+    letters = 'ABCDE' if n % 2 else 'FGHJK'
+    return list(letters[:count or load_choice_counts().get(qid, 5)])
+
+def with_answer_choices(rows):
+    # multiple-choice homework gets one button per choice. The answer itself stays on the
+    # server (see /api/v1/check), so it isn't sent to the page.
+    for r in rows:
+        letter = answer_letter(r.get('ans'))
+        letters = choice_letters(r['id'])
+        if letter and letters and letter in letters:
+            r['choices'] = letters
+            del r['ans']
+    return rows
+
+@lru_cache(maxsize=1)
+def answer_key():
+    df = load_csv()
+    key = {}
+    for qid, ans in zip(df['id'], df['ans']):
+        letter = answer_letter(ans)
+        if letter and qid not in key:
+            key[qid] = letter
+    return key
+
+@app.route('/api/v1/check', methods=['POST'])
+def check_answer():
+    # a student clicked one answer choice. Only "right or wrong" goes back, never the answer.
+    user = current_user()
+    data = request.get_json(silent=True, force=True) or {}
+    qid, choice = str(data.get('id') or ''), str(data.get('choice') or '')
+    right = answer_key().get(qid)
+    if user is None or not right or choice not in (choice_letters(qid) or []):
+        return jsonify({'error': 'not allowed'}), 400
+    correct = (choice == right)
+    n = auth.attempts_so_far(user, qid) + 1
+    auth.record('attempt', '%s|%s|%d|%d' % (qid, choice, int(correct), n), user, client_ip())
+    return jsonify({'correct': correct})
+
 @app.route('/api/v1/homework/questions/<filters>')
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
     rows = questions_csv(filters, only_topics=visible_topics(current_user()))
-    return jsonify(with_class_links(with_custom_images(with_finder_links(rows))))
+    return jsonify(with_answer_choices(with_class_links(with_custom_images(with_finder_links(rows)))))
 
 @lru_cache(maxsize=1)
 def load_lessons():

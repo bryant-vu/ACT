@@ -25,46 +25,46 @@
   text-decoration: none;
 }
 
-/* "Find Similar Questions" link next to Show Answer (Home, Homework, Calculator tabs) */
+/* "Find Similar Questions" link next to the answer buttons (Home, Homework, Calculator tabs). Light gray: green and red mean right and wrong. */
 .similarButton {
   display: inline-block;
   vertical-align: top;
   border: 2px solid transparent;  /* same height as the Show Answer button */
-  margin-left: 8px;
-  background: #27ae60;
-  background-image: linear-gradient(to bottom, #2ecc71, #27ae60);
+  margin-left: 6px;
+  background: #7f8c8d;
+  background-image: linear-gradient(to bottom, #95a5a6, #7f8c8d);
   border-radius: 60px;
   font-family: Arial;
   color: #ffffff;
   font-size: 13px;
-  padding: 10px 20px;
+  padding: 10px 14px;
   text-decoration: none;
 }
 
 .similarButton:hover {
-  background-image: linear-gradient(to bottom, #40d47e, #2ecc71);
+  background-image: linear-gradient(to bottom, #a7b5b6, #95a5a6);
   color: #ffffff;
   text-decoration: none;
 }
 
-/* "Similar Question from Class" link on homework questions */
+/* "Class Example" link on homework questions */
 .classButton {
   display: inline-block;
   vertical-align: top;
   border: 2px solid transparent;
-  margin-left: 8px;
-  background: #8e44ad;
-  background-image: linear-gradient(to bottom, #9b59b6, #8e44ad);
+  margin-left: 6px;
+  background: #3d566e;
+  background-image: linear-gradient(to bottom, #4a6683, #3d566e);
   border-radius: 60px;
   font-family: Arial;
   color: #ffffff;
   font-size: 13px;
-  padding: 10px 20px;
+  padding: 10px 14px;
   text-decoration: none;
 }
 
 .classButton:hover {
-  background-image: linear-gradient(to bottom, #a66bbe, #9b59b6);
+  background-image: linear-gradient(to bottom, #587691, #4a6683);
   color: #ffffff;
   text-decoration: none;
 }
@@ -86,4 +86,51 @@ button.button.answerShown {
   color: #1c5f8d;
   font-weight: bold;
   border-radius: 18px;
+}
+
+/* Homework answer choices: one capsule button per choice, blue like the old Show Answer
+   button. A click turns it green (right) or red (wrong); every choice stays clickable.
+   The two link buttons stack to the same total height as a choice button (40px). */
+.choiceRow { display: inline-flex; vertical-align: top; white-space: nowrap; }
+button.choiceBtn {
+  box-sizing: border-box;
+  width: 56px;
+  height: 40px;
+  margin-right: 4px;
+  padding: 0;
+  border: 2px solid transparent;
+  border-radius: 20px;   /* half the height: same capsule shape as the link buttons */
+  background: #3498db;
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button.choiceBtn:hover { background-image: linear-gradient(to bottom, #3cb0fd, #3498db); }
+button.choiceBtn.right, button.choiceBtn.right:hover {
+  background: #27ae60;
+  background-image: linear-gradient(to bottom, #2ecc71, #27ae60);
+}
+button.choiceBtn.wrong, button.choiceBtn.wrong:hover {
+  background: #c0392b;
+  background-image: linear-gradient(to bottom, #e74c3c, #c0392b);
+}
+button.choiceBtn[disabled] { cursor: default; }
+
+.linkStack { display: inline-flex; flex-direction: column; gap: 2px; vertical-align: top; height: 40px; margin-left: 6px; }
+.linkStack a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 9px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+  white-space: nowrap;
 }
