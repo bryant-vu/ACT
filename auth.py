@@ -321,6 +321,7 @@ def summary():
                SUM(CASE WHEN event = 'finder_open' THEN 1 ELSE 0 END) AS finder_opens,
                SUM(CASE WHEN event = 'show_answer' THEN 1 ELSE 0 END) AS answers,
                SUM(CASE WHEN event = 'finder_search' THEN 1 ELSE 0 END) AS searches,
+               SUM(CASE WHEN event = 'click' THEN 1 ELSE 0 END) AS clicks,
                COUNT(DISTINCT ip) AS ips
         FROM events WHERE name IS NOT NULL
         GROUP BY name, role ORDER BY last_seen DESC""")
@@ -329,11 +330,58 @@ def summary():
 
 
 def recent(limit=300, name=None):
-    q = select(events).order_by(events.c.id.desc()).limit(limit)
+    q = select(events).where(events.c.event != 'time').order_by(events.c.id.desc()).limit(limit)
     if name:
         q = q.where(events.c.name == name)
     with engine().connect() as conn:
         return [dict(r._mapping) for r in conn.execute(q)]
+
+
+def fmt_secs(secs):
+    secs = int(secs or 0)
+    if secs < 60:
+        return '%ds' % secs if secs else '-'
+    h, m = divmod(secs // 60, 60)
+    return '%dh %02dm' % (h, m) if h else '%dm' % m
+
+
+def _since():
+    since = CONFIG.get('ANALYTICS_SINCE')
+    return datetime.fromisoformat(since) if since else None
+
+
+def _parse_time(detail):
+    page, _, secs = (detail or '').rpartition('|')
+    try:
+        return page, int(secs)
+    except ValueError:
+        return page, 0
+
+
+def time_totals():
+    """{name: seconds on the site} from the time beacons."""
+    out = {}
+    with engine().connect() as conn:
+        for r in conn.execute(select(events.c.name, events.c.detail).where(events.c.event == 'time')):
+            out[r.name] = out.get(r.name, 0) + _parse_time(r.detail)[1]
+    return out
+
+
+def user_detail(name):
+    """Time by page and most-clicked things for one person."""
+    time_by_page, clicks = {}, {}
+    with engine().connect() as conn:
+        rows = conn.execute(select(events.c.event, events.c.detail)
+                            .where(events.c.name == name, events.c.event.in_(('time', 'click'))))
+        for r in rows:
+            if r.event == 'time':
+                page, secs = _parse_time(r.detail)
+                time_by_page[page] = time_by_page.get(page, 0) + secs
+            else:
+                clicks[r.detail] = clicks.get(r.detail, 0) + 1
+    return {'time': [(p, fmt_secs(s)) for p, s in sorted(time_by_page.items(), key=lambda kv: -kv[1])],
+            'clicks': sorted(clicks.items(), key=lambda kv: -kv[1])[:25],
+            'total': fmt_secs(sum(time_by_page.values()))}
 
 
 def dashboard(now=None):
@@ -409,12 +457,28 @@ def dashboard(now=None):
             out[x] = out.get(x, 0) + 1
         return sorted(out.items(), key=lambda kv: -kv[1])
 
-    top = {}
+    secs_by, time_by_tab, click_counts, click_people = {}, {}, {}, {}
     for e in recent:
-        top.setdefault(e['name'], [0, 0])
-        top[e['name']][0] += 1
-        top[e['name']][1] += e['event'] in ('homework_questions', 'finder_open', 'show_answer', 'finder_search', 'calc_questions')
-    top = sorted(([n, v[0], v[1]] for n, v in top.items()), key=lambda t: (-t[2], -t[1]))[:5]
+        if e['event'] == 'time':
+            page, secs = _parse_time(e['detail'])
+            secs_by[e['name']] = secs_by.get(e['name'], 0) + secs
+            time_by_tab[page] = time_by_tab.get(page, 0) + secs
+        elif e['event'] == 'click':
+            click_counts[e['detail']] = click_counts.get(e['detail'], 0) + 1
+            click_people.setdefault(e['detail'], set()).add(e['name'])
+    active = {}
+    for e in recent:
+        a = active.setdefault(e['name'], {'name': e['name'], 'last': e['ts'], 'hw': 0, 'finder': 0, 'clicks': 0})
+        a['last'] = max(a['last'], e['ts'])
+        a['hw'] += e['event'] == 'homework_questions'
+        a['finder'] += e['event'] in ('finder_open', 'show_answer', 'finder_search')
+        a['clicks'] += e['event'] == 'click'
+    for a in active.values():
+        a['secs'] = secs_by.get(a['name'], 0)
+        a['time'] = fmt_secs(a['secs'])
+        a['online'] = (now - a['last']) < timedelta(minutes=5)
+    active = sorted(active.values(), key=lambda a: a['last'], reverse=True)
+    total_secs = sum(secs_by.values())
 
     r = lambda ev: len([e for e in recent if e['event'] == ev])
     return {
@@ -425,5 +489,11 @@ def dashboard(now=None):
         'attention': attention, 'cards': cards, 'days': days,
         'max_day': max([d['n'] for d in days] + [1]),
         'tabs': count(e['detail'] for e in recent if e['event'] == 'page'),
-        'top': top, 'total_events': len(evs),
+        'active': active, 'online_now': len([a for a in active if a['online']]),
+        'total_time': fmt_secs(total_secs),
+        'avg_time': fmt_secs(total_secs // len(secs_by)) if secs_by else '-',
+        'clicks7': len([e for e in recent if e['event'] == 'click']),
+        'time_by_tab': [(t, fmt_secs(v)) for t, v in sorted(time_by_tab.items(), key=lambda kv: -kv[1])],
+        'top_clicks': [(c, n, len(click_people[c])) for c, n in sorted(click_counts.items(), key=lambda kv: -kv[1])[:15]],
+        'total_events': len(evs),
     }

@@ -65,6 +65,7 @@
                 <a class="nav-item nav-link active" href="/api/v1/contactme/">Contact</a>
                 <a class="nav-item nav-link active" href="/api/v1/homework/">Homework</a>
                 {% if is_tutor %}<a class="nav-item nav-link active" href="/api/v1/lessons/">Lessons</a>{% endif %}
+                {% if is_admin %}<a class="nav-item nav-link active" href="/admin">Admin</a>{% endif %}
                 <a class="nav-item nav-link active" href="/api/v1/calcpractice/">Practice using the Calculator</a>
                 <a class="nav-item nav-link active" href="/api/v1/drill/">Similar Questions Finder</a>
 
@@ -99,6 +100,8 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+      {% if current_user %}<script src="{{ url_for('static', filename='js/track.js') }}"></script>{% endif %}
 
   </body>
 </html>

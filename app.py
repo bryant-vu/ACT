@@ -189,7 +189,8 @@ def forbidden():
 @app.context_processor
 def inject_user():
     user = current_user()
-    return {'current_user': user, 'is_tutor': bool(user and user['role'] == 'tutor')}
+    return {'current_user': user, 'is_tutor': bool(user and user['role'] == 'tutor'),
+            'is_admin': auth.is_admin(user)}
 
 @app.before_request
 def use_main_domain():
@@ -343,10 +344,38 @@ def admin():
     for s in summary:
         s['last_seen'] = pacific(s['last_seen'])
     dash = auth.dashboard() if not who else None
+    detail = auth.user_detail(who) if who else None
+    totals = auth.time_totals()
+    for s in summary:
+        s['time'] = auth.fmt_secs(totals.get(s['name'], 0))
     if dash:
+        for a in dash['active']:
+            a['seen'] = pacific(a['last'])
         for a in dash['attention']:
             a['seen'] = pacific(a['last_seen']) or 'never'
-    return render_template('admin.html', locked=False, summary=summary, events=events, who=who, dash=dash)
+    return render_template('admin.html', locked=False, summary=summary, events=events, who=who, dash=dash, detail=detail)
+
+
+@app.route('/api/v1/track', methods=['POST'])
+def track():
+    # time-on-page and click beacons from static/js/track.js (logged-in users only)
+    user = current_user()
+    data = request.get_json(silent=True, force=True) or {}
+    if user is None or not isinstance(data, dict):
+        return '', 204
+    path = str(data.get('page') or '')[:120]
+    page = PAGES.get(path) or ('Home' if path == '/' else path)
+    if data.get('t') == 'time':
+        try:
+            secs = max(1, min(int(data.get('secs', 0)), 120))
+        except (TypeError, ValueError):
+            return '', 204
+        auth.record('time', '%s|%d' % (page, secs), user, client_ip())
+    elif data.get('t') == 'click':
+        label = ' '.join(str(data.get('label') or '').split())[:80]
+        if label:
+            auth.record('click', '%s > %s' % (page, label), user, client_ip())
+    return '', 204
 
 
 @app.route('/')
