@@ -11,7 +11,9 @@ import os
 import re
 import time
 import unicodedata
-from datetime import datetime
+from datetime import datetime, timedelta
+
+from pytz import timezone as pytz_timezone, utc as pytz_utc
 
 from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table, Text,
                         create_engine, delete, insert, select, text)
@@ -20,7 +22,7 @@ BASE = os.path.dirname(os.path.abspath(__file__))
 PRIVATE = os.path.join(BASE, 'private')
 CONFIG_KEYS = ('STUDENT_PASSWORD', 'TUTOR_PASSWORD', 'ADMIN_USERS', 'ADMIN_PASSWORD',
                'SECRET_KEY', 'DATABASE_URL', 'NOTIFY_TO', 'MAIL_FROM',
-               'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASSWORD')
+               'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASSWORD', 'ANALYTICS_SINCE')
 
 
 def _load_config():
@@ -332,3 +334,96 @@ def recent(limit=300, name=None):
         q = q.where(events.c.name == name)
     with engine().connect() as conn:
         return [dict(r._mapping) for r in conn.execute(q)]
+
+
+def dashboard(now=None):
+    """Numbers for the top of /admin. Students only (tutors and test traffic don't count).
+
+    ANALYTICS_SINCE (UTC, e.g. 2026-10-16T03:00) drops everything earlier, so smoke tests
+    before real use don't show up as student activity.
+    """
+    now = now or datetime.utcnow()
+    since = CONFIG.get('ANALYTICS_SINCE')
+    since = datetime.fromisoformat(since) if since else None
+    with engine().connect() as conn:
+        roster = conn.execute(text("SELECT COUNT(*) FROM users WHERE role = 'student'")).scalar()
+        access = {}
+        for r in conn.execute(select(homework_access)):
+            access.setdefault(r.name, []).append(r.card)
+        q = select(events).where(events.c.role == 'student').order_by(events.c.ts)
+        if since:
+            q = q.where(events.c.ts >= since)
+        evs = [dict(r._mapping) for r in conn.execute(q)]
+
+    week = now - timedelta(days=7)
+    last_seen, first_seen = {}, {}
+    for e in evs:
+        last_seen[e['name']] = e['ts']
+        first_seen.setdefault(e['name'], e['ts'])
+    recent = [e for e in evs if e['ts'] >= week]
+
+    cohort = sorted(access)                       # students who have homework assigned
+    opened_hw = {e['name'] for e in evs if e['event'] == 'homework_questions'}
+    used_finder = {e['name'] for e in evs if e['event'].startswith('finder') or e['event'] == 'show_answer'}
+    funnel = [('On the roster', roster),
+              ('Have homework assigned', len(cohort)),
+              ('Logged in', len([n for n in cohort if n in last_seen])),
+              ('Opened their homework', len([n for n in cohort if n in opened_hw])),
+              ('Tried the Finder', len([n for n in cohort if n in used_finder]))]
+
+    attention = []                                # assigned homework, not seen in 7 days
+    for n in cohort:
+        ls = last_seen.get(n)
+        if ls is None or ls < week:
+            attention.append({'name': n, 'cards': ', '.join(access[n]), 'last_seen': ls,
+                              'days': None if ls is None else (now - ls).days})
+    attention.sort(key=lambda a: (a['last_seen'] is not None, a['last_seen'] or now))
+
+    cards = []                                    # per homework card: who could vs did open it
+    by_card = {}
+    for n, cs in access.items():
+        for c in cs:
+            by_card.setdefault(c, set()).add(n)
+    hw_events = [e for e in evs if e['event'] == 'homework_questions']
+    for c, members in sorted(by_card.items()):
+        openers = {e['name'] for e in hw_events if e['detail'] == c and e['name'] in members}
+        cards.append({'card': c, 'assigned': len(members), 'opened': len(openers),
+                      'views': len([e for e in hw_events if e['detail'] == c])})
+    cards.sort(key=lambda c: (c['opened'] / c['assigned'], -c['assigned']))
+
+    days = []                                     # active students per day, last 14 days (Pacific)
+    pacific = pytz_timezone('America/Los_Angeles')
+    def day(ts):
+        return pytz_utc.localize(ts).astimezone(pacific).date()
+    today = day(now)
+    per_day = {}
+    for e in evs:
+        per_day.setdefault(day(e['ts']), set()).add(e['name'])
+    for i in range(13, -1, -1):
+        d = today - timedelta(days=i)
+        days.append({'label': d.strftime('%m/%d'), 'n': len(per_day.get(d, ()))})
+
+    def count(items):
+        out = {}
+        for x in items:
+            out[x] = out.get(x, 0) + 1
+        return sorted(out.items(), key=lambda kv: -kv[1])
+
+    top = {}
+    for e in recent:
+        top.setdefault(e['name'], [0, 0])
+        top[e['name']][0] += 1
+        top[e['name']][1] += e['event'] in ('homework_questions', 'finder_open', 'show_answer', 'finder_search', 'calc_questions')
+    top = sorted(([n, v[0], v[1]] for n, v in top.items()), key=lambda t: (-t[2], -t[1]))[:5]
+
+    r = lambda ev: len([e for e in recent if e['event'] == ev])
+    return {
+        'since': since, 'roster': roster, 'cohort': len(cohort), 'funnel': funnel,
+        'active7': len({e['name'] for e in recent}),
+        'logins7': r('login'), 'homework7': r('homework_questions'),
+        'finder7': r('finder_open'), 'answers7': r('show_answer'), 'searches7': r('finder_search'),
+        'attention': attention, 'cards': cards, 'days': days,
+        'max_day': max([d['n'] for d in days] + [1]),
+        'tabs': count(e['detail'] for e in recent if e['event'] == 'page'),
+        'top': top, 'total_events': len(evs),
+    }

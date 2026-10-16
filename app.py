@@ -342,7 +342,11 @@ def admin():
     summary = auth.summary()
     for s in summary:
         s['last_seen'] = pacific(s['last_seen'])
-    return render_template('admin.html', locked=False, summary=summary, events=events, who=who)
+    dash = auth.dashboard() if not who else None
+    if dash:
+        for a in dash['attention']:
+            a['seen'] = pacific(a['last_seen']) or 'never'
+    return render_template('admin.html', locked=False, summary=summary, events=events, who=who, dash=dash)
 
 
 @app.route('/')
