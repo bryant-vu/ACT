@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container" style="max-width: 420px; margin-top: 20px;">
+  <h2>Log in</h2>
+  <p>Type your full name with no spaces, exactly as your tutor has it (capitals don't matter).</p>
+  {% if requested %}
+  <div class="alert alert-success">
+    Thanks! If your name or email matched our records, your login info is on its way to the
+    email we have on file. Otherwise Bryant will reply to the email you gave. Check spam too.
+  </div>
+  {% endif %}
+  {% if error and not show_request %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+  <form method="post" action="/login" autocomplete="off">
+    <input type="hidden" name="next" id="next" value="{{ next }}">
+    <div class="form-group">
+      <label for="name">Full name</label>
+      <input class="form-control" type="text" name="name" id="name" autocapitalize="off" autocorrect="off" spellcheck="false" autofocus required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input class="form-control" type="password" name="password" id="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Log in</button>
+  </form>
+
+  <hr>
+  <button type="button" class="btn btn-outline-secondary" id="requestToggle"
+          aria-expanded="{{ 'true' if show_request else 'false' }}" aria-controls="requestBox">Request Login Info</button>
+  <div id="requestBox" style="margin-top: 12px;{% if not show_request %} display: none;{% endif %}">
+    <p>Type your <b>full name</b> or your <b>email</b> exactly as your tutor has it. If it matches our
+       records, your login info is emailed to the address we have on file right away. If we can't match
+       you, add your email and Bryant will reply to it.</p>
+    {% if error and show_request %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+    <form method="post" action="/request-login" autocomplete="off">
+      <div class="form-group">
+        <label for="reqName">Full name</label>
+        <input class="form-control" type="text" name="name" id="reqName" value="{{ req_name or '' }}" maxlength="80">
+      </div>
+      <div class="form-group">
+        <label for="reqEmail">Email (student or parent)</label>
+        <input class="form-control" type="email" name="email" id="reqEmail" value="{{ req_email or '' }}" maxlength="120">
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</div>
+<script>
+  // a #fragment (e.g. /api/v1/drill/#25MC5.22) survives the redirect to this page; carry it through login
+  document.getElementById('next').value += location.hash;
+  document.getElementById('requestToggle').addEventListener('click', function () {
+    var box = document.getElementById('requestBox');
+    var open = box.style.display === 'none';
+    box.style.display = open ? '' : 'none';
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) document.getElementById('reqName').focus();
+  });
+</script>
+{% endblock %}

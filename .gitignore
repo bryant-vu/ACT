@@ -158,3 +158,6 @@ question_bank/
 
 # Claude Code local config and worktrees (machine-specific)
 .claude/
+
+# Student roster, passwords and activity log: private, never publish
+private/

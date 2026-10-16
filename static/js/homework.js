@@ -94,6 +94,10 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
     var none = document.createElement('div');
     none.className = 'hwNone'; none.style.display = 'none';
     none.textContent = 'No homework under that name.';
+    if (!response.length) {  // a student with nothing linked to them yet
+        none.style.display = '';
+        none.textContent = 'No homework has been assigned to you yet.';
+    }
     box.appendChild(none);
 
     var search = document.getElementById('nameSearch');

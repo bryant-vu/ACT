@@ -12,7 +12,7 @@
                             <br><i> *HW questions are nearly identical to those covered in class.</i>
                             <br><i> *Higher numbered questions are generally more difficult.</i>
                             <br><i> *Refer to your notes if you have trouble answering the questions.</i>
-                            <div id='hwSearch'>
+                            <div id='hwSearch'{% if not is_tutor %} style="display:none"{% endif %}>
                                 <input type='search' id='nameSearch' placeholder='Type your name...' autocomplete='off'>
                             </div>
                             <div id='checkboxesTopics'></div>
@@ -20,17 +20,20 @@
                               #hwSearch { margin: 15px 0 10px; }
                               #nameSearch { width: 100%; max-width: 360px; padding: 8px 14px; font-size: 16px;
                                             border: 1px solid #ccc; border-radius: 20px; }
-                              #checkboxesTopics { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                              /* cards are as wide as their assignments need, and wrap onto new rows */
+                              #checkboxesTopics { display: flex; flex-wrap: wrap; justify-content: center;
                                                   gap: 12px; margin-bottom: 20px; text-align: left; }
-                              .hwGroup { padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9; }
+                              .hwGroup { padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; background: #f9f9f9;
+                                         max-width: 100%; }
                               .hwGroup.groupClass { border-color: #2980b9; background: #eef6fc; }
                               .hwGroup h4 { font-size: 18px; margin: 0 0 6px; display: flex; justify-content: space-between;
                                             align-items: center; gap: 8px; }
                               .hwGroup h4 button { font-size: 12px; padding: 3px 10px; border: 0; border-radius: 12px;
                                                    background: #2980b9; color: #fff; cursor: pointer; white-space: nowrap; }
-                              .hwGroup label { display: block; margin: 2px 0; cursor: pointer; }
+                              /* assignments run left to right and wrap, to save vertical space */
+                              .hwGroup label { display: inline-block; margin: 2px 14px 2px 0; cursor: pointer; }
                               .hwGroup label input { margin-right: 6px; }
-                              .hwNone { grid-column: 1 / -1; text-align: center; color: #777; font-style: italic; }
+                              .hwNone { flex-basis: 100%; text-align: center; color: #777; font-style: italic; }
                             </style>
                         <div>
                         <input type='submit' value='Submit'>

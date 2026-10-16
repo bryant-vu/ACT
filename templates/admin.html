@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container" style="margin-top: 20px;">
+  <h2>Activity</h2>
+  {% if locked %}
+  <form method="post" action="/admin" class="form-inline">
+    <input class="form-control mr-2" type="password" name="password" placeholder="Admin password" autofocus>
+    <button class="btn btn-primary" type="submit">Open</button>
+  </form>
+  {% else %}
+  <p>Times are Pacific. Click a name to see only their activity.{% if who %} <a href="/admin">Show everyone</a>{% endif %}</p>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead><tr><th>Name</th><th>Role</th><th>Last seen</th><th>Logins</th><th>Homework views</th><th>Finder opens</th><th>Answers shown</th><th>Searches</th><th>Different IPs</th></tr></thead>
+      <tbody>
+      {% for s in summary %}
+        <tr><td><a href="/admin?user={{ s.name|urlencode }}">{{ s.name }}</a></td><td>{{ s.role }}</td><td>{{ s.last_seen }}</td>
+            <td>{{ s.logins }}</td><td>{{ s.homework }}</td><td>{{ s.finder_opens }}</td><td>{{ s.answers }}</td><td>{{ s.searches }}</td><td>{{ s.ips }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <h4>Latest events{% if who %}: {{ who }}{% endif %}</h4>
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead><tr><th>When</th><th>Who</th><th>Event</th><th>Detail</th><th>IP</th></tr></thead>
+      <tbody>
+      {% for e in events %}
+        <tr><td>{{ e.when }}</td><td>{{ e.name or '(not logged in)' }}</td><td>{{ e.event }}</td><td>{{ e.detail }}</td><td>{{ e.ip }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
