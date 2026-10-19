@@ -469,10 +469,16 @@ def dashboard(now=None):
         for c in cs:
             by_card.setdefault(c, set()).add(n)
     hw_events = [e for e in evs if e['event'] == 'homework_questions']
+
+    def cards_in(detail):
+        # the log holds assignment names ("10.12 Jude", or several joined by commas);
+        # a card is the name without the "MM.DD " date
+        return {re.sub(r'^\d{2}\.\d{2}\s+', '', part.strip()) for part in (detail or '').split(',')}
+
     for c, members in sorted(by_card.items()):
-        openers = {e['name'] for e in hw_events if e['detail'] == c and e['name'] in members}
-        cards.append({'card': c, 'assigned': len(members), 'opened': len(openers),
-                      'views': len([e for e in hw_events if e['detail'] == c])})
+        mine = [e for e in hw_events if c in cards_in(e['detail'])]
+        openers = {e['name'] for e in mine if e['name'] in members}
+        cards.append({'card': c, 'assigned': len(members), 'opened': len(openers), 'views': len(mine)})
     cards.sort(key=lambda c: (c['opened'] / c['assigned'], -c['assigned']))
 
     days = []                                     # active students per day, last 14 days (Pacific)
