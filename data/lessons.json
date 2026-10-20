@@ -532,5 +532,285 @@
     ]
    }
   ]
+ },
+ {
+  "title": "Lesson 4",
+  "topics": [
+   {
+    "topic": "SOHCAHTOA-PYTHAG",
+    "detail": "Right Triangles: SOHCAHTOA or PYTHAG",
+    "note": "Concept only, no questions.",
+    "questions": []
+   },
+   {
+    "topic": "SOHCAHTOA-PYTHAG",
+    "detail": "SOHCAHTOA steps",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2012.42",
+      "extra": false,
+      "qid": "Jun.2012.42"
+     },
+     {
+      "id": "Apr.2015.29",
+      "extra": false,
+      "qid": "Apr.2015.29"
+     }
+    ]
+   },
+   {
+    "topic": "SOHCAHTOA-PYTHAG",
+    "detail": "SOHCAHTOA Ratio",
+    "note": "Concept only, no questions.",
+    "questions": []
+   },
+   {
+    "topic": "Trig",
+    "detail": "Law of Sines/Cosines",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2026.J01.31",
+      "extra": false,
+      "qid": "Apr.2026.J01.31"
+     },
+     {
+      "id": "Dec.2021.58",
+      "extra": false,
+      "qid": "Dec.2021.58"
+     },
+     {
+      "id": "Dec.2019.54",
+      "extra": false,
+      "qid": "Dec.2019.54"
+     },
+     {
+      "id": "Apr.2021.Z04.59",
+      "extra": false,
+      "qid": "Apr.2021.Z04.59"
+     }
+    ]
+   },
+   {
+    "topic": "Vocab",
+    "detail": "Equilateral/Isosceles/Scalene, Right/Acute/Obtuse",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2017.48",
+      "extra": false,
+      "qid": "Jun.2017.48"
+     }
+    ]
+   },
+   {
+    "topic": "Geometry Rules",
+    "detail": "3rd Side Rule",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2016.54",
+      "extra": false,
+      "qid": "Apr.2016.54"
+     },
+     {
+      "id": "Dec.2022.47",
+      "extra": false,
+      "qid": "Dec.2022.47"
+     }
+    ]
+   },
+   {
+    "topic": "Conics",
+    "detail": "Area/Circumference",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2018.43",
+      "extra": false,
+      "qid": "Apr.2018.43"
+     }
+    ]
+   },
+   {
+    "topic": "Conics",
+    "detail": "Sectors",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2011.50",
+      "extra": false,
+      "qid": "Apr.2011.50"
+     },
+     {
+      "id": "Apr.2014.35",
+      "extra": false,
+      "qid": "Apr.2014.35"
+     },
+     {
+      "id": "Dec.2015.08",
+      "extra": false,
+      "qid": "Dec.2015.08"
+     },
+     {
+      "id": "Dec.2021.52",
+      "extra": false,
+      "qid": "Dec.2021.52"
+     }
+    ]
+   },
+   {
+    "topic": "Conics",
+    "detail": "Equation of Circle",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2021.30",
+      "extra": false,
+      "qid": "Dec.2021.30"
+     }
+    ]
+   },
+   {
+    "topic": "Conics",
+    "detail": "Equation of Ellipse",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2021.55",
+      "extra": false,
+      "qid": "Jun.2021.55"
+     },
+     {
+      "id": "June.2020.47",
+      "extra": false,
+      "qid": "June.2020.47"
+     }
+    ]
+   },
+   {
+    "topic": "Geometry Rules",
+    "detail": "Circle interacting with shapes",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2013.45",
+      "extra": false,
+      "qid": "Apr.2013.45"
+     },
+     {
+      "id": "Dec.2013.45",
+      "extra": false,
+      "qid": "Dec.2013.45"
+     }
+    ]
+   },
+   {
+    "topic": "Geometry Rules",
+    "detail": "Inscribed angle",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2009.48",
+      "extra": false,
+      "qid": "Jun.2009.48"
+     },
+     {
+      "id": "Dec.2012.56",
+      "extra": false,
+      "qid": "Dec.2012.56"
+     },
+     {
+      "id": "Jan.2001.56B.37",
+      "extra": false,
+      "img": "/static/lesson/Jan.2001.56B.37.png"
+     }
+    ]
+   },
+   {
+    "topic": "Perimeter-Area-Volume",
+    "detail": "Volume = A(base) \u00d7 height, pointy shapes are 1/3",
+    "note": "",
+    "questions": [
+     {
+      "id": "June.2020.36",
+      "extra": false,
+      "qid": "June.2020.36"
+     },
+     {
+      "id": "Apr.2019.Z15.55",
+      "extra": false,
+      "qid": "Apr.2019.Z15.55"
+     }
+    ]
+   },
+   {
+    "topic": "Conversions-Mixtures",
+    "detail": "Square/Cubic units",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2018.60",
+      "extra": false,
+      "qid": "Jun.2018.60"
+     },
+     {
+      "id": "Dec.2019.47",
+      "extra": false,
+      "qid": "Dec.2019.47"
+     }
+    ]
+   },
+   {
+    "topic": "Conversions-Mixtures",
+    "detail": "Mixture equation",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2019.51",
+      "extra": false,
+      "qid": "Dec.2019.51"
+     },
+     {
+      "id": "June.2022.50",
+      "extra": false,
+      "qid": "June.2022.50"
+     },
+     {
+      "id": "Jun.2023.F12.45",
+      "extra": false,
+      "qid": "Jun.2023.F12.45"
+     },
+     {
+      "id": "Apr.2021.Z04.44",
+      "extra": false,
+      "qid": "Apr.2021.Z04.44"
+     }
+    ]
+   },
+   {
+    "topic": "D=RT",
+    "detail": "Find speed (units)",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2021.20",
+      "extra": false,
+      "qid": "Dec.2021.20"
+     },
+     {
+      "id": "Apr.2019.B04.37",
+      "extra": false,
+      "qid": "Apr.2019.B04.37"
+     },
+     {
+      "id": "Jun.2021.32",
+      "extra": false,
+      "qid": "Jun.2021.32"
+     }
+    ]
+   }
+  ]
  }
 ]
