@@ -562,8 +562,14 @@
    {
     "topic": "SOHCAHTOA-PYTHAG",
     "detail": "SOHCAHTOA Ratio",
-    "note": "Concept only, no questions.",
-    "questions": []
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2015.31",
+      "extra": false,
+      "qid": "Dec.2015.31"
+     }
+    ]
    },
    {
     "topic": "Trig",
