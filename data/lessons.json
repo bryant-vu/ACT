@@ -818,5 +818,145 @@
     ]
    }
   ]
+ },
+ {
+  "title": "Lesson 5",
+  "topics": [
+   {
+    "topic": "Vocab",
+    "detail": "Vectors",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2026.J01.40",
+      "extra": false,
+      "qid": "Apr.2026.J01.40"
+     },
+     {
+      "id": "June.2020.08",
+      "extra": false,
+      "qid": "June.2020.08"
+     },
+     {
+      "id": "Jun.2021.15",
+      "extra": false,
+      "qid": "Jun.2021.15"
+     },
+     {
+      "id": "Apr.2019.B04.33",
+      "extra": false,
+      "qid": "Apr.2019.B04.33"
+     },
+     {
+      "id": "Apr.2021.D05.54",
+      "extra": false,
+      "qid": "Apr.2021.D05.54"
+     }
+    ]
+   },
+   {
+    "topic": "Conics",
+    "detail": "Equation of Hyperbola",
+    "note": "",
+    "questions": [
+     {
+      "id": "25MC3.40",
+      "extra": false,
+      "qid": "25MC3.40"
+     },
+     {
+      "id": "Feb.2025.Z14.58",
+      "extra": false,
+      "qid": "Feb.2025.Z14.58"
+     }
+    ]
+   },
+   {
+    "topic": "Transformations-Translations",
+    "detail": "Inverse (graph and function)",
+    "note": "",
+    "questions": [
+     {
+      "id": "Oct.2025.J08.20",
+      "extra": false,
+      "qid": "Oct.2025.J08.20"
+     },
+     {
+      "id": "Apr.2023.F11.60",
+      "extra": false,
+      "qid": "Apr.2023.F11.60"
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "title": "Lesson 6",
+  "topics": [
+   {
+    "topic": "Probability-Combinations-Permutations",
+    "detail": "Multiple answers (product/sum, same, one of each)",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2024.G19.23",
+      "extra": false,
+      "qid": "Apr.2024.G19.23"
+     },
+     {
+      "id": "June.2022.53",
+      "extra": false,
+      "qid": "June.2022.53"
+     },
+     {
+      "id": "Jun.2026.J04.31",
+      "extra": false,
+      "qid": "Jun.2026.J04.31"
+     },
+     {
+      "id": "Jun.2016.59",
+      "extra": false,
+      "qid": "Jun.2016.59"
+     }
+    ]
+   },
+   {
+    "topic": "Probability-Combinations-Permutations",
+    "detail": "nCr nPr, unpicked group",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2021.D05.08",
+      "extra": false,
+      "qid": "Apr.2021.D05.08"
+     },
+     {
+      "id": "Jun.2017.51",
+      "extra": false,
+      "qid": "Jun.2017.51"
+     },
+     {
+      "id": "June.2022.59",
+      "extra": false,
+      "qid": "June.2022.59"
+     },
+     {
+      "id": "Apr.2019.B04.53",
+      "extra": false,
+      "qid": "Apr.2019.B04.53"
+     },
+     {
+      "id": "Jun.2018.22",
+      "extra": false,
+      "qid": "Jun.2018.22"
+     },
+     {
+      "id": "Dec.2016.30",
+      "extra": false,
+      "qid": "Dec.2016.30"
+     }
+    ]
+   }
+  ]
  }
 ]
