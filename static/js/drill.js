@@ -9,6 +9,11 @@ const DRILL_GROUPS = [
   ['harder', 'Harder', 'Tougher questions on this skill and multi-step problems that use it.'],
   ['borderline', 'Borderline', 'A related skill or a different angle on the same idea.'],
 ];
+const DRILL_LEVELS = [
+  ['easy', 'Easy', 'Questions in the first third of their test.'],
+  ['medium', 'Medium', 'Questions in the middle third of their test.'],
+  ['hard', 'Hard', 'Questions in the last third of their test.'],
+];
 const DRILL_PAGE = 6;  // cards shown per group before "Show more"
 
 let drillTests = [];
@@ -103,6 +108,12 @@ function drillSection(key, title, desc, cards) {
   const section = drillEl('div', { class: 'drill-section' },
     drillEl('h3', { class: `drill-h-${key}`, text: `${title} (${cards.length})` }),
     drillEl('div', { class: 'drill-desc', text: desc }));
+  drillPaged(section, title, cards);
+  return section;
+}
+
+// the first DRILL_PAGE cards, then a "Show more" button for the rest
+function drillPaged(section, title, cards) {
   const grid = drillGrid(cards.slice(0, DRILL_PAGE));
   section.appendChild(grid);
   let shown = DRILL_PAGE;
@@ -122,7 +133,6 @@ function drillSection(key, title, desc, cards) {
     });
     section.appendChild(more);
   }
-  return section;
 }
 
 function drillShowNumbers(testName, currentId) {
@@ -175,11 +185,25 @@ async function drillShowSearch(query) {
   document.querySelectorAll('#drill-nums .current').forEach(b => b.classList.remove('current'));
   const data = await drillGet(`search/${encodeURIComponent(query)}`);
   drillTrack('search', { search_term: query, results: data.total });  // GA4's standard search event
-  const shown = data.results.length < data.total ? ` (showing the first ${data.results.length})` : '';
   const section = drillEl('div', { class: 'drill-section' },
-    drillEl('h3', { class: 'drill-h-search', text: `${data.total} question${data.total === 1 ? '' : 's'} match “${query}”${shown}` }),
-    drillEl('div', { class: 'drill-desc', text: 'Ordered by question number. Pick one to see questions like it.' }));
-  section.appendChild(drillGrid(data.results));
+    drillEl('h3', { class: 'drill-h-search', text: `${data.total} question${data.total === 1 ? '' : 's'} match “${query}”` }),
+    drillEl('div', { class: 'drill-desc', text: 'Grouped by where each question falls in its test, then ordered by question number. Click a bar to collapse it.' }));
+  // Easy / Medium / Hard bars: each starts open with its first DRILL_PAGE cards ("Show more" for the rest)
+  // and collapses when its bar is clicked
+  DRILL_LEVELS.forEach(([key, title, desc]) => {
+    const cards = data.results.filter(c => c.level === key);
+    const box = drillEl('details', { class: `drill-bucket drill-bucket-${key}` },
+      drillEl('summary', { text: `${title} (${cards.length})` }),
+      drillEl('div', { class: 'drill-desc', text: desc }));
+    if (cards.length) {
+      box.open = true;
+      drillPaged(box, title, cards);
+    } else {
+      box.classList.add('empty');
+      box.querySelector('summary').addEventListener('click', e => e.preventDefault());
+    }
+    section.appendChild(box);
+  });
   result.appendChild(section);
 }
 

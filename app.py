@@ -146,6 +146,7 @@ def load_drill():
     with open('data/drill.json', encoding='utf-8') as f:
         d = json.load(f)
     d['labels'] = {t['name']: t['label'] for t in d['tests']}
+    d['test_len'] = {t['name']: len(t['ids']) for t in d['tests']}
     return d
 
 def with_finder_links(rows):
@@ -587,7 +588,12 @@ def drill_search(query):
     words = query.lower().split()
     hits = [i for i, text in d['search'].items() if words and all(w in text for w in words)]
     hits.sort(key=lambda i: (d['meta'][i]['n'], i))  # lower numbers are usually easier
-    return jsonify({'total': len(hits), 'results': [drill_card(i) for i in hits[:60]]})
+    # difficulty = where the question sits in its test (ACT goes easy -> hard), in thirds
+    def level(i):
+        m = d['meta'][i]
+        pos = (m['n'] - 1) / max(1, d['test_len'].get(m['t'], 60) - 1)
+        return 'easy' if pos < 1 / 3 else 'medium' if pos < 2 / 3 else 'hard'
+    return jsonify({'total': len(hits), 'results': [dict(drill_card(i), level=level(i)) for i in hits]})
 
 if __name__ == '__main__':
     app.run(debug=True)

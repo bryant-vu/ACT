@@ -31,6 +31,20 @@
   .drill-answer-btn { min-width: 110px; font-weight: 600; }
   .drill-show-more { max-width: 820px; margin-bottom: 8px; }
   .drill-note { color: #666; }
+  /* search results: one collapsible bar per difficulty */
+  .drill-bucket { max-width: 820px; margin-bottom: 10px; }
+  .drill-bucket summary {
+    padding: 10px 16px; border-radius: 6px; font-size: 22px; font-weight: 700; color: #fff;
+    cursor: pointer; list-style: none;
+  }
+  .drill-bucket summary::-webkit-details-marker { display: none; }
+  .drill-bucket summary::after { content: ' \25BC'; font-size: 16px; }
+  .drill-bucket[open] summary::after { content: ' \25B2'; }
+  .drill-bucket[open] summary { margin-bottom: 8px; }
+  .drill-bucket.empty summary { opacity: .5; cursor: default; }
+  .drill-bucket-easy summary { background: #27ae60; }
+  .drill-bucket-medium summary { background: #2980b9; }
+  .drill-bucket-hard summary { background: #d35400; }
 </style>
 
 <h2>Similar Questions Finder</h2>
