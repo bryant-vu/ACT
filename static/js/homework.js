@@ -21,7 +21,7 @@ Plotly.d3.json(questionEndPointDate, function(error, response) {
 
 var questionEndPointTopic = ep('question_list/');
 
-// Assignments are named "MM.DD Name": one card per student or class (group classes first,
+// Assignments are named "MM.DD Name" (or "Lesson N Name"): one card per student or class (group classes first,
 // newest class first, then students A-Z),
 // with that student's assignments newest first.
 function assignmentDate(mmdd) {
@@ -36,9 +36,11 @@ function isGroupClass(name) { return name.indexOf('Group Class') === 0; }
 function groupAssignments(topics) {
     var groups = {};
     topics.forEach(function (t) {
-        var m = t.match(/^(\d{2}\.\d{2})\s+(.+)$/);
-        var name = m ? m[2] : 'Other', label = m ? m[1].replace('.', '/') : t;
-        (groups[name] = groups[name] || []).push({ value: t, label: label, date: m ? assignmentDate(m[1]) : 0 });
+        // "Lesson 2 Vince": a training assignment, labeled by lesson, Lesson 1 first
+        var m = t.match(/^(\d{2}\.\d{2}|Lesson \d+)\s+(.+)$/), lesson = m && m[1].indexOf('Lesson') === 0;
+        var name = m ? m[2] : 'Other', label = !m ? t : lesson ? m[1] : m[1].replace('.', '/');
+        var when = !m ? 0 : lesson ? -parseInt(m[1].slice(7), 10) : assignmentDate(m[1]);
+        (groups[name] = groups[name] || []).push({ value: t, label: label, date: when });
     });
     var names = Object.keys(groups).sort(function (a, b) {
         var ga = isGroupClass(a), gb = isGroupClass(b);

@@ -43,7 +43,7 @@ def homework_cards():
                      encoding='utf-8', encoding_errors='replace')
     cards = set()
     for t in df['topic'].dropna().unique():
-        m = re.match(r'^\d{2}\.\d{2}\s+(.+)$', str(t).strip())
+        m = re.match(r'^(?:\d{2}\.\d{2}|Lesson \d+)\s+(.+)$', str(t).strip())
         if m:
             cards.add(m.group(1).strip())
     return sorted(cards)

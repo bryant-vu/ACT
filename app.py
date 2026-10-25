@@ -100,8 +100,8 @@ def calc_practice_questions():
     return rows[['id', 'date', 'ans']].to_dict(orient='records')
 
 def card_name(topic):
-    # "10.12 Jude" -> "Jude"; "10.12 Group Class Mon 7p (Sep)" -> "Group Class Mon 7p (Sep)"
-    m = re.match(r'^\d{2}\.\d{2}\s+(.+)$', topic)
+    # "10.12 Jude" -> "Jude"; "Lesson 1 Vince" -> "Vince"; "10.12 Group Class Mon 7p (Sep)" -> "Group Class Mon 7p (Sep)"
+    m = re.match(r'^(?:\d{2}\.\d{2}|Lesson \d+)\s+(.+)$', topic)
     return m.group(1).strip() if m else topic
 
 def visible_topics(user):
