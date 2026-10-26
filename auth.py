@@ -566,19 +566,24 @@ def dashboard(now=None):
                       for q, v in per_q.items() if v['students'] >= 2),
                      key=lambda h: (h['pct'], -h['students']))[:10]
 
-    # rolling weeks counted back from now: 0 = the last 7 days, 1 = the 7 before that, ...
+    # weeks run Sunday to Saturday (Pacific): 0 = this week so far, 1 = last week, ...
     NWEEKS = 4
+    def week_start(d):
+        return d - timedelta(days=(d.weekday() + 1) % 7)
+    this_week = week_start(today)
+    def week_of(ts):
+        return (this_week - week_start(day(ts))).days // 7
     labels = []
     for i in range(NWEEKS):
-        end, start = now - timedelta(days=7 * i), now - timedelta(days=7 * (i + 1))
-        labels.append('%s - %s' % (day(start).strftime('%m/%d'), day(end).strftime('%m/%d')))
+        start = this_week - timedelta(days=7 * i)
+        labels.append('%s - %s' % (start.strftime('%m/%d'), (start + timedelta(days=6)).strftime('%m/%d')))
     wk = [{} for _ in range(NWEEKS)]              # week -> student -> numbers
     wk_attempts = [[] for _ in range(NWEEKS)]
     for e in evs:
-        i = max(0, int((now - e['ts']).total_seconds() // (7 * 86400)))
+        i = max(0, week_of(e['ts']))
         if i >= NWEEKS:
             continue
-        s = wk[i].setdefault(e['name'], {'secs': 0, 'days': set(), 'hw': 0, 'finder': 0})
+        s = wk[i].setdefault(e['name'], {'secs': 0, 'days': set(), 'hw': 0, 'finder': 0, 'clicks': 0})
         s['days'].add(day(e['ts']))
         if e['event'] == 'time':
             s['secs'] += _parse_time(e['detail'])[1]
@@ -586,6 +591,8 @@ def dashboard(now=None):
             s['hw'] += 1
         elif e['event'] in ('finder_open', 'show_answer', 'finder_search'):
             s['finder'] += 1
+        elif e['event'] == 'click':
+            s['clicks'] += 1
         elif e['event'] == 'attempt':
             wk_attempts[i].append(e)
     wk_first = []                                 # week -> student -> [questions, right first try]
@@ -619,6 +626,15 @@ def dashboard(now=None):
             'up' if now_s > prev_s * 1.1 else 'down' if now_s < prev_s * 0.9 else 'flat'
         student_rows.append({'name': n, 'weeks': cells, 'trend': trend, 'key': (now_s, prev_s, len(wk[0].get(n, {}).get('days', ())))})
     student_rows.sort(key=lambda s: s['key'], reverse=True)
+    # weekly averages over the rolling weeks; before there are 4 weeks of data, divide by the weeks so far
+    first_ts = min((e['ts'] for e in evs), default=now)
+    avg_weeks = min(NWEEKS, max(0, week_of(first_ts)) + 1)
+    per_wk = lambda x: ('%.1f' % (x / avg_weeks)).rstrip('0').rstrip('.')
+    for a in active:
+        tot = {k: sum(w.get(a['name'], {}).get(k, 0) for w in wk) for k in ('secs', 'hw', 'finder', 'clicks')}
+        a['avg_time'] = fmt_secs(tot['secs'] / avg_weeks)
+        a['avg_days'] = per_wk(sum(len(w.get(a['name'], {}).get('days', ())) for w in wk))
+        a['avg_hw'], a['avg_finder'], a['avg_clicks'] = per_wk(tot['hw']), per_wk(tot['finder']), per_wk(tot['clicks'])
     weekly = {'labels': labels, 'summary': summary_rows, 'students': student_rows}
 
     # everyone seen in the last 30 days
@@ -651,7 +667,7 @@ def dashboard(now=None):
 
     r = lambda ev: len([e for e in recent if e['event'] == ev])
     return {
-        'weekly': weekly, 'month': month,
+        'weekly': weekly, 'month': month, 'avg_weeks': avg_weeks,
         'since': since, 'roster': roster, 'cohort': len(cohort), 'funnel': funnel,
         'active7': len({e['name'] for e in recent}),
         'logins7': r('login'), 'homework7': r('homework_questions'),
