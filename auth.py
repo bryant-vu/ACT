@@ -7,6 +7,7 @@ Passwords come from config vars (or private/config.env locally), never from code
 """
 import difflib
 import hmac
+import json
 import os
 import re
 import time
@@ -16,7 +17,7 @@ from datetime import datetime, timedelta
 from pytz import timezone as pytz_timezone, utc as pytz_utc
 
 from sqlalchemy import (Column, DateTime, Integer, MetaData, String, Table, Text,
-                        create_engine, delete, insert, select, text)
+                        bindparam, create_engine, delete, insert, or_, select, text)
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 PRIVATE = os.path.join(BASE, 'private')
@@ -291,6 +292,11 @@ def is_admin(user):
     return bool(user) and user['key'] in admins
 
 
+def _admin_keys():
+    # the admin's own activity is left out of every number on /admin
+    return sorted({normalize(n) for n in CONFIG.get('ADMIN_USERS', 'bryantvu').split(',')})
+
+
 def check_admin_password(password):
     expected = CONFIG.get('ADMIN_PASSWORD')
     if not expected:
@@ -330,14 +336,15 @@ def summary():
                SUM(CASE WHEN event = 'finder_search' THEN 1 ELSE 0 END) AS searches,
                SUM(CASE WHEN event = 'click' THEN 1 ELSE 0 END) AS clicks,
                COUNT(DISTINCT ip) AS ips
-        FROM events WHERE name IS NOT NULL
-        GROUP BY name, role ORDER BY last_seen DESC""")
+        FROM events WHERE name IS NOT NULL AND (user_key IS NULL OR user_key NOT IN :admins)
+        GROUP BY name, role ORDER BY last_seen DESC""").bindparams(bindparam('admins', expanding=True))
     with engine().connect() as conn:
-        return [dict(r._mapping) for r in conn.execute(q)]
+        return [dict(r._mapping) for r in conn.execute(q, {'admins': _admin_keys()})]
 
 
 def recent(limit=300, name=None):
-    q = select(events).where(events.c.event != 'time').order_by(events.c.id.desc()).limit(limit)
+    q = select(events).where(events.c.event != 'time', or_(events.c.user_key.is_(None), events.c.user_key.notin_(_admin_keys()))) \
+        .order_by(events.c.id.desc()).limit(limit)
     if name:
         q = q.where(events.c.name == name)
     with engine().connect() as conn:
@@ -369,7 +376,8 @@ def time_totals():
     """{name: seconds on the site} from the time beacons."""
     out = {}
     with engine().connect() as conn:
-        for r in conn.execute(select(events.c.name, events.c.detail).where(events.c.event == 'time')):
+        for r in conn.execute(select(events.c.name, events.c.detail).where(
+                events.c.event == 'time', or_(events.c.user_key.is_(None), events.c.user_key.notin_(_admin_keys())))):
             out[r.name] = out.get(r.name, 0) + _parse_time(r.detail)[1]
     return out
 
@@ -379,7 +387,8 @@ def user_detail(name):
     time_by_page, clicks = {}, {}
     with engine().connect() as conn:
         rows = conn.execute(select(events.c.event, events.c.detail)
-                            .where(events.c.name == name, events.c.event.in_(('time', 'click'))))
+                            .where(events.c.name == name, events.c.event.in_(('time', 'click')),
+                                   events.c.user_key.notin_(_admin_keys())))
         for r in rows:
             if r.event == 'time':
                 page, secs = _parse_time(r.detail)
@@ -388,7 +397,8 @@ def user_detail(name):
                 clicks[r.detail] = clicks.get(r.detail, 0) + 1
     with engine().connect() as conn:
         att = [dict(r._mapping) for r in conn.execute(
-            select(events).where(events.c.name == name, events.c.event == 'attempt').order_by(events.c.id))]
+            select(events).where(events.c.name == name, events.c.event == 'attempt',
+                                 events.c.user_key.notin_(_admin_keys())).order_by(events.c.id))]
     ft = _first_tries(att)
     tried = sorted(((q, v) for (_n, q), v in ft.items()), key=lambda kv: kv[0])
     right = len([1 for _q, v in tried if v['first']])
@@ -420,6 +430,15 @@ def _pct(a, b):
     return '%d%%' % round(100 * a / b) if b else '-'
 
 
+def _skill_meta():
+    # question id -> {'s': skill/topic, 't': test, 'n': number}, from the Finder's data
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', 'drill.json'), encoding='utf-8') as f:
+            return json.load(f)['meta']
+    except (OSError, ValueError, KeyError):
+        return {}
+
+
 def dashboard(now=None):
     """Numbers for the top of /admin. Students only (tutors and test traffic don't count).
 
@@ -438,6 +457,8 @@ def dashboard(now=None):
         if since:
             q = q.where(events.c.ts >= since)
         evs = [dict(r._mapping) for r in conn.execute(q)]
+    admins = set(_admin_keys())
+    evs = [e for e in evs if e['user_key'] not in admins]
 
     week = now - timedelta(days=7)
     last_seen, first_seen = {}, {}
@@ -537,13 +558,100 @@ def dashboard(now=None):
         a['first_try'] = '%d/%d (%s)' % (r_, t, _pct(r_, t)) if t else '-'
     all_t = sum(v[0] for v in per_student.values())
     all_r = sum(v[1] for v in per_student.values())
+    meta = _skill_meta()
     hardest = sorted(({'qid': q, 'students': v['students'], 'pct': round(100 * v['first'] / v['students']),
-                       'avg_tries': round(v['tries'] / v['students'], 1)}
+                       'avg_tries': round(v['tries'] / v['students'], 1),
+                       'topic': meta.get(q, {}).get('s', '-'),
+                       'where': '%s #%s' % (meta[q]['t'].replace('.', ' '), meta[q]['n']) if q in meta else ''}
                       for q, v in per_q.items() if v['students'] >= 2),
                      key=lambda h: (h['pct'], -h['students']))[:10]
 
+    # rolling weeks counted back from now: 0 = the last 7 days, 1 = the 7 before that, ...
+    NWEEKS = 4
+    labels = []
+    for i in range(NWEEKS):
+        end, start = now - timedelta(days=7 * i), now - timedelta(days=7 * (i + 1))
+        labels.append('%s - %s' % (day(start).strftime('%m/%d'), day(end).strftime('%m/%d')))
+    wk = [{} for _ in range(NWEEKS)]              # week -> student -> numbers
+    wk_attempts = [[] for _ in range(NWEEKS)]
+    for e in evs:
+        i = max(0, int((now - e['ts']).total_seconds() // (7 * 86400)))
+        if i >= NWEEKS:
+            continue
+        s = wk[i].setdefault(e['name'], {'secs': 0, 'days': set(), 'hw': 0, 'finder': 0})
+        s['days'].add(day(e['ts']))
+        if e['event'] == 'time':
+            s['secs'] += _parse_time(e['detail'])[1]
+        elif e['event'] == 'homework_questions':
+            s['hw'] += 1
+        elif e['event'] in ('finder_open', 'show_answer', 'finder_search'):
+            s['finder'] += 1
+        elif e['event'] == 'attempt':
+            wk_attempts[i].append(e)
+    wk_first = []                                 # week -> student -> [questions, right first try]
+    for i in range(NWEEKS):
+        per = {}
+        for (n, q), v in _first_tries(wk_attempts[i]).items():
+            p = per.setdefault(n, [0, 0])
+            p[0] += 1
+            p[1] += v['first']
+        wk_first.append(per)
+    summary_rows = []
+    for i in range(NWEEKS):
+        t = sum(p[0] for p in wk_first[i].values())
+        ok = sum(p[1] for p in wk_first[i].values())
+        secs = sum(s['secs'] for s in wk[i].values())
+        summary_rows.append({'label': labels[i], 'students': len(wk[i]), 'time': fmt_secs(secs),
+                             'avg': fmt_secs(secs // len([s for s in wk[i].values() if s['secs']])) if secs else '-',
+                             'hw': sum(s['hw'] for s in wk[i].values()),
+                             'finder': sum(s['finder'] for s in wk[i].values()),
+                             'first_try': '%s (%d)' % (_pct(ok, t), t) if t else '-'})
+    names = {n for w in wk for n in w}
+    student_rows = []
+    for n in names:
+        cells = []
+        for i in range(NWEEKS):
+            s = wk[i].get(n)
+            cells.append({'time': fmt_secs(s['secs']) if s and s['secs'] else '-', 'days': len(s['days']) if s else 0,
+                          'first': '%s' % _pct(wk_first[i][n][1], wk_first[i][n][0]) if n in wk_first[i] else '-'})
+        now_s, prev_s = wk[0].get(n, {}).get('secs', 0), wk[1].get(n, {}).get('secs', 0)
+        trend = '' if not (now_s or prev_s) else 'new' if not prev_s else 'gone' if not now_s else \
+            'up' if now_s > prev_s * 1.1 else 'down' if now_s < prev_s * 0.9 else 'flat'
+        student_rows.append({'name': n, 'weeks': cells, 'trend': trend, 'key': (now_s, prev_s, len(wk[0].get(n, {}).get('days', ())))})
+    student_rows.sort(key=lambda s: s['key'], reverse=True)
+    weekly = {'labels': labels, 'summary': summary_rows, 'students': student_rows}
+
+    # everyone seen in the last 30 days
+    month_start = now - timedelta(days=30)
+    month = {}
+    for e in evs:
+        if e['ts'] < month_start:
+            continue
+        m = month.setdefault(e['name'], {'name': e['name'], 'last': e['ts'], 'secs': 0, 'days': set(),
+                                         'hw': 0, 'finder': 0, 'clicks': 0, 'attempts': []})
+        m['last'] = max(m['last'], e['ts'])
+        m['days'].add(day(e['ts']))
+        if e['event'] == 'time':
+            m['secs'] += _parse_time(e['detail'])[1]
+        elif e['event'] == 'homework_questions':
+            m['hw'] += 1
+        elif e['event'] in ('finder_open', 'show_answer', 'finder_search'):
+            m['finder'] += 1
+        elif e['event'] == 'click':
+            m['clicks'] += 1
+        elif e['event'] == 'attempt':
+            m['attempts'].append(e)
+    for m in month.values():
+        f = _first_tries(m.pop('attempts'))
+        t, ok = len(f), sum(v['first'] for v in f.values())
+        m['first_try'] = '%d/%d (%s)' % (ok, t, _pct(ok, t)) if t else '-'
+        m['days'] = len(m['days'])
+        m['time'] = fmt_secs(m['secs'])
+    month = sorted(month.values(), key=lambda m: m['secs'], reverse=True)
+
     r = lambda ev: len([e for e in recent if e['event'] == ev])
     return {
+        'weekly': weekly, 'month': month,
         'since': since, 'roster': roster, 'cohort': len(cohort), 'funnel': funnel,
         'active7': len({e['name'] for e in recent}),
         'logins7': r('login'), 'homework7': r('homework_questions'),

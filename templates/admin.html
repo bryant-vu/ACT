@@ -64,50 +64,60 @@
       </table>
     </div>
 
+    <h5>Rolling weekly stats <small class="text-muted">(each week is 7 days counted back from now)</small></h5>
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead><tr><th>Week</th><th>Students active</th><th>Time on site</th><th>Avg per student</th><th>Homework opened</th><th>Finder actions</th><th>First try right</th></tr></thead>
+        <tbody>
+        {% for w in dash.weekly.summary %}
+          <tr{% if loop.first %} style="font-weight:600;"{% endif %}><td>{{ w.label }}{% if loop.first %} (latest){% endif %}</td><td>{{ w.students }}</td><td>{{ w.time }}</td><td>{{ w.avg }}</td><td>{{ w.hw }}</td><td>{{ w.finder }}</td><td>{{ w.first_try }}</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead>
+          <tr><th rowspan="2">Student</th>{% for l in dash.weekly.labels %}<th colspan="3" class="text-center">{{ l }}</th>{% endfor %}<th rowspan="2">vs last week</th></tr>
+          <tr>{% for l in dash.weekly.labels %}<th class="text-muted">Time</th><th class="text-muted">Days</th><th class="text-muted">1st try</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+        {% for s in dash.weekly.students %}
+          <tr><td><a href="/admin?user={{ s.name|urlencode }}">{{ s.name }}</a></td>
+          {% for c in s.weeks %}<td>{{ c.time }}</td><td>{{ c.days or '-' }}</td><td>{{ c.first }}</td>{% endfor %}
+          <td>{% if s.trend == 'up' %}<span style="color:#28a745;">&#9650; more</span>{% elif s.trend == 'down' %}<span style="color:#c0392b;">&#9660; less</span>{% elif s.trend == 'new' %}<span style="color:#28a745;">new</span>{% elif s.trend == 'gone' %}<span style="color:#c0392b;">not back</span>{% elif s.trend == 'flat' %}<span class="text-muted">same</span>{% endif %}</td></tr>
+        {% else %}
+          <tr><td colspan="14" class="text-muted">No student activity yet.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <h5>Who's active this month <small class="text-muted">(last 30 days; {{ dash.month|length }} students)</small></h5>
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead><tr><th>Student</th><th>Last seen</th><th>Days active</th><th>Time on site</th><th>Homework opened</th><th>Finder actions</th><th>First try right</th><th>Clicks</th></tr></thead>
+        <tbody>
+        {% for a in dash.month %}
+          <tr><td><a href="/admin?user={{ a.name|urlencode }}">{{ a.name }}</a></td>
+              <td>{{ a.seen }}</td><td>{{ a.days }}</td><td>{{ a.time }}</td><td>{{ a.hw }}</td><td>{{ a.finder }}</td><td>{{ a.first_try }}</td><td>{{ a.clicks }}</td></tr>
+        {% else %}
+          <tr><td colspan="8" class="text-muted">No student activity in the last 30 days.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
     <div class="row">
       <div class="col-md-6">
-        <h5>Follow up: homework assigned, not seen in 7 days ({{ dash.attention|length }})</h5>
-        <div class="table-responsive" style="max-height: 320px; overflow-y: auto;">
-          <table class="table table-sm">
-            <thead><tr><th>Student</th><th>Homework</th><th>Last seen</th></tr></thead>
-            <tbody>
-            {% for a in dash.attention %}
-              <tr><td><a href="/admin?user={{ a.name|urlencode }}">{{ a.name }}</a></td><td>{{ a.cards }}</td><td>{{ a.seen }}</td></tr>
-            {% else %}
-              <tr><td colspan="3" class="text-muted">Everyone with homework was active this week.</td></tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <h5>Homework cards: opened by</h5>
-        {% for c in dash.cards %}
-        <div class="row align-items-center mb-1">
-          <div class="col-6 col-lg-5" style="font-size: .9rem;">{{ c.card }}</div>
-          <div class="col-3 col-lg-4"><div class="bar"><span style="width: {{ (100 * c.opened / c.assigned)|round(1) }}%"></span></div></div>
-          <div class="col-3"><strong>{{ c.opened }}</strong> of {{ c.assigned }}</div>
-        </div>
-        {% endfor %}
         <h5>Hardest questions (right on the first try, 2+ students)</h5>
         <table class="table table-sm">
-          <thead><tr><th>Question</th><th>Students</th><th>First try right</th><th>Avg tries</th></tr></thead>
+          <thead><tr><th>Question</th><th>Topic</th><th>Students</th><th>First try right</th><th>Avg tries</th></tr></thead>
           <tbody>
           {% for h in dash.hardest %}
-            <tr><td>{{ h.qid }}</td><td>{{ h.students }}</td><td>{{ h.pct }}%</td><td>{{ h.avg_tries }}</td></tr>
+            <tr><td>{{ h.qid }}{% if h.where %}<div class="text-muted" style="font-size:.8rem;">{{ h.where }}</div>{% endif %}</td><td>{{ h.topic }}</td><td>{{ h.students }}</td><td>{{ h.pct }}%</td><td>{{ h.avg_tries }}</td></tr>
           {% else %}
-            <tr><td colspan="4" class="text-muted">Not enough answers yet.</td></tr>
-          {% endfor %}
-          </tbody>
-        </table>
-        <h5>What they clicked on this week</h5>
-        <table class="table table-sm">
-          <thead><tr><th>Page &gt; button</th><th>Clicks</th><th>Students</th></tr></thead>
-          <tbody>
-          {% for label, n, people in dash.top_clicks %}
-            <tr><td>{{ label }}</td><td>{{ n }}</td><td>{{ people }}</td></tr>
-          {% else %}
-            <tr><td colspan="3" class="text-muted">No clicks recorded yet.</td></tr>
+            <tr><td colspan="5" class="text-muted">Not enough answers yet.</td></tr>
           {% endfor %}
           </tbody>
         </table>

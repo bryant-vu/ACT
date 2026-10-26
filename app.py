@@ -352,8 +352,8 @@ def admin():
     if dash:
         for a in dash['active']:
             a['seen'] = pacific(a['last'])
-        for a in dash['attention']:
-            a['seen'] = pacific(a['last_seen']) or 'never'
+        for a in dash['month']:
+            a['seen'] = pacific(a['last'])
     return render_template('admin.html', locked=False, summary=summary, events=events, who=who, dash=dash, detail=detail)
 
 
