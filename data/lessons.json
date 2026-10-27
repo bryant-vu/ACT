@@ -1077,5 +1077,129 @@
     ]
    }
   ]
+ },
+ {
+  "title": "Lesson 7",
+  "topics": [
+   {
+    "topic": "Plug in Numbers (Calc)",
+    "detail": "f(x) and f(g(x)), f o g",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2022.22",
+      "extra": false,
+      "qid": "Dec.2022.22"
+     },
+     {
+      "id": "Apr.2019.B04.38",
+      "extra": false,
+      "qid": "Apr.2019.B04.38"
+     },
+     {
+      "id": "Jun.2019.25",
+      "extra": false,
+      "qid": "Jun.2019.25"
+     }
+    ]
+   },
+   {
+    "topic": "Conversions-Mixtures",
+    "detail": "Unit conversion setup",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2018.35",
+      "extra": false,
+      "qid": "Dec.2018.35"
+     },
+     {
+      "id": "Dec.2021.27",
+      "extra": false,
+      "qid": "Dec.2021.27"
+     }
+    ]
+   },
+   {
+    "topic": "Percents-Fractions (% Change)",
+    "detail": "Parts of a whole (percents/fractions add to 1)",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2017.30",
+      "extra": false,
+      "qid": "Apr.2017.30"
+     },
+     {
+      "id": "Jun.2021.33",
+      "extra": false,
+      "qid": "Jun.2021.33"
+     },
+     {
+      "id": "Apr.2024.G19.23",
+      "extra": false,
+      "qid": "Apr.2024.G19.23"
+     }
+    ]
+   },
+   {
+    "topic": "Rational Functions",
+    "detail": "Vertical Asymptote, does not exist, NOT in domain, undefined",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2015.59",
+      "extra": false,
+      "qid": "Jun.2015.59"
+     },
+     {
+      "id": "Apr.2016.49",
+      "extra": false,
+      "qid": "Apr.2016.49"
+     }
+    ]
+   },
+   {
+    "topic": "Rational Functions",
+    "detail": "x-int & y-int",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2026.J04.28",
+      "extra": false,
+      "qid": "Jun.2026.J04.28"
+     }
+    ]
+   },
+   {
+    "topic": "Rational Functions",
+    "detail": "Zeros, holes, multiplicity, even/odd",
+    "note": "",
+    "questions": [
+     {
+      "id": "Jun.2017.59",
+      "extra": false,
+      "qid": "Jun.2017.59"
+     }
+    ]
+   },
+   {
+    "topic": "Trig",
+    "detail": "Amplitude and Period",
+    "note": "",
+    "questions": [
+     {
+      "id": "June.2022.51",
+      "extra": false,
+      "qid": "June.2022.51"
+     },
+     {
+      "id": "Apr.2021.Z04.58",
+      "extra": false,
+      "qid": "Apr.2021.Z04.58"
+     }
+    ]
+   }
+  ]
  }
 ]
