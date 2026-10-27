@@ -25,6 +25,18 @@
     ]
    },
    {
+    "topic": "Quadratics (and above)",
+    "detail": "FOIL, Factor, Solve (QUADRAT/QFACTOR)",
+    "note": "",
+    "questions": [
+     {
+      "id": "Apr.2021.Z04.41",
+      "extra": false,
+      "qid": "Apr.2021.Z04.41"
+     }
+    ]
+   },
+   {
     "topic": "System of Equations",
     "detail": "SYSTEMEQ",
     "note": "",
@@ -45,18 +57,6 @@
       "id": "Apr.2015.40",
       "extra": false,
       "qid": "Apr.2015.40"
-     }
-    ]
-   },
-   {
-    "topic": "Quadratics (and above)",
-    "detail": "FOIL, Factor, Solve (QUADRAT/QFACTOR)",
-    "note": "",
-    "questions": [
-     {
-      "id": "Apr.2021.Z04.41",
-      "extra": false,
-      "qid": "Apr.2021.Z04.41"
      }
     ]
    },
