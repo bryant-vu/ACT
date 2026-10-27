@@ -42,12 +42,27 @@ function answerButton(qid) {
   return button;
 }
 
-function showLesson(les, picker, button) {
+// Topic buttons (lighter blue, under the lesson buttons) show one topic of the lesson, or all of them
+function showLesson(les, picker, button, topic) {
   picker.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === button));
+  const topics = document.getElementById('topicPicker');
+  topics.innerHTML = '';
+  const all = el('button', { class: 'button', type: 'button' }, 'All topics');
+  all.onclick = () => showLesson(les, picker, button);
+  topics.appendChild(all);
+  les.topics.forEach(function (t, i) {
+    const b = el('button', { class: 'button', type: 'button' }, (i + 1) + '. ' + t.topic + (t.detail ? ': ' + t.detail : ''));
+    b.onclick = () => showLesson(les, picker, button, i);
+    topics.appendChild(b);
+  });
+  const shown = topic == null ? all : topics.children[topic + 1];
+  topics.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === shown));
+
   const root = document.getElementById('lesson');
   root.innerHTML = '';
   root.appendChild(el('h2', {}, les.title));
   les.topics.forEach(function (t, i) {
+    if (topic != null && i !== topic) return;
     const h = el('h3', { class: 'lessonTopic' }, (i + 1) + '. ' + t.topic + (t.detail ? ': ' : ''));
     if (t.detail) h.appendChild(el('small', {}, t.detail));
     root.appendChild(h);
@@ -66,7 +81,44 @@ function showLesson(les, picker, button) {
       root.appendChild(d);
     });
   });
-  history.replaceState(null, '', '#' + encodeURIComponent(les.title));
+  // #Lesson 6 shows the whole lesson, #Lesson 6/3 only its 3rd topic
+  history.replaceState(null, '', '#' + encodeURIComponent(les.title) + (topic == null ? '' : '/' + (topic + 1)));
+}
+
+// Search box: matches topic names, details and question IDs across all lessons
+function setupSearch(lessons, picker, buttons) {
+  const box = document.getElementById('lessonSearch');
+  const results = document.getElementById('searchResults');
+  box.oninput = function () {
+    results.innerHTML = '';
+    const words = box.value.toLowerCase().split(/\s+/).filter(Boolean);
+    if (!words.length) return;
+    const hits = [];
+    lessons.forEach(function (les, li) {
+      les.topics.forEach(function (t, ti) {
+        const text = [les.title, t.topic, t.detail || ''].concat(t.questions.map(q => q.id)).join(' ').toLowerCase();
+        if (words.every(w => text.includes(w))) hits.push([li, ti]);
+      });
+    });
+    if (!hits.length) results.appendChild(el('p', { class: 'lessonNote' }, 'No topics match.'));
+    hits.forEach(function ([li, ti]) {
+      const t = lessons[li].topics[ti];
+      const b = el('a', { href: '#' },
+        lessons[li].title + ' › ' + (ti + 1) + '. ' + t.topic + (t.detail ? ': ' + t.detail : ''));
+      b.onclick = function (e) {
+        e.preventDefault();
+        box.value = '';
+        results.innerHTML = '';
+        showLesson(lessons[li], picker, buttons[li], ti);
+      };
+      results.appendChild(b);
+    });
+  };
+  // Enter opens the first match
+  box.onkeydown = function (e) {
+    const first = results.querySelector('a');
+    if (e.key === 'Enter' && first) first.click();
+  };
 }
 
 fetch('/api/v1/lessons/data/').then(r => r.json()).then(function (lessons) {
@@ -77,7 +129,9 @@ fetch('/api/v1/lessons/data/').then(r => r.json()).then(function (lessons) {
     picker.appendChild(b);
     return b;
   });
-  const want = decodeURIComponent(location.hash.slice(1));
+  setupSearch(lessons, picker, buttons);
+  const [want, n] = decodeURIComponent(location.hash.slice(1)).split('/');
   const i = Math.max(0, lessons.findIndex(l => l.title === want));
-  if (lessons.length) showLesson(lessons[i], picker, buttons[i]);
+  const topic = n > 0 && lessons[i] && n <= lessons[i].topics.length ? n - 1 : undefined;
+  if (lessons.length) showLesson(lessons[i], picker, buttons[i], topic);
 });

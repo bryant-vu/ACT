@@ -5,7 +5,10 @@
 <div class='container'>
     <center>
         <i>Topics and questions in the order they are taught.</i>
+        <input id='lessonSearch' type='search' class='form-control' placeholder='Search topics or question IDs (e.g. asymptote, Dec.2018.35)'>
+        <div id='searchResults'></div>
         <div id='lessonPicker'></div>
+        <div id='topicPicker'></div>
     </center>
 </div>
 <div class='row'>
@@ -18,6 +21,14 @@
   #lessonPicker { margin: 15px 0 25px; }
   #lessonPicker button { margin: 4px; }
   #lessonPicker button.active { background: #2c3e50; background-image: none; }
+  #lessonPicker { margin-bottom: 10px; }
+  #topicPicker { margin: 0 0 25px; }
+  #topicPicker button { display: block; margin: 4px auto; padding: 6px 14px; font-size: 12px; width: 100%; max-width: 600px; text-align: left; border-radius: 16px;
+    background: #85c1e9; background-image: linear-gradient(to bottom, #a9d4f2, #7fbce6); color: #1b4f72; border: 0; }
+  #topicPicker button.active { background: #2e86c1; background-image: none; color: #fff; }
+  #lessonSearch { max-width: 500px; margin: 15px auto 0; }
+  #searchResults { max-width: 500px; margin: 4px auto 0; text-align: left; }
+  #searchResults a { display: block; padding: 4px 8px; }
   .lessonTopic { margin: 35px 0 10px; padding-bottom: 6px; border-bottom: 2px solid #ccc; }
   .lessonTopic small { color: #666; font-size: 70%; }
   .lessonNote { font-style: italic; color: #555; }
