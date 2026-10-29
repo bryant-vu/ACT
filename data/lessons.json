@@ -88,9 +88,9 @@
     "note": "",
     "questions": [
      {
-      "id": "Apr.2015.07",
+      "id": "Jun.2021.03",
       "extra": false,
-      "qid": "Apr.2015.07"
+      "qid": "Jun.2021.03"
      }
     ]
    },
@@ -1073,6 +1073,43 @@
       "id": "Apr.2021.Z04.58",
       "extra": false,
       "qid": "Apr.2021.Z04.58"
+     }
+    ]
+   },
+   {
+    "topic": "Statistics",
+    "detail": "Avg -> find sum",
+    "note": "",
+    "questions": [
+     {
+      "id": "Dec.2018.17",
+      "extra": false,
+      "qid": "Dec.2018.17"
+     },
+     {
+      "id": "Jun.2021.25",
+      "extra": false,
+      "qid": "Jun.2021.25"
+     },
+     {
+      "id": "Apr.2017.28",
+      "extra": false,
+      "qid": "Apr.2017.28"
+     },
+     {
+      "id": "Dec.2021.29",
+      "extra": false,
+      "qid": "Dec.2021.29"
+     },
+     {
+      "id": "Feb.2025.Z14.52",
+      "extra": false,
+      "qid": "Feb.2025.Z14.52"
+     },
+     {
+      "id": "Dec.2017.50",
+      "extra": false,
+      "qid": "Dec.2017.50"
      }
     ]
    }
