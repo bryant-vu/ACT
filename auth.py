@@ -626,15 +626,14 @@ def dashboard(now=None):
             'up' if now_s > prev_s * 1.1 else 'down' if now_s < prev_s * 0.9 else 'flat'
         student_rows.append({'name': n, 'weeks': cells, 'trend': trend, 'key': (now_s, prev_s, len(wk[0].get(n, {}).get('days', ())))})
     student_rows.sort(key=lambda s: s['key'], reverse=True)
-    # weekly averages over the rolling weeks; before there are 4 weeks of data, divide by the weeks so far
-    first_ts = min((e['ts'] for e in evs), default=now)
-    avg_weeks = min(NWEEKS, max(0, week_of(first_ts)) + 1)
-    per_wk = lambda x: ('%.1f' % (x / avg_weeks)).rstrip('0').rstrip('.')
+    # "Who's active this week": this Sunday-Saturday week so far
+    active = [a for a in active if a['name'] in wk[0]]
     for a in active:
-        tot = {k: sum(w.get(a['name'], {}).get(k, 0) for w in wk) for k in ('secs', 'hw', 'finder', 'clicks')}
-        a['avg_time'] = fmt_secs(tot['secs'] / avg_weeks)
-        a['avg_days'] = per_wk(sum(len(w.get(a['name'], {}).get('days', ())) for w in wk))
-        a['avg_hw'], a['avg_finder'], a['avg_clicks'] = per_wk(tot['hw']), per_wk(tot['finder']), per_wk(tot['clicks'])
+        w = wk[0][a['name']]
+        a['secs'], a['time'] = w['secs'], fmt_secs(w['secs'])
+        a['days'], a['hw'], a['finder'], a['clicks'] = len(w['days']), w['hw'], w['finder'], w['clicks']
+        t, r_ = wk_first[0].get(a['name'], [0, 0])
+        a['first_try'] = '%d/%d (%s)' % (r_, t, _pct(r_, t)) if t else '-'
     weekly = {'labels': labels, 'summary': summary_rows, 'students': student_rows}
 
     # everyone seen in the last 30 days
@@ -667,7 +666,7 @@ def dashboard(now=None):
 
     r = lambda ev: len([e for e in recent if e['event'] == ev])
     return {
-        'weekly': weekly, 'month': month, 'avg_weeks': avg_weeks,
+        'weekly': weekly, 'month': month,
         'since': since, 'roster': roster, 'cohort': len(cohort), 'funnel': funnel,
         'active7': len({e['name'] for e in recent}),
         'logins7': r('login'), 'homework7': r('homework_questions'),

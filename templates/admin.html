@@ -49,14 +49,14 @@
       {% endfor %}
     </div>
 
-    <h5>Who's active this week ({{ dash.active|length }}{% if dash.online_now %}, {{ dash.online_now }} online now{% endif %}) <small class="text-muted">weekly average over the last {{ dash.avg_weeks }} Sun-Sat week{{ '' if dash.avg_weeks == 1 else 's' }}, including this one so far</small></h5>
+    <h5>Who's active this week ({{ dash.active|length }}{% if dash.online_now %}, {{ dash.online_now }} online now{% endif %}) <small class="text-muted">this week so far, Sunday to Saturday</small></h5>
     <div class="table-responsive">
       <table class="table table-sm">
-        <thead><tr><th>Student</th><th>Last seen</th><th>Time / week</th><th>Days active / week</th><th>Homework opened / week</th><th>Finder actions / week</th><th>First try right</th><th>Clicks / week</th></tr></thead>
+        <thead><tr><th>Student</th><th>Last seen</th><th>Time on site</th><th>Days active</th><th>Homework opened</th><th>Finder actions</th><th>First try right</th><th>Clicks</th></tr></thead>
         <tbody>
         {% for a in dash.active %}
           <tr><td>{% if a.online %}<span title="active in the last 5 minutes" style="color:#28a745;">&#9679;</span> {% endif %}<a href="/admin?user={{ a.name|urlencode }}">{{ a.name }}</a></td>
-              <td>{{ a.seen }}</td><td>{{ a.avg_time }}</td><td>{{ a.avg_days }}</td><td>{{ a.avg_hw }}</td><td>{{ a.avg_finder }}</td><td>{{ a.first_try }}</td><td>{{ a.avg_clicks }}</td></tr>
+              <td>{{ a.seen }}</td><td>{{ a.time }}</td><td>{{ a.days }}</td><td>{{ a.hw }}</td><td>{{ a.finder }}</td><td>{{ a.first_try }}</td><td>{{ a.clicks }}</td></tr>
         {% else %}
           <tr><td colspan="8" class="text-muted">No student activity yet.</td></tr>
         {% endfor %}
