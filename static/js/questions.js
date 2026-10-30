@@ -41,7 +41,12 @@ function checkChoice(qid, letter) {
                         body: JSON.stringify({id: qid, choice: letter})
                 }).then(function (r) { return r.json(); }).then(function (res) {
                         btn.classList.remove('checking');
-                        if (res.correct === true) btn.classList.add('right');
+                        if (res.correct === true) {
+                                btn.classList.add('right');
+                                var check = btn.closest('strong').querySelector('.doneCheck');
+                                if (check) check.style.display = '';
+                                if (window.onAnsweredRight) window.onAnsweredRight(qid);
+                        }
                         else if (res.correct === false) btn.classList.add('wrong');
                 }).catch(function () { btn.classList.remove('checking'); });
         };
@@ -60,6 +65,13 @@ function appendInnerHTML(response) {
                       d =  q.append('div')
                       .append('strong')
                       .text(response[i]['id'])
+                      // a check once the student has gotten it right (now or on an earlier visit)
+                      var tried = response[i]['tried'] || {}
+                      var gotIt = Object.keys(tried).some(function (k) { return tried[k]; })
+                      if (response[i]['choices']) {
+                          d.append('span').attr('class','doneCheck').text('\u2713')
+                              .style('display', gotIt ? null : 'none')
+                      }
                       d.append('div')
                            if (response[i]['choices']) {
                                // one button per answer choice; the server says right or wrong
@@ -69,6 +81,8 @@ function appendInnerHTML(response) {
                                        .attr('class','choiceBtn')
                                        .attr('type','button')
                                        .text(letter)
+                                       .classed('right', tried[letter] === true)
+                                       .classed('wrong', tried[letter] === false)
                                        .on('click', checkChoice(response[i]['id'], letter))
                                })
                            } else {

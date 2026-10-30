@@ -118,6 +118,7 @@ button.choiceBtn.wrong, button.choiceBtn.wrong:hover {
   background-image: linear-gradient(to bottom, #e74c3c, #c0392b);
 }
 button.choiceBtn[disabled] { cursor: default; }
+.doneCheck { color: #27ae60; font-size: 22px; margin-left: 8px; }
 
 .linkStack { display: inline-flex; flex-direction: column; gap: 2px; vertical-align: top; height: 40px; margin-left: 6px; }
 .linkStack a {

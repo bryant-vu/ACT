@@ -74,12 +74,18 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
         card.setAttribute('data-name', g.name);
         var h = document.createElement('h4');
         h.textContent = g.name;
+        var total = document.createElement('span');
+        total.className = 'hwTotal';
+        h.appendChild(total);
         card.appendChild(h);
         g.items.forEach(function (it) {
             var label = document.createElement('label'), cb = document.createElement('input');
             cb.type = 'checkbox'; cb.className = 'topics'; cb.value = it.value;
             label.appendChild(cb);
             label.appendChild(document.createTextNode(it.label));
+            var count = document.createElement('span');
+            count.className = 'hwCount'; count.setAttribute('data-topic', it.value);
+            label.appendChild(count);
             card.appendChild(label);
         });
         box.appendChild(card);
@@ -97,7 +103,30 @@ Plotly.d3.json(questionEndPointTopic, function(error, response) {
     search.addEventListener('input', filterGroups);
     // a link like /api/v1/homework/#Anthony opens straight to that student's card
     if (location.hash) { search.value = decodeURIComponent(location.hash.slice(1)); filterGroups(); }
+    showProgress();
 });
+
+// "3/12" beside each assignment and "15/40 done" on the card: questions answered right, out of the
+// questions with answer buttons. Students only (tutors get {}), and saved per login, so it survives a re-login.
+function showProgress() {
+    Plotly.d3.json(ep('progress/'), function (error, prog) {
+        if (error || !prog) return;
+        document.querySelectorAll('.hwGroup').forEach(function (card) {
+            var done = 0, all = 0;
+            card.querySelectorAll('.hwCount').forEach(function (c) {
+                var p = prog[c.getAttribute('data-topic')];
+                if (!p) return;
+                done += p[0]; all += p[1];
+                c.textContent = p[0] + '/' + p[1] + (p[0] === p[1] ? ' \u2713' : '');
+                c.classList.toggle('complete', p[0] === p[1]);
+            });
+            var t = card.querySelector('.hwTotal');
+            t.textContent = all ? done + '/' + all + ' done' : '';
+            t.classList.toggle('complete', all > 0 && done === all);
+        });
+    });
+}
+window.onAnsweredRight = showProgress;
 
 //queries list of questions
 function getQuestionData() {

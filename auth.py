@@ -326,6 +326,18 @@ def attempts_so_far(user, qid):
         return conn.execute(q, {'k': user['key'], 'd': qid + '|%'}).scalar() or 0
 
 
+def answers_so_far(user):
+    """Every choice this person has clicked: {qid: {letter: right?}}, so a page can redraw them."""
+    q = text("SELECT detail FROM events WHERE user_key = :k AND event = 'attempt'")
+    out = {}
+    with engine().connect() as conn:
+        for (detail,) in conn.execute(q, {'k': user['key']}):
+            parts = (detail or '').split('|')   # qid|choice|ok|n
+            if len(parts) >= 3:
+                out.setdefault(parts[0], {})[parts[1]] = parts[2] == '1'
+    return out
+
+
 def summary():
     q = text("""
         SELECT name, role, MAX(ts) AS last_seen,

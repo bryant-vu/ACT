@@ -490,15 +490,20 @@ def choice_letters(qid, count=None):
     letters = 'ABCDE' if n % 2 else 'FGHJK'
     return list(letters[:count or load_choice_counts().get(qid, 5)])
 
-def with_answer_choices(rows):
+def has_choice_buttons(qid, ans):
+    letter, letters = answer_letter(ans), choice_letters(qid)
+    return bool(letter and letters and letter in letters)
+
+def with_answer_choices(rows, answered=None):
     # multiple-choice homework gets one button per choice. The answer itself stays on the
     # server (see /api/v1/check), so it isn't sent to the page.
+    # answered: the student's earlier clicks, so their green/red buttons come back after a re-login
     for r in rows:
-        letter = answer_letter(r.get('ans'))
-        letters = choice_letters(r['id'])
-        if letter and letters and letter in letters:
-            r['choices'] = letters
+        if has_choice_buttons(r['id'], r.get('ans')):
+            r['choices'] = choice_letters(r['id'])
             del r['ans']
+            if answered and r['id'] in answered:
+                r['tried'] = answered[r['id']]
     return rows
 
 @lru_cache(maxsize=1)
@@ -528,8 +533,27 @@ def check_answer():
 @app.route('/api/v1/homework/questions/<filters>')
 def homework_questions(filters):
     print("Filters received:", filters)   #  ← add this
-    rows = questions_csv(filters, only_topics=visible_topics(current_user()))
-    return jsonify(with_answer_choices(with_class_links(with_custom_images(with_finder_links(rows)))))
+    user = current_user()
+    rows = questions_csv(filters, only_topics=visible_topics(user))
+    return jsonify(with_answer_choices(with_class_links(with_custom_images(with_finder_links(rows))),
+                                       auth.answers_so_far(user)))
+
+@app.route('/api/v1/homework/progress/')
+def homework_progress():
+    # each of this student's assignments: {topic: [questions answered right, questions with choice buttons]}
+    user = current_user()
+    mine = visible_topics(user)
+    if mine is None:   # tutors see every card; their own clicks aren't progress
+        return jsonify({})
+    right = {qid for qid, tried in auth.answers_so_far(user).items() if any(tried.values())}
+    df = load_csv()
+    out = {}
+    for topic, qid, ans in zip(df['topic'], df['id'], df['ans']):
+        if topic in mine and has_choice_buttons(qid, ans):
+            done_total = out.setdefault(topic, [0, 0])
+            done_total[0] += qid in right
+            done_total[1] += 1
+    return jsonify(out)
 
 @lru_cache(maxsize=1)
 def load_lessons():
