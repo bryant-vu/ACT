@@ -42,7 +42,8 @@ function answerButton(qid) {
   return button;
 }
 
-// Topic buttons (lighter blue, under the lesson buttons) show one topic of the lesson, or all of them
+// Topic buttons (lighter blue, under the lesson buttons) show one topic of the lesson, or all of them;
+// clicking the selected topic again goes back to all of them
 function showLesson(les, picker, button, topic) {
   picker.querySelectorAll('button').forEach(b => b.classList.toggle('active', b === button));
   const topics = document.getElementById('topicPicker');
@@ -52,7 +53,7 @@ function showLesson(les, picker, button, topic) {
   topics.appendChild(all);
   les.topics.forEach(function (t, i) {
     const b = el('button', { class: 'button', type: 'button' }, (i + 1) + '. ' + t.topic + (t.detail ? ': ' + t.detail : ''));
-    b.onclick = () => showLesson(les, picker, button, i);
+    b.onclick = () => showLesson(les, picker, button, i === topic ? undefined : i);   // clicking the shown topic again unselects it
     topics.appendChild(b);
   });
   const shown = topic == null ? all : topics.children[topic + 1];
